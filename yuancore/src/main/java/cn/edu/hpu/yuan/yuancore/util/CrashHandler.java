@@ -11,8 +11,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
  
@@ -20,6 +18,10 @@ import java.util.Map;
  *
  * Created by yuanmingzhuo on 16/04/29.
 * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
+ * application ；
+ *   CrashHandler crashHandler = CrashHandler.getInstance();
+ crashHandler.init(getApplicationContext());
+ mContext = this;
 */
 public class CrashHandler implements UncaughtExceptionHandler {
  
