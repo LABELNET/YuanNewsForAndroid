@@ -33,3 +33,4 @@ captures/
 YuanNewsForAndroid.iml
 .idea
 gradle
+*.iml
