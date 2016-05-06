@@ -2,6 +2,10 @@
 新闻推荐系统-Android客户端
 
 
+# 2016.05.06
+ * Android 基本架构
+    * dagger2 + mvp + Retrofit + data Binding 
+
 # 2016.04.29
  * 添加 yuancore 模块
     * LogUtil ： 日志打印类

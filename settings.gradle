@@ -1,1 +1,1 @@
-include ':yuannews', ':yuancore', ':yuannet'
+include ':yuannews'
