@@ -18,10 +18,8 @@ import java.util.Map;
  *
  * Created by yuanmingzhuo on 16/04/29.
 * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
- * application ；
  *   CrashHandler crashHandler = CrashHandler.getInstance();
  crashHandler.init(getApplicationContext());
- mContext = this;
 */
 public class CrashHandler implements UncaughtExceptionHandler {
  
