@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import cn.edu.hpu.yuan.yuancore.util.CrashHandler;
-import cn.edu.hpu.yuan.yuannet.image.ImageNet;
 
 /**
  * Created by yuan on 16-5-6.
@@ -28,7 +27,6 @@ public class BaseApplication extends Application{
 
     private void initApp() {
         crashHandler.init(getApplicationContext());
-        ImageNet.newInstance(context);
     }
 
 
