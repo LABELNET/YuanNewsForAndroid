@@ -40,4 +40,5 @@ dependencies {
     //retrofit 2.0
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
 
+    compile project(path: ':yuancore')
 }

@@ -39,4 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     //返回fragment
     protected abstract BaseFragment initFragment();
 
+
+
 }
