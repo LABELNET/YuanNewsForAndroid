@@ -2,6 +2,14 @@
 新闻推荐系统-Android客户端
 
 
+# 2016.05.09
+ * 架构基本实现
+ * 主页,详情页布局采用开源 ： 
+    * https://github.com/ksoichiro/Android-ObservableScrollView
+    
+ * Dialog 
+    * https://github.com/andyxialm/ColorDialog
+
 # 2016.05.06
  * Android 基本架构
     * dagger2 + mvp + Retrofit + data Binding 

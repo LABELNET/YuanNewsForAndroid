@@ -43,5 +43,8 @@ dependencies {
     //Gson
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
+    //主页新闻列表
+    compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+
     compile project(path: ':yuancore')
 }
