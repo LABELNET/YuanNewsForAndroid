@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.main;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,8 @@ public abstract class BaseFragment extends Fragment{
     protected ApplicationComponent applicationComponent;
     protected NewsAPIService newsAPIService;
 
+    protected Activity activity;
+
     public void setApplicationComponent(ApplicationComponent applicationComponent) {
         this.applicationComponent = applicationComponent;
     }
@@ -39,6 +42,7 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity=getActivity();
     }
 
     @Nullable

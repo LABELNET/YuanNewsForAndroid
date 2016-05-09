@@ -33,7 +33,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     private NewsFragmentBinding bind;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,11 +44,9 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         DaggerNewsComponent.builder()
                 .applicationComponent(getApplicationComponent())
-                .newsModule(new NewsModule(this,newsAPIService, getActivity()))
+                .newsModule(new NewsModule(this,newsAPIService,activity))
                 .build()
                 .injectNewsFragment(this);
         newsPresenter.showNewsListData(10,2,6);

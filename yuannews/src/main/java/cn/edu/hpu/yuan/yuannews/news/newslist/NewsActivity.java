@@ -33,6 +33,7 @@ public class NewsActivity extends BaseActivity{
 
     @Override
     protected void setComponent() {
+
          DaggerNewsComponent.builder()
                  .applicationComponent(getApplicationComponent())
                  .newsModule(new NewsModule())
