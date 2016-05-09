@@ -1,9 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.main;
 
 import android.app.Application;
-
-import javax.inject.Inject;
-
 import cn.edu.hpu.yuan.yuancore.util.CrashHandler;
 
 /**
@@ -15,16 +12,14 @@ import cn.edu.hpu.yuan.yuancore.util.CrashHandler;
 public class BaseApplication extends Application{
 
 
-    @Inject
     protected CrashHandler crashHandler;
-
     private ApplicationComponent applicationComponent;
-
 
     @Override
     public void onCreate() {
         super.onCreate();
         //初始化crashHandler
+        crashHandler=CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
         setComponent();
     }
