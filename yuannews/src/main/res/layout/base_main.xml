@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".main.BaseActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
+                android:titleTextColor="@android:color/white"
                 android:theme="@style/Toolbar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.AppBarLayout>
@@ -42,7 +47,7 @@
                 android:src="@drawable/ic_add"
                 app:fabSize="normal"
                 app:elevation="5dp"
-                app:layout_anchor="@id/coordinatorLayout"
+                app:layout_anchor="@id/contentFrame"
                 app:layout_anchorGravity="bottom|right|end" />
         </android.support.design.widget.CoordinatorLayout>
 

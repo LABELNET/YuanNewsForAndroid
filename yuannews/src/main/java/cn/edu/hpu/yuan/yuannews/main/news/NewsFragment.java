@@ -19,7 +19,7 @@ public class NewsFragment extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.news_fragment, container);
+        return inflater.inflate(R.layout.news_fragment, null);
     }
 
 }
