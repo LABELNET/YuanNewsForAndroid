@@ -1,11 +1,9 @@
-package cn.edu.hpu.yuan.yuannews.main.news;
+package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import cn.edu.hpu.yuan.yuannews.main.BasePresenter;
 import cn.edu.hpu.yuan.yuannews.main.BaseView;
-import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 
 /**

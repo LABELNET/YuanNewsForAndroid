@@ -1,4 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.main.news;
+package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.app.AlertDialog;
 import android.content.Context;

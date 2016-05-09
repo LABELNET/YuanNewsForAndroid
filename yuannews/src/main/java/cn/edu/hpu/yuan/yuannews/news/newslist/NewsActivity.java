@@ -1,8 +1,7 @@
-package cn.edu.hpu.yuan.yuannews.main.news;
+package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -24,8 +23,7 @@ public class NewsActivity extends BaseActivity{
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setTitle("news");
-        Toast.makeText(context,"Hi",Toast.LENGTH_LONG).show();
+        setTitle("新闻推荐");
     }
 
     @Override

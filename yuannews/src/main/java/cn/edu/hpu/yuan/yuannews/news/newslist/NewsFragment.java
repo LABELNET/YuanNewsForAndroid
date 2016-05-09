@@ -1,8 +1,6 @@
-package cn.edu.hpu.yuan.yuannews.main.news;
+package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,10 +16,8 @@ import javax.inject.Inject;
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
-import cn.edu.hpu.yuan.yuannews.main.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
-import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 
 /**
  * Created by yuan on 16-5-9.

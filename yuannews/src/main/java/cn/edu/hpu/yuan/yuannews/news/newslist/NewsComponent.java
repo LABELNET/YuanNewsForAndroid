@@ -1,5 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.main.news;
-
+package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import cn.edu.hpu.yuan.yuannews.main.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.PerActivity;

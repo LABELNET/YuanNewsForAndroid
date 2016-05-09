@@ -1,10 +1,7 @@
-package cn.edu.hpu.yuan.yuannews.main.news;
+package cn.edu.hpu.yuan.yuannews.news.newslist;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIMapUtil;
