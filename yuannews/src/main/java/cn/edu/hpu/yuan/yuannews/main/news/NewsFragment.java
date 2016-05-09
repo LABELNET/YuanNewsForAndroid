@@ -29,13 +29,11 @@ import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Inject
-    protected MewsPresenter mewsPresenter;
+    protected NewsContract.Presenter newsPresenter;
 
     @Inject
-    protected NewsAPIService newsAPIService;
+    protected AlertDialog.Builder builder;
 
-    private Context context;
-    private AlertDialog.Builder builder;
 
     @Nullable
     @Override
@@ -47,12 +45,13 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mewsPresenter.showNewsListData(10,2,6);
-        context=getActivity();
+
         DaggerNewsComponent.builder()
                 .applicationComponent(getApplicationComponent())
-                .newsModule(new NewsModule(this,newsAPIService))
-                .build();
+                .newsModule(new NewsModule(this,newsAPIService, getActivity()))
+                .build()
+                .injectNewsFragment(this);
+        newsPresenter.showNewsListData(10,2,6);
     }
 
     @Override
@@ -62,7 +61,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Override
     public void showDialog() {
-        builder = new AlertDialog.Builder(context);
         builder.setMessage("加载中");
         builder.show();
     }

@@ -32,6 +32,7 @@ public class NewsAPIModule {
 
     @Provides
     NewsAPIService proviceNewsAPIService(){
+        provideRetrofit();
         return retrofit.create(NewsAPIService.class);
     }
 

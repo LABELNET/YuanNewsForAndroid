@@ -20,7 +20,6 @@ public class MewsPresenter implements NewsContract.Presenter{
     private NewsAPIService newsAPIService;
     private NewsContract.View newsPresenter;
 
-    @Inject
     public MewsPresenter(NewsAPIService newsAPIService, NewsContract.View newsPresenter) {
         this.newsAPIService = newsAPIService;
         this.newsPresenter = newsPresenter;

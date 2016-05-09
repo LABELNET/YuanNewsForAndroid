@@ -30,7 +30,7 @@ public class NewsActivity extends BaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return fragment;
+        return new NewsFragment();
     }
 
     @Override
