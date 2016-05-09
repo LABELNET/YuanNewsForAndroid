@@ -33,6 +33,7 @@ public class BaseApplication extends Application{
     private void setComponent() {
         applicationComponent=DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
+        applicationComponent.injectBaseApplication(this);//初始化Application
     }
 
     public ApplicationComponent getApplicationComponent(){
