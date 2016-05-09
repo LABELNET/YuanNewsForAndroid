@@ -2,6 +2,7 @@ package cn.edu.hpu.yuan.yuannews.main;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.base_main);
+        setComponent();
 
         //初始化toolbar
         final Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
@@ -33,14 +35,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         //初始化fragment
         BaseFragment fragment=initFragment();
         FragmentManager manager=getSupportFragmentManager();
-        manager.beginTransaction().add(R.id.contentFrame, fragment).commit();
+        manager.beginTransaction().replace(R.id.contentFrame, fragment).commit();
+
+
     }
 
     //返回fragment
     protected abstract BaseFragment initFragment();
 
+    //设置toolbarTitle
     protected abstract void setToolBarTitle();
 
+    //初始化Component
+    protected abstract void setComponent();
 
 
 }
