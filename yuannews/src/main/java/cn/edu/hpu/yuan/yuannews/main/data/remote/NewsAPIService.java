@@ -24,7 +24,7 @@ public interface NewsAPIService {
      *  nType 操作类型：6，7,8
      * @return
      */
-    @GET("getNesList?type={type}&num={num}&p={p}&nType={nType}")
+    @GET("getNesList")
     Call<DataBean<ArrayList<NewsCustom>>> getNewsList(@QueryMap Map<String,Integer> options);
 
 

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
+import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
@@ -34,17 +35,21 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Inject
     protected AlertDialog.Builder builder;
 
+    private NewsFragmentBinding bind;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.news_fragment, null);
+        View view = inflater.inflate(R.layout.news_fragment, null);
+         bind = NewsFragmentBinding.bind(view);
+        return  bind.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         DaggerNewsComponent.builder()
                 .applicationComponent(getApplicationComponent())
@@ -68,8 +73,8 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void showNewsList(ArrayList<NewsCustom> newsCustoms) {
 
-        LogUtil.v(" NewsFragment : "+newsCustoms.get(0).toString());
-
+        Log.v(" NewsFragment "," NewsFragment --------------------------------: "+newsCustoms.get(0).toString());
+        bind.setTitle(newsCustoms.get(0).getTitle());
     }
 
     @Override

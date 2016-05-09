@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:textColor="#ff0000"
-        android:gravity="center"
-        android:text="@string/app_name"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-</RelativeLayout>
+
+    <data>
+        <variable
+            name="title"
+            type="java.lang.String"/>
+    </data>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:textColor="#ff0000"
+                android:gravity="center"
+                android:text="@{title}"/>
+
+        </RelativeLayout>
+
+
+</layout>
