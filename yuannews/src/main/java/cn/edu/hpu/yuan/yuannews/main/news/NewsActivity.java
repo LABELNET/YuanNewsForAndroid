@@ -9,10 +9,13 @@ import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
  */
 public class NewsActivity extends BaseActivity{
 
-
     @Override
     protected BaseFragment initFragment() {
-        setTitle("新闻推荐");
         return new NewsFragment();
+    }
+
+    @Override
+    protected void setToolBarTitle() {
+        setTitle("新闻推荐");
     }
 }
