@@ -15,4 +15,6 @@ public interface NewsComponent {
 
     void injectNewsActivity(NewsActivity newsActivity);
 
+    void injectNewsFragment(NewsFragment newsFragment);
+
 }

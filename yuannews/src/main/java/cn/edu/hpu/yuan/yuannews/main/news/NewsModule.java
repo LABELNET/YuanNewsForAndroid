@@ -15,6 +15,10 @@ public class NewsModule {
     private NewsContract.View newsView;
     private NewsAPIService newsAPIService;
 
+
+    public NewsModule(){}
+
+
     public NewsModule(NewsContract.View newsView, NewsAPIService newsAPIService) {
         this.newsView = newsView;
         this.newsAPIService = newsAPIService;
