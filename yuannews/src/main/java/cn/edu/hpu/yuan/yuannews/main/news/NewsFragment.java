@@ -8,12 +8,17 @@ import android.view.ViewGroup;
 
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
+import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 
 /**
  * Created by yuan on 16-5-9.
  * 新闻列表Fragment
  */
 public class NewsFragment extends BaseFragment{
+
+    protected NewsAPIService newsAPIService;
+
+
 
     @Nullable
     @Override
