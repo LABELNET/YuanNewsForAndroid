@@ -12,11 +12,14 @@ import cn.edu.hpu.yuan.yuannews.main.BaseView;
 public interface NewsContract {
 
     interface Presenter extends BasePresenter{
-
+         void showNewsListData();
     }
 
     interface View extends BaseView<Presenter>{
-
+        void showToast();
+        void showDialog();
+        void dismssDiolog();
+        void showCompletion();
     }
 
 }
