@@ -1,6 +1,5 @@
 package cn.edu.hpu.yuan.yuannews.main;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -8,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import cn.edu.hpu.yuan.yuannews.R;
+import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 
 /**
  * Created by yuan on 16-5-9.
@@ -28,6 +28,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         return ((BaseApplication) getApplication()).getApplicationComponent();
     }
 
+    /**
+     * 获取NewsApIService对象
+     * @return
+     */
+    public NewsAPIService getNewsAPIService(){
+        return ((BaseApplication) getApplication()).getNewsAPIService();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //初始化fragment
         BaseFragment fragment = initFragment();
+        fragment.setApplicationComponent(getApplicationComponent());
+        fragment.setNewsAPIService(getNewsAPIService());
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.contentFrame, fragment).commit();
 

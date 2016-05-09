@@ -2,7 +2,6 @@ package cn.edu.hpu.yuan.yuannews.main.news;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.widget.Toast;
 
 import javax.inject.Inject;

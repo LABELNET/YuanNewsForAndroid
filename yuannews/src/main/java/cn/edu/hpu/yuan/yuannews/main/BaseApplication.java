@@ -23,6 +23,8 @@ public class BaseApplication extends Application{
     //Application的注入器
     private ApplicationComponent applicationComponent;
 
+    @Inject
+    private NewsAPIService newsAPIService;
 
     @Override
     public void onCreate() {
@@ -40,6 +42,10 @@ public class BaseApplication extends Application{
 
     public ApplicationComponent getApplicationComponent(){
         return applicationComponent;
+    }
+
+    public  NewsAPIService getNewsAPIService(){
+        return newsAPIService;
     }
 
 

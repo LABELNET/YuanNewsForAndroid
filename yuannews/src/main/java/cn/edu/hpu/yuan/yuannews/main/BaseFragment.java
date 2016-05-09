@@ -6,8 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import javax.inject.Inject;
+import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 
 /**
  * Created by yuan on 16-5-9.
@@ -17,6 +16,25 @@ import javax.inject.Inject;
  */
 public abstract class BaseFragment extends Fragment{
 
+
+    protected ApplicationComponent applicationComponent;
+    protected NewsAPIService newsAPIService;
+
+    public void setApplicationComponent(ApplicationComponent applicationComponent) {
+        this.applicationComponent = applicationComponent;
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
+    public NewsAPIService getNewsAPIService() {
+        return newsAPIService;
+    }
+
+    public void setNewsAPIService(NewsAPIService newsAPIService) {
+        this.newsAPIService = newsAPIService;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

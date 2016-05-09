@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
@@ -35,6 +36,7 @@ public class MewsPresenter implements NewsContract.Presenter{
             if(datas.isSuccessful()){
                 newsPresenter.dismssDiolog();
                 DataBean<ArrayList<NewsCustom>> data = datas.body();
+                LogUtil.v(data.toString());
                 if(data.getCode()==0){
                     newsPresenter.showCompletion();
                     newsPresenter.showNewsList(data.getData());

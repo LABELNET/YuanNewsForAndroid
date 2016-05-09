@@ -1,16 +1,23 @@
 package cn.edu.hpu.yuan.yuannews.main.news;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
+import cn.edu.hpu.yuan.yuannews.main.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
@@ -22,11 +29,13 @@ import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Inject
-    protected NewsAPIService newsAPIService;
-
-    @Inject
     protected MewsPresenter mewsPresenter;
 
+    @Inject
+    protected NewsAPIService newsAPIService;
+
+    private Context context;
+    private AlertDialog.Builder builder;
 
     @Nullable
     @Override
@@ -38,25 +47,36 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mewsPresenter.showNewsListData(10,2,6);
+        context=getActivity();
+        DaggerNewsComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .newsModule(new NewsModule(this,newsAPIService))
+                .build();
     }
 
     @Override
     public void showToast() {
-
+        Toast.makeText(getContext(),"success",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showDialog() {
-
+        builder = new AlertDialog.Builder(context);
+        builder.setMessage("加载中");
+        builder.show();
     }
 
     @Override
     public void showNewsList(ArrayList<NewsCustom> newsCustoms) {
 
+        LogUtil.v(" NewsFragment : "+newsCustoms.get(0).toString());
+
     }
 
     @Override
     public void dismssDiolog() {
+        builder.setCancelable(true);
 
     }
 
