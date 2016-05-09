@@ -40,5 +40,8 @@ dependencies {
     //retrofit 2.0
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
 
+    //Gson
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
     compile project(path: ':yuancore')
 }
