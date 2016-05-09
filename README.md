@@ -9,6 +9,11 @@
     
  * Dialog 
     * https://github.com/andyxialm/ColorDialog
+ * 排序规则 ： https://github.com/konifar/fab-transformation
+ 
+ * 新闻界面实现思路：
+      * 列表实现，head 分类和来源 ，默认显示正常情况
+      * 默认显示正常情况：下面四种情况菜单-》推荐（需要登录），热度，评论，点赞
 
 # 2016.05.06
  * Android 基本架构
