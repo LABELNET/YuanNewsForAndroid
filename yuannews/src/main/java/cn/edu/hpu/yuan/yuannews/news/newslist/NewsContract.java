@@ -2,8 +2,8 @@ package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import java.util.ArrayList;
 
-import cn.edu.hpu.yuan.yuannews.main.BasePresenter;
-import cn.edu.hpu.yuan.yuannews.main.BaseView;
+import cn.edu.hpu.yuan.yuannews.main.base.BasePresenter;
+import cn.edu.hpu.yuan.yuannews.main.base.BaseView;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 
 /**
@@ -14,11 +14,11 @@ import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
  */
 public interface NewsContract {
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
          void showNewsListData(int p,int type,int nType);
     }
 
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
         void showToast();
 
         void showDialog();
@@ -26,6 +26,7 @@ public interface NewsContract {
         void showNewsList(ArrayList<NewsCustom> newsCustoms);
 
         void dismssDiolog();
+
         void showCompletion();
     }
 

@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
-import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
+import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 
 /**

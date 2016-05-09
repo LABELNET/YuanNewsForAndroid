@@ -1,4 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.main;
+package cn.edu.hpu.yuan.yuannews.main.base;
 
 /**
  * Created by yuan on 16-5-9.

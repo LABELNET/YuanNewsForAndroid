@@ -1,4 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.main;
+package cn.edu.hpu.yuan.yuannews.main.app;
 
 import android.app.Application;
 

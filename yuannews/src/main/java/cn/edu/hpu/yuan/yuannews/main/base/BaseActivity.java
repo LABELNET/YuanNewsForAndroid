@@ -1,4 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.main;
+package cn.edu.hpu.yuan.yuannews.main.base;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import cn.edu.hpu.yuan.yuannews.R;
+import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
+import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 
 /**

@@ -5,14 +5,15 @@ import android.os.Bundle;
 
 import javax.inject.Inject;
 
-import cn.edu.hpu.yuan.yuannews.main.BaseActivity;
-import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
+import cn.edu.hpu.yuan.yuannews.main.base.BaseActivity;
+import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
+
 
 /**
  * Created by yuan on 16-5-9.
  * 新闻列表Activity
  */
-public class NewsActivity extends BaseActivity{
+public class NewsActivity extends BaseActivity {
 
 
     @Inject

@@ -1,10 +1,7 @@
-package cn.edu.hpu.yuan.yuannews.main;
+package cn.edu.hpu.yuan.yuannews.main.app;
 
 import android.content.Context;
-
 import javax.inject.Singleton;
-
-import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIModule;
 import dagger.Component;
 

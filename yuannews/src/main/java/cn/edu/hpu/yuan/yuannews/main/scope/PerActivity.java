@@ -1,4 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.main;
+package cn.edu.hpu.yuan.yuannews.main.scope;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
