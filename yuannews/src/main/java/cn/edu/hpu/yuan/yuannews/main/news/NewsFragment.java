@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.edu.hpu.yuan.yuannews.R;
-import cn.edu.hpu.yuan.yuannews.main.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.BaseFragment;
 
 /**
@@ -19,14 +18,8 @@ public class NewsFragment extends BaseFragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.news_fragment, container);
     }
-
-    @Override
-    protected void setFragmentComponent(ApplicationComponent applicationComponent) {
-        applicationComponent.injectBaseFragment(this);
-    }
-
-
 
 }

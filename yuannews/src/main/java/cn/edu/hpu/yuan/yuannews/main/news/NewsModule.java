@@ -15,5 +15,4 @@ public class NewsModule {
         return new NewsFragment();
     }
 
-
 }

@@ -3,6 +3,9 @@ package cn.edu.hpu.yuan.yuannews.main;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
@@ -15,14 +18,15 @@ import javax.inject.Inject;
 public abstract class BaseFragment extends Fragment{
 
 
-    @Inject
-    protected BaseApplication baseApplication;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFragmentComponent(baseApplication.getApplicationComponent());
     }
 
-    protected abstract void setFragmentComponent(ApplicationComponent applicationComponent);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
 }
