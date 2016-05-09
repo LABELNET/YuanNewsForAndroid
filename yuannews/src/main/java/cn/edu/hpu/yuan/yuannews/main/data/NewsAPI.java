@@ -14,7 +14,7 @@ import javax.inject.Scope;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NewsAPI {
 
-   String BASE_IP="192.168.1.194";
+   String BASE_IP="192.168.199.150";
 
    String BASE_URL="http://"+BASE_IP+":8088/yuannews/api/";
 

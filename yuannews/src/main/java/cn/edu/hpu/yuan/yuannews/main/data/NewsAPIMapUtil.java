@@ -16,6 +16,7 @@ public class NewsAPIMapUtil {
         maps.put("type",type);
         maps.put("p",p);
         maps.put("nType",nType);
+        maps.put("num",PAGE_NUM);
         return maps;
     }
 

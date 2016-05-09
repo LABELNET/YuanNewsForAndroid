@@ -73,6 +73,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void showNewsList(ArrayList<NewsCustom> newsCustoms) {
 
+        LogUtil.v(newsCustoms.get(0).getTitle());
         Log.v(" NewsFragment "," NewsFragment --------------------------------: "+newsCustoms.get(0).toString());
         bind.setTitle(newsCustoms.get(0).getTitle());
     }
@@ -80,6 +81,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void dismssDiolog() {
         builder.setCancelable(true);
+        LogUtil.v("dismssDiolog : dismssDiolog");
 
     }
 

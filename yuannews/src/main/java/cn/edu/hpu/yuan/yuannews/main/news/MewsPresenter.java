@@ -40,18 +40,24 @@ public class MewsPresenter implements NewsContract.Presenter{
                 public void onResponse(Call<DataBean<ArrayList<NewsCustom>>> call, Response<DataBean<ArrayList<NewsCustom>>> response) {
                     newsPresenter.dismssDiolog();
                     DataBean<ArrayList<NewsCustom>> data = response.body();
-                    LogUtil.v(data.toString());
-                    if(data.getCode()==0){
-                        newsPresenter.showCompletion();
-                        newsPresenter.showNewsList(data.getData());
+                    if(data!=null){
+                        LogUtil.v(" data "+data.toString());
+                        if(data.getCode()==0){
+                            newsPresenter.showCompletion();
+                            newsPresenter.showNewsList(data.getData());
+                        }else{
+                            newsPresenter.showToast();
+                        }
                     }else{
-                        newsPresenter.showToast();
+                        LogUtil.v(" data is null");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<DataBean<ArrayList<NewsCustom>>> call, Throwable t) {
+                    LogUtil.v("原民卓"+call);
                     newsPresenter.dismssDiolog();
+                    t.printStackTrace();
                 }
             });
 
