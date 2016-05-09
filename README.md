@@ -17,6 +17,8 @@
       
  * 引导页
     * https://github.com/PaoloRotolo/AppIntro
+ * 透明高亮指示层
+    * https://github.com/hongyangAndroid/Highlight
 
 # 2016.05.06
  * Android 基本架构
