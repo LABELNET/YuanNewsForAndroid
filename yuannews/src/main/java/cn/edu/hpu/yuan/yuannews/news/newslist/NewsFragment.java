@@ -46,7 +46,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          View view = inflater.inflate(R.layout.news_fragment, null);
          bind = NewsFragmentBinding.bind(view);
-//         bind = NewsFragmentBinding.bind(view);
         return  bind.getRoot();
     }
 
@@ -58,7 +57,8 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
                 .build()
                 .injectNewsFragment(this);
         newsPresenter.showNewsListData(10,2,6);
-        bind.setNewTitile("波什(#‵′)凸");
+        String type = getArguments().getString(NEWS_TYPE);
+        bind.setNewTitile(type);
     }
 
     @Override
