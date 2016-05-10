@@ -16,10 +16,11 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter{
     private final List<Fragment> list_fragment=new ArrayList<>();
     private final List<String> list_Title=new ArrayList<>();
 
+
+
     public void initAdapter(List<Fragment> fragments, List<String> listTitle){
-        list_fragment.addAll(list_fragment);
+        list_fragment.addAll(fragments);
         list_Title.addAll(listTitle);
-        this.notifyDataSetChanged();
     }
 
     public MainViewPagerAdapter(FragmentManager fm) {
@@ -39,7 +40,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter{
     //此方法用来显示tab上的名字
     @Override
     public CharSequence getPageTitle(int position) {
-        return list_Title.get(position % list_Title.size());
+        return list_Title.get(position);
     }
 
 }

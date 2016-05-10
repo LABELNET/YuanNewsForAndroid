@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CateVo;
@@ -51,6 +52,7 @@ public class MainPresenter implements MainContract.MainPresenter{
                             fragments.add(NewsFragment.getNewsFragmentInstance(sourceVo.getSource(),sourceVo.getId(),8));
                             titles.add(sourceVo.getSource());
                         }
+                        LogUtil.v(titles.toString());
                         mainView.showLoadData(fragments,titles);
                     }else{
                         mainView.loadMsg(response.body().getMsg());

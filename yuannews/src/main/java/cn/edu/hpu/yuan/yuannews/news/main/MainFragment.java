@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 import javax.inject.Inject;
+
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.news.main.adapter.MainViewPagerAdapter;
@@ -68,26 +70,33 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
 
     @Override
     public void showLoadDialog() {
-
+        LogUtil.v("showLoadDialog");
     }
 
     @Override
     public void showLoadData(List<Fragment> fragments, List<String> titles) {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mainViewPagerAdapter.initAdapter(fragments,titles);
+        mainViewPagerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void finishLoadDialog() {
+        LogUtil.v("finishLoadDialog");
+    }
 
+    @Override
+    public void loadError() {
+        LogUtil.v("网络请求失败");
+    }
+
+    @Override
+    public void loadMsg(String msg) {
+        LogUtil.v("loadMsg ： "+msg);
     }
 
     @Override
     public void setPresenter(MainContract.MainPresenter presenter) {
-
-
-
     }
-
 
 }
