@@ -45,6 +45,7 @@ public abstract class BaseFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity=getActivity();
+        initComponent();
     }
 
     @Nullable
@@ -52,5 +53,10 @@ public abstract class BaseFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+    /**
+     * 初始化变量操作（注入器注入）
+     */
+    protected abstract void initComponent();
 
 }

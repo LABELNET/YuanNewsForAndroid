@@ -50,12 +50,17 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initComponent() {
         DaggerNewsComponent.builder()
                 .newsModule(new NewsModule(this))
                 .build()
                 .injectNewsFragment(this);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         newsPresenter.showNewsListData(10,2,6);
         String type = getArguments().getString(NEWS_TYPE);
         bind.setNewTitile(type);

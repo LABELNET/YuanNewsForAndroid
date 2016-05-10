@@ -34,6 +34,11 @@ public class MainFragment extends BaseFragment{
     }
 
     @Override
+    protected void initComponent() {
+
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing);
