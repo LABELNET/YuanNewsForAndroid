@@ -37,7 +37,7 @@ public class MainModule {
     }
 
     //给mainActivity 给他Fragment
-    @Provides @Singleton
+    @Provides
     MainFragment provideMainFragment(){
         return new MainFragment();
     }

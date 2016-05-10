@@ -3,6 +3,8 @@ package cn.edu.hpu.yuan.yuannews.news.main;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import javax.inject.Inject;
+
 import cn.edu.hpu.yuan.yuannews.main.base.BaseActivity;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 
@@ -15,7 +17,8 @@ public class MainActivity extends BaseActivity{
 
 
 
-
+    @Inject
+    protected MainFragment mainFragment;
 
     @Override
     protected void initView(Bundle savedInstanceState, Toolbar toolbar) {
@@ -23,11 +26,14 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return new MainFragment();
+        return mainFragment;
     }
 
     @Override
     protected void setComponent() {
-
+        DaggerMainComponent.builder()
+                .mainModule(new MainModule())
+                .build()
+                .injectMainActivity(this);
     }
 }
