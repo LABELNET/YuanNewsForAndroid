@@ -12,9 +12,13 @@ import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
  * 2.功能：初始化界面，包括分类和来源
  */
 public class MainActivity extends BaseActivity{
+
+
+
+
+
     @Override
     protected void initView(Bundle savedInstanceState, Toolbar toolbar) {
-
     }
 
     @Override

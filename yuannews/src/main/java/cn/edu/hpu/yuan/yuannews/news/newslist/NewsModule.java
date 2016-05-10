@@ -1,6 +1,5 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
-import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 import dagger.Module;
 import dagger.Provides;
 

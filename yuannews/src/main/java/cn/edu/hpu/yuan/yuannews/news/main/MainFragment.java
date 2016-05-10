@@ -62,8 +62,7 @@ public class MainFragment extends BaseFragment{
             views.add(NewsFragment.getNewsFragmentInstance(" 原 "+i));
             strings.add(" 原 "+i);
         }
-      final  MainViewPagerAdapter adapter = new MainViewPagerAdapter(getActivity().getSupportFragmentManager()
-                ,views,strings);
+      final  MainViewPagerAdapter adapter = new MainViewPagerAdapter(getActivity().getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
 
         new Handler().postDelayed(new Runnable() {

@@ -15,6 +15,7 @@ import retrofit2.Response;
 
 /**
  * Created by yuan on 16-5-9.
+ * 新闻列表Presenter
  */
 public class MewsPresenter implements NewsContract.Presenter{
 

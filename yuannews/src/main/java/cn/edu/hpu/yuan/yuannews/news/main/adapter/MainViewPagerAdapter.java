@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,14 +13,17 @@ import java.util.List;
  */
 public class MainViewPagerAdapter extends FragmentPagerAdapter{
 
-    private List<Fragment> list_fragment;                         //fragment列表
-    private List<String> list_Title;                              //tab名的列表
+    private final List<Fragment> list_fragment=new ArrayList<>();
+    private final List<String> list_Title=new ArrayList<>();
 
+    public void initAdapter(List<Fragment> fragments, List<String> listTitle){
+        list_fragment.addAll(list_fragment);
+        list_Title.addAll(listTitle);
+        this.notifyDataSetChanged();
+    }
 
-    public MainViewPagerAdapter(FragmentManager fm, List<Fragment> list_fragment, List<String> list_Title) {
+    public MainViewPagerAdapter(FragmentManager fm) {
         super(fm);
-        this.list_fragment = list_fragment;
-        this.list_Title = list_Title;
     }
 
     @Override
