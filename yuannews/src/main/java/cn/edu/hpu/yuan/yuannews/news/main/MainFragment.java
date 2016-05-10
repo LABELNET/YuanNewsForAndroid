@@ -24,7 +24,7 @@ import cn.edu.hpu.yuan.yuannews.news.newslist.NewsFragment;
  * 1.主界面：初始化加载，分类和来源信息到tabs上
  * 2.。。。
  */
-public class MainFragment extends BaseFragment{
+public class MainFragment extends BaseFragment implements MainContract.MainView{
 
 
     @Nullable
@@ -35,7 +35,10 @@ public class MainFragment extends BaseFragment{
 
     @Override
     protected void initComponent() {
-
+        DaggerMainComponent.builder()
+                .mainModule(new MainModule(this,getActivity().getSupportFragmentManager()))
+                .build()
+                .injectMainFragment(this);
     }
 
     @Override
@@ -83,4 +86,23 @@ public class MainFragment extends BaseFragment{
     }
 
 
+    @Override
+    public void showLoadDialog() {
+
+    }
+
+    @Override
+    public void showLoadData(List<Fragment> fragments, List<String> titles) {
+
+    }
+
+    @Override
+    public void finishLoadDialog() {
+
+    }
+
+    @Override
+    public void setPresenter(MainContract.MainPresenter presenter) {
+
+    }
 }
