@@ -18,8 +18,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter{
     private final List<Fragment> list_fragment=new ArrayList<>();
     private final List<String> list_Title=new ArrayList<>();
 
-
-
     public void initAdapter(List<Fragment> fragments, List<String> listTitle){
         list_fragment.addAll(fragments);
         list_Title.addAll(listTitle);
