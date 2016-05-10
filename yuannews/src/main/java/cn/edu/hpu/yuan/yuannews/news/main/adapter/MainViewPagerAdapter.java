@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.hpu.yuan.yuannews.news.newslist.NewsFragment;
+
 /**
  * Created by yuan on 16-5-10.
  * 主页的ViewPager的Adapter
@@ -25,6 +27,8 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter{
 
     public MainViewPagerAdapter(FragmentManager fm) {
         super(fm);
+        list_fragment.add(NewsFragment.getNewsFragmentInstance("默认",0,6));
+        list_Title.add("默认");
     }
 
     @Override
