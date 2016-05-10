@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:layout_width="match_parent"
+<android.support.design.widget.CollapsingToolbarLayout android:layout_width="match_parent"
+    android:id="@+id/collapsing"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,8 +10,9 @@
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabMode="fixed" />
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/black"
+     />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -20,4 +22,4 @@
     </android.support.v4.view.ViewPager>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.design.widget.CollapsingToolbarLayout>

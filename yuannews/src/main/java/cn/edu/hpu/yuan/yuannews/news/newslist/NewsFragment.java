@@ -1,8 +1,5 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
-import android.app.AlertDialog;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -30,10 +27,18 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Inject
     protected NewsContract.Presenter newsPresenter;
 
-    @Inject
-    protected AlertDialog.Builder builder;
-
     private  NewsFragmentBinding bind;
+
+    private static final String NEWS_TYPE="news_type";
+
+
+    public static NewsFragment getNewsFragmentInstance(String type){
+        NewsFragment fragment = new NewsFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString(NEWS_TYPE,type);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
 
     @Nullable
@@ -49,8 +54,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         DaggerNewsComponent.builder()
-                .applicationComponent(getApplicationComponent())
-                .newsModule(new NewsModule(this,newsAPIService,activity))
+                .newsModule(new NewsModule(this))
                 .build()
                 .injectNewsFragment(this);
         newsPresenter.showNewsListData(10,2,6);
@@ -64,8 +68,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Override
     public void showDialog() {
-        builder.setMessage("加载中");
-        builder.show();
     }
 
     @Override
@@ -77,9 +79,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Override
     public void dismssDiolog() {
-        builder.setCancelable(true);
         LogUtil.v("dismssDiolog : dismssDiolog");
-
     }
 
     @Override

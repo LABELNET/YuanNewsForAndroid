@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
+import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIMapUtil;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
@@ -17,11 +18,9 @@ import retrofit2.Response;
  */
 public class MewsPresenter implements NewsContract.Presenter{
 
-    private NewsAPIService newsAPIService;
     private NewsContract.View newsPresenter;
 
-    public MewsPresenter(NewsAPIService newsAPIService, NewsContract.View newsPresenter) {
-        this.newsAPIService = newsAPIService;
+    public MewsPresenter(NewsContract.View newsPresenter) {
         this.newsPresenter = newsPresenter;
     }
 
@@ -30,7 +29,7 @@ public class MewsPresenter implements NewsContract.Presenter{
 
 //            newsPresenter.showDialog();
              Map<String, Integer> options = NewsAPIMapUtil.getNewsListMap(type, p, nType);
-             Call<DataBean<ArrayList<NewsCustom>>> newsList = newsAPIService.getNewsList(options);
+             Call<DataBean<ArrayList<NewsCustom>>> newsList = BaseApplication.newsAPIService.getNewsList(options);
              newsList.enqueue(new Callback<DataBean<ArrayList<NewsCustom>>>(){
 
                 @Override

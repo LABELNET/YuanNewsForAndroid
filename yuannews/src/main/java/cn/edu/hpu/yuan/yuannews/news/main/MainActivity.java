@@ -19,7 +19,7 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return null;
+        return new MainFragment();
     }
 
     @Override

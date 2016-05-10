@@ -1,8 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import javax.inject.Inject;
 
@@ -17,15 +17,13 @@ import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 public class NewsActivity extends BaseActivity {
 
 
-    @Inject
-    protected Context context;
 
     @Inject
     protected NewsFragment fragment;
 
     @Override
     protected void initView(Bundle savedInstanceState,Toolbar toolbar) {
-        setTitle("新闻推荐");
+     toolbar.setVisibility(View.GONE);
     }
 
     @Override
@@ -37,7 +35,6 @@ public class NewsActivity extends BaseActivity {
     protected void setComponent() {
 
          DaggerNewsComponent.builder()
-                 .applicationComponent(getApplicationComponent())
                  .newsModule(new NewsModule())
                  .build()
                  .injectNewsActivity(this);

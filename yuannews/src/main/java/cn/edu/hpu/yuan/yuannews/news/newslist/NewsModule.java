@@ -1,8 +1,5 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
-import android.app.AlertDialog;
-import android.content.Context;
-
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 import dagger.Module;
 import dagger.Provides;
@@ -16,17 +13,13 @@ public class NewsModule {
 
 
     private NewsContract.View newsView;
-    private NewsAPIService newsAPIService;
-    private Context context;
 
 
     public NewsModule(){}
 
 
-    public NewsModule(NewsContract.View newsView, NewsAPIService newsAPIService,Context context) {
+    public NewsModule(NewsContract.View newsView) {
         this.newsView = newsView;
-        this.newsAPIService = newsAPIService;
-        this.context=context;
     }
 
     @Provides
@@ -41,12 +34,7 @@ public class NewsModule {
 
     @Provides
     NewsContract.Presenter provideNewsPresenter(){
-        return new MewsPresenter(newsAPIService,newsView);
-    }
-
-    @Provides
-    AlertDialog.Builder provideAlertDialogBuilder(){
-        return new AlertDialog.Builder(context);
+        return new MewsPresenter(newsView);
     }
 
 }
