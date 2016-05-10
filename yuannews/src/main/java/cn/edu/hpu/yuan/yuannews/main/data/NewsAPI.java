@@ -14,7 +14,8 @@ import javax.inject.Scope;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NewsAPI {
 
-   String BASE_IP="192.168.199.150";
+   // TODO    每次修改IP 地址进行数据请求
+   String BASE_IP="10.42.0.1";
 
    String BASE_URL="http://"+BASE_IP+":8088/yuannews/api/";
 

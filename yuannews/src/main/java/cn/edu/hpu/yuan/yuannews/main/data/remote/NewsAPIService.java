@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
+import cn.edu.hpu.yuan.yuannews.main.data.model.news.CSCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
 /**
@@ -26,6 +28,10 @@ public interface NewsAPIService {
      */
     @GET("getNesList")
     Call<DataBean<ArrayList<NewsCustom>>> getNewsList(@QueryMap Map<String,Integer> options);
+
+
+    @POST("getCateSources")
+    Call<DataBean<CSCustom>> getCateSource();
 
 
 }

@@ -30,12 +30,15 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     private  NewsFragmentBinding bind;
 
     private static final String NEWS_TYPE="news_type";
+    private static final String NEWS_TYPE_ID="news_type_ID";
+    private static final String NEWS_TYPE_NTYPE="news_type_ntype";
 
-
-    public static NewsFragment getNewsFragmentInstance(String type){
+    public static NewsFragment getNewsFragmentInstance(String type,Integer id,Integer nType){
         NewsFragment fragment = new NewsFragment();
         Bundle bundle=new Bundle();
         bundle.putString(NEWS_TYPE,type);
+        bundle.putInt(NEWS_TYPE_ID,id);
+        bundle.putInt(NEWS_TYPE_NTYPE,nType);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -60,10 +63,11 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         newsPresenter.showNewsListData(10,2,6);
         String type = getArguments().getString(NEWS_TYPE);
-        bind.setNewTitile(type);
+        Integer nType=getArguments().getInt(NEWS_TYPE_NTYPE);
+        Integer id=getArguments().getInt(NEWS_TYPE_ID);
+        bind.setNewTitile(type+id+nType);
     }
 
     @Override
