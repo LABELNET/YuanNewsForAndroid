@@ -24,7 +24,7 @@ public class BaseApplication extends Application{
     private ApplicationComponent applicationComponent;
 
     @Inject
-    protected NewsAPIService newsAPIService;
+    public static NewsAPIService newsAPIService;
 
     @Override
     public void onCreate() {
