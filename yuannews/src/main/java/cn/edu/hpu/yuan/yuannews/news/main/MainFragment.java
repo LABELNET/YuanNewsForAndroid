@@ -1,6 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.news.main;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -26,8 +27,6 @@ import cn.edu.hpu.yuan.yuannews.news.newslist.NewsFragment;
 public class MainFragment extends BaseFragment{
 
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +46,7 @@ public class MainFragment extends BaseFragment{
         //给TabLayout增加Tab, 并关联ViewPager
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 //        tabLayout.addTab(tabLayout.newTab().setText("内容简介"));
 //        tabLayout.addTab(tabLayout.newTab().setText("作者简介"));
 //        tabLayout.addTab(tabLayout.newTab().setText("目录"));
@@ -56,15 +56,26 @@ public class MainFragment extends BaseFragment{
     }
 
     private void setupViewPager(ViewPager mViewPager) {
-        List<Fragment> views=new ArrayList<>();
-        List<String> strings=new ArrayList<>();
-        for(int i=0;i<10;i++){
+        final List<Fragment> views=new ArrayList<>();
+        final List<String> strings=new ArrayList<>();
+        for(int i=0;i<2;i++){
             views.add(NewsFragment.getNewsFragmentInstance(" 原 "+i));
             strings.add(" 原 "+i);
         }
-        MainViewPagerAdapter adapter = new MainViewPagerAdapter(getActivity().getSupportFragmentManager()
+      final  MainViewPagerAdapter adapter = new MainViewPagerAdapter(getActivity().getSupportFragmentManager()
                 ,views,strings);
         mViewPager.setAdapter(adapter);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=3;i<10;i++){
+                    views.add(NewsFragment.getNewsFragmentInstance(" 原 "+i));
+                    strings.add(" 原sdvsdvsdv "+i);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        },10000);
     }
 
 
