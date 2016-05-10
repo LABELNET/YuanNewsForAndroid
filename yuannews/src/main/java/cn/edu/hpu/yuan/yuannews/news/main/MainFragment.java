@@ -10,14 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
 import java.util.List;
-
+import javax.inject.Inject;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.news.main.adapter.MainViewPagerAdapter;
-import cn.edu.hpu.yuan.yuannews.news.newslist.NewsFragment;
 
 /**
  * Created by yuan on 16-5-10.
@@ -26,6 +23,16 @@ import cn.edu.hpu.yuan.yuannews.news.newslist.NewsFragment;
  */
 public class MainFragment extends BaseFragment implements MainContract.MainView{
 
+
+    @Inject
+    protected MainContract.MainPresenter mainPresenter;
+
+    @Inject
+    protected MainViewPagerAdapter mainViewPagerAdapter;
+
+
+    private   ViewPager mViewPager;
+    private   TabLayout tabLayout;
 
     @Nullable
     @Override
@@ -46,45 +53,18 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
         super.onViewCreated(view, savedInstanceState);
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing);
         collapsingToolbar.setTitle("失控");
-
         //设置ViewPager
-        ViewPager mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        setupViewPager(mViewPager);
+        mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        mViewPager.setAdapter(mainViewPagerAdapter);
 
         //给TabLayout增加Tab, 并关联ViewPager
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
+        tabLayout= (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
-//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-//        tabLayout.addTab(tabLayout.newTab().setText("内容简介"));
-//        tabLayout.addTab(tabLayout.newTab().setText("作者简介"));
-//        tabLayout.addTab(tabLayout.newTab().setText("目录"));
         tabLayout.setupWithViewPager(mViewPager);
 
-
+        //加载数据
+        mainPresenter.loadDataRequest();
     }
-
-    private void setupViewPager(ViewPager mViewPager) {
-        final List<Fragment> views=new ArrayList<>();
-        final List<String> strings=new ArrayList<>();
-        for(int i=0;i<2;i++){
-            views.add(NewsFragment.getNewsFragmentInstance(" 原 "+i));
-            strings.add(" 原 "+i);
-        }
-      final  MainViewPagerAdapter adapter = new MainViewPagerAdapter(getActivity().getSupportFragmentManager());
-        mViewPager.setAdapter(adapter);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                for(int i=3;i<10;i++){
-                    views.add(NewsFragment.getNewsFragmentInstance(" 原 "+i));
-                    strings.add(" 原sdvsdvsdv "+i);
-                }
-                adapter.notifyDataSetChanged();
-            }
-        },10000);
-    }
-
 
     @Override
     public void showLoadDialog() {
@@ -93,7 +73,8 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
 
     @Override
     public void showLoadData(List<Fragment> fragments, List<String> titles) {
-
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mainViewPagerAdapter.initAdapter(fragments,titles);
     }
 
     @Override
@@ -104,5 +85,9 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
     @Override
     public void setPresenter(MainContract.MainPresenter presenter) {
 
+
+
     }
+
+
 }
