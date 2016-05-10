@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">新闻推荐</string>
+
+
+    <!-- BaseActivity -->
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
 </resources>

@@ -1,6 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.app.AlertDialog;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -8,22 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import javax.inject.Inject;
-
-import cn.edu.hpu.yuan.yuancore.ui.dialog.PromptDialog;
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
-import okio.Timeout;
+
 
 /**
  * Created by yuan on 16-5-9.
  * 新闻列表Fragment
+ * 1.功能：加载新闻列表
+ *
  */
 public class NewsFragment extends BaseFragment implements NewsContract.View{
 
@@ -33,13 +33,15 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Inject
     protected AlertDialog.Builder builder;
 
-    private NewsFragmentBinding bind;
+    private  NewsFragmentBinding bind;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.news_fragment, null);
+         View view = inflater.inflate(R.layout.news_fragment, null);
          bind = NewsFragmentBinding.bind(view);
+//         bind = NewsFragmentBinding.bind(view);
         return  bind.getRoot();
     }
 
@@ -52,6 +54,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
                 .build()
                 .injectNewsFragment(this);
         newsPresenter.showNewsListData(10,2,6);
+        bind.setNewTitile("波什(#‵′)凸");
     }
 
     @Override
@@ -70,7 +73,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
         LogUtil.v(newsCustoms.get(0).getTitle());
         Log.v(" NewsFragment "," NewsFragment --------------------------------: "+newsCustoms.get(0).toString());
-        bind.setTitle(newsCustoms.get(0).getTitle());
     }
 
     @Override

@@ -2,6 +2,7 @@ package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
 
@@ -23,7 +24,7 @@ public class NewsActivity extends BaseActivity {
     protected NewsFragment fragment;
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
+    protected void initView(Bundle savedInstanceState,Toolbar toolbar) {
         setTitle("新闻推荐");
     }
 
