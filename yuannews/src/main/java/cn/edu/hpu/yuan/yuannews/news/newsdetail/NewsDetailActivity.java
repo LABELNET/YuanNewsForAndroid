@@ -3,6 +3,8 @@ package cn.edu.hpu.yuan.yuannews.news.newsdetail;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import javax.inject.Inject;
+
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.base.NormalBackActivity;
 
@@ -13,6 +15,10 @@ import cn.edu.hpu.yuan.yuannews.main.base.NormalBackActivity;
 public class NewsDetailActivity extends NormalBackActivity{
 
 
+
+    @Inject
+    protected NewsDetailFragment newsDetailFragment;
+
     @Override
     protected void initView(Bundle savedInstanceState, Toolbar toolbar) {
 
@@ -20,11 +26,12 @@ public class NewsDetailActivity extends NormalBackActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return null;
+        return newsDetailFragment;
     }
 
     @Override
     protected void setComponent() {
+        int nid=getIntent().getIntExtra("nid",400);
 
     }
 
