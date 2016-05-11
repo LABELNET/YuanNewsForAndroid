@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentPageItemBinding;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
@@ -59,8 +60,12 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
         NewsCustom newsCustom = newsCustoms.get(position);
         NewsFragmentPageItemBinding bind=DataBindingUtil.getBinding(holder.itemView);
         bind.setNewsCustom(newsCustom);
+        String url=NewsAPI.BASE_IMAGE_URL+newsCustom.getImg();
+//        LogUtil.v(url);
         Glide.with(context)
-                .load(NewsAPI.BASE_IMAGE_URL+newsCustom.getImg())
+                .load(url)
+                .error(R.mipmap.loaderror)
+                .placeholder(R.mipmap.loading)
                 .into(bind.newsItemImage);
     }
 
