@@ -69,10 +69,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         //初始化toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-
 
         //设置DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,6 +99,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
 
         initView(savedInstanceState,toolbar);
+        initToolbar(toolbar);
     }
 
     private void showChoiceDialog(){
@@ -151,6 +148,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public  void showToast(String msg){
         Toast.makeText(getBaseContext(),msg,Toast.LENGTH_SHORT).show();
     }
+
+    protected void initToolbar(Toolbar toolbar){}
 
     //初始化界面和toolbae添加其他的操作
     protected abstract void initView(Bundle savedInstanceState,Toolbar toolbar);

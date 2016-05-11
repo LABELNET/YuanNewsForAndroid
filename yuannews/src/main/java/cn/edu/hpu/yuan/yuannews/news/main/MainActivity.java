@@ -1,10 +1,12 @@
 package cn.edu.hpu.yuan.yuannews.news.main;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseActivity;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 
@@ -22,6 +24,9 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected void initView(Bundle savedInstanceState, Toolbar toolbar) {
+        ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
