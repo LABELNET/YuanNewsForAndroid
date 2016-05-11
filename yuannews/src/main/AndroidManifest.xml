@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".news.newslist.NewsActivity" />
+        <activity android:name=".news.newsdetail.NewsDetailActivity"/>
 
     </application>
 
