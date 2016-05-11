@@ -11,13 +11,20 @@ import dagger.Provides;
 @Module
 public class NewsDetailModule {
 
-    public NewsDetailModule() {
+
+    private int nid;
+
+    public NewsDetailModule(int nid) {
+        this.nid=nid;
     }
 
     @Provides
-    NewsDetailFragment provideNewsDetaulFragment(int nid){
+    NewsDetailFragment provideNewsDetaulFragment(){
         return NewsDetailFragment.getInstance(nid);
     }
+
+
+
 
 
 

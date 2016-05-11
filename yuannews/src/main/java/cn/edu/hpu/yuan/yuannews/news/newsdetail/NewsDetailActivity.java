@@ -32,6 +32,11 @@ public class NewsDetailActivity extends NormalBackActivity{
     @Override
     protected void setComponent() {
         int nid=getIntent().getIntExtra("nid",400);
+        DaggerNewsDetailComponent
+                .builder()
+                .newsDetailModule(new NewsDetailModule(nid))
+                .build()
+                .injectNewsDetailActivity(this);
 
     }
 
