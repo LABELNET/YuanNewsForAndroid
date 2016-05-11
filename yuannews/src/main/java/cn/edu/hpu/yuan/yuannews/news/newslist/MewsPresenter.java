@@ -39,10 +39,15 @@ public class MewsPresenter implements NewsContract.Presenter{
                     if(data!=null){
                         LogUtil.v(" data "+data.toString());
                         if(data.getCode()==0){
-                            newsPresenter.showNewsList(data.getData());
+                            if(data.getData()!=null && data.getData().size()!=0) {
+                                newsPresenter.showNewsList(data.getData());
+                            }else {
+                                newsPresenter.showNotData();
+                            }
                         }else{
                             newsPresenter.showSnackBar(data.getMsg());
                         }
+
                     }else{
                         LogUtil.v(" data is null");
                         newsPresenter.showNotData();

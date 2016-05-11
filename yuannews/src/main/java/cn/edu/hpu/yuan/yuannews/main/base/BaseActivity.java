@@ -1,6 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.main.base;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -84,6 +86,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.contentFrame, fragment).commit();
 
+
+        //初始化FloatButton
+        FloatingActionButton floatingActionButton= (FloatingActionButton) findViewById(R.id.fab_add_task);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         initView(savedInstanceState,toolbar);
     }

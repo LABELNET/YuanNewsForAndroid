@@ -6,12 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 
-/**
- * 作者 : andy
- * 日期 : 15/11/16 12:23
- * 邮箱 : andyxialm@gmail.com
- * 描述 : 默认动画效果
- */
+
 public class AnimationLoader {
     public static AnimationSet getInAnimation(Context context) {
         AnimationSet in = new AnimationSet(context, null);

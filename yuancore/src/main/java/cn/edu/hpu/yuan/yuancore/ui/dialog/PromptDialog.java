@@ -23,12 +23,6 @@ import android.widget.TextView;
 import cn.edu.hpu.yuan.yuancore.R;
 import cn.edu.hpu.yuan.yuancore.util.DisplayUtil;
 
-/**
- * 作者 : andy
- * 日期 : 15/11/10 11:28
- * 邮箱 : andyxialm@gmail.com
- * 描述 : 提示性的Dialog
- */
 public class PromptDialog extends Dialog {
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;

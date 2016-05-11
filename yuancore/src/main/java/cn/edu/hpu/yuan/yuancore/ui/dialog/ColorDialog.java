@@ -22,12 +22,7 @@ import cn.edu.hpu.yuan.yuancore.R;
 import cn.edu.hpu.yuan.yuancore.util.DisplayUtil;
 
 
-/**
- * 作者 : andy
- * 日期 : 15/11/7 17:26
- * 邮箱 : andyxialm@gmail.com
- * 描述 : Dialog
- */
+
 public class ColorDialog extends Dialog implements View.OnClickListener {
 
     private ImageView mContentIv;
