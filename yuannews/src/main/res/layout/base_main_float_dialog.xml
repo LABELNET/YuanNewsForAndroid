@@ -11,13 +11,13 @@
         android:layout_height="50dp"
         android:text="推荐"
         android:gravity="center"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@drawable/tv_background"/>
 
     <TextView
         android:id="@+id/float_rnum"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/tv_background"
         android:text="热度"
         android:gravity="center"
         android:layout_marginTop="10dp"/>
@@ -28,7 +28,7 @@
         android:layout_height="50dp"
         android:text="评论"
         android:gravity="center"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/tv_background"
         android:layout_marginTop="10dp"/>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="50dp"
         android:text="点赞"
         android:gravity="center"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/tv_background"
         android:layout_marginTop="10dp"/>
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_height="50dp"
         android:text="取消"
         android:gravity="center"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/tv_background"
         android:layout_marginTop="10dp"/>
 
 </LinearLayout>
