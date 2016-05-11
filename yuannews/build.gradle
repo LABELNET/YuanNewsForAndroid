@@ -31,6 +31,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0' //RecyclerView
+    compile 'com.android.support:cardview-v7:23.3.0' //cardView
+    compile 'com.balysv:material-ripple:1.0.2'  //点击波纹效果
 
     //dagger2
     apt'com.google.dagger:dagger-compiler:2.0.2'//指定注解处理器

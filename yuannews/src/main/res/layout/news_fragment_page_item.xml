@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_test"
+<layout>
+    <data>
+        <variable
+            name="title"
+            type="java.lang.String"/>
+    </data>
+    <com.balysv.materialripple.MaterialRippleLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ripple"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_name"
-        android:gravity="center"/>
+        android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                >
+    
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@{title}" />
+    
+            </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+</layout>
