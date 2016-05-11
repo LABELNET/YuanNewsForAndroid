@@ -41,6 +41,7 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     private NewsDetailFragmentBinding bind;
     private int newsStatus=0;
+    private int nid;
 
     @Nullable
     @Override
@@ -63,8 +64,8 @@ public class NewsDetailFragment extends NorbalBackFragment
     @Override
     protected void onloadData() {
 
-        newsDetailPresenter.getNewsDetailData();
-        newsDetailPresenter.getNewsZansHeadData();
+        newsDetailPresenter.getNewsDetailData(nid);
+        newsDetailPresenter.getNewsZansHeadData(nid);
         newsDetailPresenter.getNewsZanStatus();
 
         //TODO 用户点赞操作，后面补充
@@ -74,9 +75,8 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
         //用户点赞
-        final int nid=getArguments().getInt(NEWSDETAIL_FRAGMENT_NID_KEY);
+        nid=getArguments().getInt(NEWSDETAIL_FRAGMENT_NID_KEY);
         bind.newDetailZan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class NewsDetailFragment extends NorbalBackFragment
     public void updateZanSuccess() {
         showMsg("你已经点赞了");
         //点赞成功，更新头像和状态
-        newsDetailPresenter.getNewsZansHeadData();
+        newsDetailPresenter.getNewsZansHeadData(nid);
         newsDetailPresenter.getNewsZanStatus();
     }
 

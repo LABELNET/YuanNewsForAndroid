@@ -14,11 +14,11 @@ public interface NewsDetailContancts {
 
     interface NewsDetailPresenter{
 
-        void getNewsDetailData();
+        void getNewsDetailData(int nid);
 
         void updateNewsZan(int nid,int status);
 
-        void getNewsZansHeadData();
+        void getNewsZansHeadData(int nid);
 
         void getNewsZanStatus();
     }

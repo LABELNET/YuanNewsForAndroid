@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.CSCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -30,8 +32,27 @@ public interface NewsAPIService {
     Call<DataBean<ArrayList<NewsCustom>>> getNewsList(@QueryMap Map<String,String> options);
 
 
+    /**
+     * 分类，来源信息
+     * @return
+     */
     @POST("getCateSources")
     Call<DataBean<CSCustom>> getCateSource();
+
+    /**
+     * 新闻详情
+     * @param nid
+     * @return
+     */
+    @POST("getNewsDetail")
+    Call<DataBean<NewsCustom>> getNewsDetail(@Query("nid") Integer nid);
+
+    /**
+     * 获取点赞列表
+     * @return
+     */
+    @POST("getLikedHead")
+    Call<DataBean<ArrayList<LikedVo>>> getNewsLikedVos(@Query("nid") Integer nid);
 
 
 }
