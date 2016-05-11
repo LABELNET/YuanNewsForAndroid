@@ -27,7 +27,7 @@ public interface NewsAPIService {
      * @return
      */
     @GET("getNesList")
-    Call<DataBean<ArrayList<NewsCustom>>> getNewsList(@QueryMap Map<String,Integer> options);
+    Call<DataBean<ArrayList<NewsCustom>>> getNewsList(@QueryMap Map<String,String> options);
 
 
     @POST("getCateSources")

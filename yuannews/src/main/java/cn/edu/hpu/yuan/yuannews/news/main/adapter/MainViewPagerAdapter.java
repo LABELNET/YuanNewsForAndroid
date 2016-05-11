@@ -25,8 +25,9 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter{
 
     public MainViewPagerAdapter(FragmentManager fm) {
         super(fm);
-        list_fragment.add(NewsFragment.getNewsFragmentInstance("默认",0,6));
-        list_Title.add("默认");
+        //默认的nType=6
+        list_fragment.add(NewsFragment.getNewsFragmentInstance("首页",6));
+        list_Title.add("首页");
     }
 
     @Override

@@ -2,15 +2,13 @@ package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import java.util.ArrayList;
 import javax.inject.Inject;
-import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
@@ -35,14 +33,15 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     private  NewsFragmentBinding bind;
 
     private static final String NEWS_TYPE="news_type";
-    private static final String NEWS_TYPE_ID="news_type_ID";
     private static final String NEWS_TYPE_NTYPE="news_type_ntype";
+    private String title = getArguments().getString(NEWS_TYPE);//分类来源内容
+    private Integer nType=getArguments().getInt(NEWS_TYPE_NTYPE);//查询类型
+    private Integer type=2; //正常情况，默认，是可以修改的通过floatButton修改
 
-    public static NewsFragment getNewsFragmentInstance(String type,Integer id,Integer nType){
+    public static NewsFragment getNewsFragmentInstance(String type,Integer nType){
         NewsFragment fragment = new NewsFragment();
         Bundle bundle=new Bundle();
         bundle.putString(NEWS_TYPE,type);
-        bundle.putInt(NEWS_TYPE_ID,id);
         bundle.putInt(NEWS_TYPE_NTYPE,nType);
         fragment.setArguments(bundle);
         return fragment;
@@ -69,14 +68,17 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView();
+        onload(title,type,nType);
+    }
 
-
-
-
-        newsPresenter.showNewsListData(10,2,6);
-        String type = getArguments().getString(NEWS_TYPE);
-        Integer nType=getArguments().getInt(NEWS_TYPE_NTYPE);
-        Integer id=getArguments().getInt(NEWS_TYPE_ID);
+    /**
+     * 加载数据的方法
+     * @param title   分类和来源信息
+     * @param type   当前类型
+     * @param nType  当前查询方式
+     */
+    private void onload(String title,int type,int nType){
+        newsPresenter.initNewsListData(title,type,nType);
     }
 
     /**
@@ -90,30 +92,35 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
 
     @Override
-    public void showToast() {
-        Toast.makeText(getContext(),"success",Toast.LENGTH_LONG).show();
-    }
-
-    @Override
     public void showDialog() {
+        //显示进度条
     }
 
     @Override
     public void showNewsList(ArrayList<NewsCustom> newsCustoms) {
         customRecyclerViewAdapter.initData(newsCustoms);
         customRecyclerViewAdapter.notifyDataSetChanged();
-        LogUtil.v(newsCustoms.get(0).getTitle());
-        Log.v(" NewsFragment "," NewsFragment --------------------------------: "+newsCustoms.get(0).toString());
+    }
+
+    @Override
+    public void showInitNewsList() {
+        //清空adapter数据
+        customRecyclerViewAdapter.clearData();
     }
 
     @Override
     public void dismssDiolog() {
-        LogUtil.v("dismssDiolog : dismssDiolog");
+        //隐藏进度条
     }
 
     @Override
-    public void showCompletion() {
+    public void showNotData() {
+        showSnackBar("没有数据了");
+    }
 
+    @Override
+    public void showSnackBar(String msg) {
+        Snackbar.make(bind.recyclerView,msg,Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

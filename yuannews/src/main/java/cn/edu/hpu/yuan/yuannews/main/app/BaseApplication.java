@@ -8,6 +8,7 @@ import cn.edu.hpu.yuan.yuancore.util.CrashHandler;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIModule;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
+import retrofit2.Retrofit;
 
 /**
  * Created by yuan on 16-5-9.
@@ -25,6 +26,9 @@ public class BaseApplication extends Application{
 
     @Inject
     public static NewsAPIService newsAPIService;
+
+    @Inject
+    public static Retrofit retrofit;
 
     @Override
     public void onCreate() {

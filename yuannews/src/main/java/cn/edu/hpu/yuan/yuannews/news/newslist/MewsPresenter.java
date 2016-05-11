@@ -25,11 +25,11 @@ public class MewsPresenter implements NewsContract.Presenter{
         this.newsPresenter = newsPresenter;
     }
 
-    @Override
-    public void showNewsListData(int p, int type, int nType) {
+    private int p=1;
 
-//            newsPresenter.showDialog();
-             Map<String, Integer> options = NewsAPIMapUtil.getNewsListMap(type, p, nType);
+    private void showNewsListData(String title,int type, int nType) {
+            newsPresenter.showDialog();
+             Map<String, String> options = NewsAPIMapUtil.getNewsListMap(title,type, p, nType);
              Call<DataBean<ArrayList<NewsCustom>>> newsList = BaseApplication.newsAPIService.getNewsList(options);
              newsList.enqueue(new Callback<DataBean<ArrayList<NewsCustom>>>(){
 
@@ -40,19 +40,18 @@ public class MewsPresenter implements NewsContract.Presenter{
                     if(data!=null){
                         LogUtil.v(" data "+data.toString());
                         if(data.getCode()==0){
-                            newsPresenter.showCompletion();
                             newsPresenter.showNewsList(data.getData());
                         }else{
-                            newsPresenter.showToast();
+                            newsPresenter.showSnackBar(data.getMsg());
                         }
                     }else{
                         LogUtil.v(" data is null");
+                        newsPresenter.showNotData();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<DataBean<ArrayList<NewsCustom>>> call, Throwable t) {
-                    LogUtil.v("原民卓"+call);
                     newsPresenter.dismssDiolog();
                     t.printStackTrace();
                 }
@@ -60,4 +59,16 @@ public class MewsPresenter implements NewsContract.Presenter{
 
     }
 
+    @Override
+    public void initNewsListData(String title, int type, int nType) {
+        newsPresenter.showInitNewsList();
+        p=1;
+        showNewsListData(title,type,nType);
+    }
+
+    @Override
+    public synchronized void nextNewsListData(String title, int type, int nType) {
+        p+=1;
+        showNewsListData(title,type,nType);
+    }
 }

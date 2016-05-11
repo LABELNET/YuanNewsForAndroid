@@ -44,12 +44,14 @@ public class MainPresenter implements MainContract.MainPresenter{
                         List<String> titles=new ArrayList<>();
 
                         for(CateVo cateVo:response.body().getData().getCateVos()){
-                            fragments.add(NewsFragment.getNewsFragmentInstance(cateVo.getContent(),cateVo.getId(),7));
+                            //分类的nType=7
+                            fragments.add(NewsFragment.getNewsFragmentInstance(cateVo.getContent(),7));
                             titles.add(cateVo.getContent());
                         }
 
                         for (SourceVo sourceVo:response.body().getData().getSourceVos()){
-                            fragments.add(NewsFragment.getNewsFragmentInstance(sourceVo.getSource(),sourceVo.getId(),8));
+                            //来源的nType=8
+                            fragments.add(NewsFragment.getNewsFragmentInstance(sourceVo.getSource(),8));
                             titles.add(sourceVo.getSource());
                         }
                         LogUtil.v(titles.toString());

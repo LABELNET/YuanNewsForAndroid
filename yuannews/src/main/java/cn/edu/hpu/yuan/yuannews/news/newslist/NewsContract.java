@@ -15,19 +15,28 @@ import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 public interface NewsContract {
 
     interface Presenter extends BasePresenter {
-         void showNewsListData(int p,int type,int nType);
+
+        //初始化
+         void initNewsListData(String title,int type,int nType);
+
+        //下一页
+         void nextNewsListData(String title,int type,int nType);
+
     }
 
     interface View extends BaseView<Presenter> {
-        void showToast();
 
         void showDialog();
 
         void showNewsList(ArrayList<NewsCustom> newsCustoms);
 
+        void showInitNewsList(); //第一页
+
         void dismssDiolog();
 
-        void showCompletion();
+        void showNotData();//完成
+
+        void showSnackBar(String msg);
     }
 
 }
