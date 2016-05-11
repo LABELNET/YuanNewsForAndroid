@@ -1,5 +1,9 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -37,13 +41,17 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     private  NewsFragmentBinding bind;
     private SwipeRefreshLayout.OnRefreshListener swipeOnRefresh;
 
+    //action
+    private static final String NEWSFRAGMENT_TYPE_ACTION="newsfragment_type_action";
+
     private static final String NEWS_TYPE="news_type";
     private static final String NEWS_TYPE_NTYPE="news_type_ntype";
     private String title ="首页";//分类来源内容
     private Integer nType=6;//查询类型
     private Integer type=2; //正常情况，默认，是可以修改的通过floatButton修改
+    private boolean isloadMore=false;
 
-    public static NewsFragment getNewsFragmentInstance(String type,Integer nType){
+    public static NewsFragment getNewsFragmentInstance(String title,String type,Integer nType){
         NewsFragment fragment = new NewsFragment();
         Bundle bundle=new Bundle();
         bundle.putString(NEWS_TYPE,type);
@@ -52,6 +60,17 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        registerBaseActivityReceiver();//注册广播
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unRegisterBaseActivityReceiver();//注销广播
+    }
 
     @Nullable
     @Override
@@ -91,16 +110,27 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
         bind.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                if(isloadMore){
+                    refresh();
+                }else {
+                    bind.swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
         refresh();
     }
 
     private void refresh() {
+        if(isloadMore) {
+            isloadMore = false;
+        }
         onload(title,type,nType);
     }
 
     private void refreshMore(){
+        if(!isloadMore) {
+            isloadMore = true;
+        }
         onLoadMore(title,type,nType);
     }
 
@@ -199,4 +229,34 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     public void setPresenter(NewsContract.Presenter presenter) {
 
     }
+
+
+    private void registerBaseActivityReceiver(){
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(NEWSFRAGMENT_TYPE_ACTION);
+        activity.registerReceiver(baseActivityReceiver,filter);
+    }
+
+    private void unRegisterBaseActivityReceiver(){
+        activity.unregisterReceiver(baseActivityReceiver);
+    }
+
+
+    /**
+     * 广播，进行接收type类型，改变排序规则
+     */
+    BroadcastReceiver baseActivityReceiver=new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String action=intent.getAction();
+            if(NEWSFRAGMENT_TYPE_ACTION.equals(action)){
+                type=intent.getIntExtra(NEWSFRAGMENT_TYPE_ACTION,2);
+                refresh();
+            }
+
+        }
+    };
+
 }

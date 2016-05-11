@@ -9,7 +9,7 @@
         android:id="@+id/float_tuijian"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="推荐"
+        android:text="默认"
         android:gravity="center"
         android:background="@drawable/tv_background"/>
 

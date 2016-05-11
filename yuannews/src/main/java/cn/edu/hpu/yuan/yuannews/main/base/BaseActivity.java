@@ -1,6 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.main.base;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -55,6 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private  Toolbar toolbar;
     private  AlertDialog dialog;
     private  FloatDialogClickListener floatDialogClickListener;
+    private static final String NEWSFRAGMENT_TYPE_ACTION="newsfragment_type_action";
 
 
     @Override
@@ -169,28 +172,33 @@ public abstract class BaseActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.float_tuijian:
-                    showToast("推荐");
+                    sendReceiver(2);
                     break;
                 case R.id.float_rnum:
-                    showToast("热度");
+                    sendReceiver(3);
                     break;
                 case R.id.float_comment:
-                    showToast("评论");
+                    sendReceiver(5);
                     break;
                 case R.id.float_zan:
-                    showToast("点赞");
+                    sendReceiver(4);
                     break;
-                case R.id.float_quxiao:
-                    showToast("取消");
+                default:
                     break;
             }
 
             dialog.dismiss();
         }
-
-        public  void showToast(String msg){
-            Log.v("BaseActivity ", msg);
-        }
     }
+
+    //广播，发给新闻列表页，改变排序类型
+    private void sendReceiver(Integer type){
+        Intent intent=new Intent();
+        intent.setAction(NEWSFRAGMENT_TYPE_ACTION);
+        intent.putExtra(NEWSFRAGMENT_TYPE_ACTION,type);
+        sendBroadcast(intent);
+    }
+
+
 
 }
