@@ -117,10 +117,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     }
 
     private void refresh() {
-        if(!isVisible){
-            return;
-        }
-        //懒加载数据
         onload(title,type,nType);
     }
 
