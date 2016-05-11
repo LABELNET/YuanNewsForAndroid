@@ -9,6 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by yuan on 16-5-9.
  * 新闻API Module， 只能在Application中进行初始化操作
+ * 1.数据访问类 Retrofit
+ * 2.图片访问Glide
  */
 @Module
 public class NewsAPIModule {
@@ -20,6 +22,7 @@ public class NewsAPIModule {
     public NewsAPIModule(String baseUrl) {
         this.baseUrl = baseUrl;
     }
+
 
     @Provides
     Retrofit provideRetrofit(){
@@ -35,6 +38,11 @@ public class NewsAPIModule {
         provideRetrofit();
         return retrofit.create(NewsAPIService.class);
     }
+
+
+    @
+
+
 
 
 }
