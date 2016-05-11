@@ -24,18 +24,6 @@ public class NewsDetailActivity extends NormalBackActivity{
 
     @Override
     protected void initView(Bundle savedInstanceState, Toolbar toolbar) {
-
-        int nid = getIntent().getIntExtra("nid", 400);
-        LogUtil.v(" initView : nid "+nid);
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        int nid = getIntent().getIntExtra("nid", 400);
-        LogUtil.v(" onCreate : nid "+nid);
     }
 
     @Override
