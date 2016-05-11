@@ -2,6 +2,16 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <import type="cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom"/>
+
+        <variable
+            name="newsCustom"
+            type="NewsCustom"/>
+
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,11 +22,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/newsDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/newDetailImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxHeight="300dp"
@@ -30,7 +42,7 @@
                         android:padding="16dp"
                         android:orientation="vertical">
                         <TextView
-                            android:text="我是标题，达标题"
+                            android:text="@{newsCustom.title}"
                             android:textSize="25dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -42,7 +54,7 @@
                             android:textSize="12dp"
                             android:textColor="@color/lightblack"
                             android:gravity="right"
-                            android:text="阅读(10)  评论（20）点赞（50） " />
+                            android:text="@{String.format(@string/newsDetail_rcznum,newsCustom.rnum,newsCustom.cnum,newsCustom.znum) }" />
 
                     </LinearLayout>
 
@@ -60,7 +72,7 @@
                     android:padding="16dp"
                     android:lineSpacingExtra="3dp"
                     android:lineSpacingMultiplier="1.2"
-                    android:text="@string/content"/>
+                    android:text="@{newsCustom.content}"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -69,6 +81,7 @@
                     android:background="@color/colorPrimaryDark"/>
 
                 <GridView
+                    android:id="@+id/newDetailImages"
                     android:layout_margin="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -102,25 +115,26 @@
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
                 android:layout_marginLeft="16dp"
-                android:text="查看评论 10"/>
+                android:text="@{String.format(@string/newsDetail_comment,newsCustom.cnum) }"/>
 
 
             <ImageView
+                android:id="@+id/newDetailZan"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/newsDetailZan"
+                android:layout_toLeftOf="@+id/newsDetailZanNum"
                 android:layout_marginRight="10dp"
                 android:src="@mipmap/zan"/>
 
             <TextView
-                android:id="@+id/newsDetailZan"
+                android:id="@+id/newsDetailZanNum"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="16dp"
                 android:gravity="center"
-                android:text="点赞 100"/>
+                android:text="@{String.format(@string/newsDetail_zan,newsCustom.znum) }"/>
 
         </RelativeLayout>
 

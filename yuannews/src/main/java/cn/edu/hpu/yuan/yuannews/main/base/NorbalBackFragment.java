@@ -19,6 +19,4 @@ public abstract class NorbalBackFragment extends BaseFragment{
     protected abstract void onloadData();
 
     protected abstract void initView(View view, Bundle savedInstanceState);
-
-
 }

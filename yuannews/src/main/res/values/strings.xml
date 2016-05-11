@@ -11,6 +11,13 @@
     <string name="newsItem_cate">分类：</string>
     <string name="newsItem_source">来源：</string>
 
+    <!-- newsDetail -->
+    <string name="newsDetail_rcznum">%1$d次阅读 。 %2$d次评论 。 %3$d人点赞</string>
+    <string name="newsDetail_comment">查看评论 %1$d</string>
+    <string name="newsDetail_zan">点赞 %1$d</string>
+
+
+
     <!-- 测试view -->
     <string name="content">北方有个自从出生就不认识菱角的人，在南方做官，（一次）他在酒席上吃菱角，（那个人）连角壳一起放进嘴里吃。有的人说：“吃菱角必须去掉壳再吃。”那人为了掩饰自己的缺点，（护住自己的短处），说：“我并不是不知道，连壳一起吃进去的原因，而是想要清热解毒。”问的人说：“北方也有这种东西吗？”他回答说：“前面的山后面的山，哪块地没有呢？”菱角生长在水中,却说是在土里生长的，这是因为他勉强地把不知道的当作知道的。</string>
 </resources>

@@ -2,6 +2,7 @@ package cn.edu.hpu.yuan.yuannews.news.newsdetail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,10 @@ public class NewsDetailFragment extends NorbalBackFragment
     @Override
     protected void onloadData() {
 
+        newsDetailPresenter.getNewsDetailData();
+        newsDetailPresenter.getNewsZansHeadData();
+
+        //TODO 用户点赞操作，后面补充
     }
 
     @Override
@@ -65,10 +70,9 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     }
 
-
     @Override
     public void showDialog() {
-
+         showProgress();
     }
 
     @Override
@@ -78,22 +82,22 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void loadError() {
-
+        showMsg("数据加载失败");
     }
 
     @Override
     public void dimssDialog() {
-
+       hideProgress();
     }
 
     @Override
     public void updateZanSuccess() {
-
+        //你已经点赞了
     }
 
     @Override
     public void updateZanError() {
-
+        showMsg("点赞失败");
     }
 
     @Override
@@ -103,6 +107,11 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void getZansHeadError() {
-
+        showMsg("获取点赞头像失败");
     }
+
+    private void showMsg(String msg){
+        Snackbar.make(bind.newsDetail,msg,Snackbar.LENGTH_SHORT).show();
+    }
+
 }
