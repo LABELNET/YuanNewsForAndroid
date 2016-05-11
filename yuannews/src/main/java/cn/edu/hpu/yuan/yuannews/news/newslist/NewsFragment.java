@@ -65,15 +65,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
         registerBaseActivityReceiver();//注册广播
     }
 
-    @Override
-    protected void onloadReresh() {
-        if(!isVisible){
-            return;
-        }
-        //懒加载数据
-        refresh();
-    }
-
 
     @Override
     public void onDestroy() {
@@ -126,6 +117,10 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     }
 
     private void refresh() {
+        if(!isVisible){
+            return;
+        }
+        //懒加载数据
         onload(title,type,nType);
     }
 

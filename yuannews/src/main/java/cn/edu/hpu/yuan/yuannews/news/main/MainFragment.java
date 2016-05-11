@@ -63,7 +63,6 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
         tabLayout= (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(mViewPager);
-
         //加载数据
         mainPresenter.loadDataRequest();
     }

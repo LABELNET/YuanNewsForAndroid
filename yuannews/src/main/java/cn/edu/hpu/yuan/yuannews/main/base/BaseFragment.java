@@ -56,17 +56,12 @@ public abstract class BaseFragment extends Fragment{
         super.setUserVisibleHint(isVisibleToUser);
         if(getUserVisibleHint()){
             isVisible=true;
-            onVisible();
         }else{
             isVisible=false;
         }
     }
 
-    protected  void onVisible(){
-        onloadReresh();
-    }
 
-    protected abstract void onloadReresh();
 
     @Nullable
     @Override
