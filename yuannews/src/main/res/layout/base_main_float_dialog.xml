@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/float_tuijian"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="推荐"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/float_rnum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="热度"
+        android:gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/float_comment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="评论"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/float_zan"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="点赞"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/float_quxiao"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="取消"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

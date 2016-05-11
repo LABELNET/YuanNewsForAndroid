@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.main.base;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,10 +10,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import cn.edu.hpu.yuan.yuannews.R;
@@ -49,7 +52,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private   DrawerLayout  mDrawerLayout;
     private  ActionBarDrawerToggle mDrawerToggle;
-    private Toolbar toolbar;
+    private  Toolbar toolbar;
+    private  AlertDialog dialog;
+    private  FloatDialogClickListener floatDialogClickListener;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,12 +98,29 @@ public abstract class BaseActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showChoiceDialog();
             }
         });
 
         initView(savedInstanceState,toolbar);
     }
+
+    private void showChoiceDialog(){
+        floatDialogClickListener=new FloatDialogClickListener();
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        View view = View.inflate(this, R.layout.base_main_float_dialog, null);
+        builder.setView(view);
+        builder.setTitle("排序规则");
+        dialog = builder.create();
+        dialog.show();
+        view.findViewById(R.id.float_tuijian).setOnClickListener(floatDialogClickListener);
+        view.findViewById(R.id.float_comment).setOnClickListener(floatDialogClickListener);
+        view.findViewById(R.id.float_quxiao).setOnClickListener(floatDialogClickListener);
+        view.findViewById(R.id.float_rnum).setOnClickListener(floatDialogClickListener);
+        view.findViewById(R.id.float_zan).setOnClickListener(floatDialogClickListener);
+    }
+
+
 
 
     //设置NavigationView点击事件
@@ -125,7 +148,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 });
     }
 
-    protected void showToast(String msg){
+    public  void showToast(String msg){
         Toast.makeText(getBaseContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
@@ -137,5 +160,37 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //初始化Component
     protected abstract void setComponent();
+
+
+    //dialog的点击事件
+     class FloatDialogClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.float_tuijian:
+                    showToast("推荐");
+                    break;
+                case R.id.float_rnum:
+                    showToast("热度");
+                    break;
+                case R.id.float_comment:
+                    showToast("评论");
+                    break;
+                case R.id.float_zan:
+                    showToast("点赞");
+                    break;
+                case R.id.float_quxiao:
+                    showToast("取消");
+                    break;
+            }
+
+            dialog.dismiss();
+        }
+
+        public  void showToast(String msg){
+            Log.v("BaseActivity ", msg);
+        }
+    }
 
 }
