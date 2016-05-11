@@ -23,7 +23,6 @@ public abstract class BaseFragment extends Fragment{
 
     protected ApplicationComponent applicationComponent;
     protected NewsAPIService newsAPIService;
-
     protected Activity activity;
 
     public void setApplicationComponent(ApplicationComponent applicationComponent) {
@@ -42,12 +41,32 @@ public abstract class BaseFragment extends Fragment{
         this.newsAPIService = newsAPIService;
     }
 
+    protected boolean isVisible;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity=getActivity();
         initComponent();
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(getUserVisibleHint()){
+            isVisible=true;
+            onVisible();
+        }else{
+            isVisible=false;
+        }
+    }
+
+    protected  void onVisible(){
+        onloadReresh();
+    }
+
+    protected abstract void onloadReresh();
 
     @Nullable
     @Override

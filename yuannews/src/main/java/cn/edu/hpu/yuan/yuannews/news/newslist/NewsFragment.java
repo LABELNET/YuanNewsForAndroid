@@ -66,6 +66,16 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     }
 
     @Override
+    protected void onloadReresh() {
+        if(!isVisible){
+            return;
+        }
+        //懒加载数据
+        refresh();
+    }
+
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         unRegisterBaseActivityReceiver();//注销广播
@@ -112,7 +122,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
                 bind.swipeRefreshLayout.setRefreshing(false);
             }
         });
-        refresh();
+
     }
 
     private void refresh() {
@@ -137,7 +147,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
      * @param type   当前类型
      * @param nType  当前查询方式
      */
-    private void onload(String title,int type,int nType){
+    protected void onload(String title,int type,int nType){
         newsPresenter.initNewsListData(title,type,nType);
     }
 
