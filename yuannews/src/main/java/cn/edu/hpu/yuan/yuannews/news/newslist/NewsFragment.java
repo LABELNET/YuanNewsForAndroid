@@ -49,7 +49,6 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     private String title ="首页";//分类来源内容
     private Integer nType=6;//查询类型
     private Integer type=2; //正常情况，默认，是可以修改的通过floatButton修改
-    private boolean isloadMore=false;
 
     public static NewsFragment getNewsFragmentInstance(String type,Integer nType){
         NewsFragment fragment = new NewsFragment();
@@ -110,27 +109,17 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
         bind.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if(isloadMore){
-                    refresh();
-                }else {
-                    bind.swipeRefreshLayout.setRefreshing(false);
-                }
+                bind.swipeRefreshLayout.setRefreshing(false);
             }
         });
         refresh();
     }
 
     private void refresh() {
-        if(isloadMore) {
-            isloadMore = false;
-        }
         onload(title,type,nType);
     }
 
     private void refreshMore(){
-        if(!isloadMore) {
-            isloadMore = true;
-        }
         onLoadMore(title,type,nType);
     }
 
