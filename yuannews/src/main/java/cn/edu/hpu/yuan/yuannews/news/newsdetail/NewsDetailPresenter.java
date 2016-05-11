@@ -18,12 +18,18 @@ public class NewsDetailPresenter implements NewsDetailContancts.NewsDetailPresen
     }
 
     @Override
-    public void updateNewsZan() {
+    public void updateNewsZan(int nid, int status) {
+
+    }
+
+
+    @Override
+    public void getNewsZansHeadData() {
 
     }
 
     @Override
-    public void getNewsZansHeadData() {
+    public void getNewsZanStatus() {
 
     }
 }

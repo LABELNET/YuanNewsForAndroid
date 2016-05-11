@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import javax.inject.Inject;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsDetailFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
+import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 
@@ -37,6 +40,7 @@ public class NewsDetailFragment extends NorbalBackFragment
     }
 
     private NewsDetailFragmentBinding bind;
+    private int newsStatus=0;
 
     @Nullable
     @Override
@@ -61,12 +65,34 @@ public class NewsDetailFragment extends NorbalBackFragment
 
         newsDetailPresenter.getNewsDetailData();
         newsDetailPresenter.getNewsZansHeadData();
+        newsDetailPresenter.getNewsZanStatus();
 
         //TODO 用户点赞操作，后面补充
+        //TODO 用户点赞状态，获取（接口遗漏：获取当前用户，对这条新闻的点赞状态）
+        //TODO 可以暂时使用这个 /html/getLikedStatus uid,nid可以获得
     }
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+
+        //用户点赞
+        final int nid=getArguments().getInt(NEWSDETAIL_FRAGMENT_NID_KEY);
+        bind.newDetailZan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 判断用户登陆没登陆
+                newsDetailPresenter.updateNewsZan(nid,newsStatus);
+            }
+        });
+
+        bind.newsDetailComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到评论列表
+                showMsg("评论点击了");
+            }
+        });
+
 
     }
 
@@ -77,6 +103,10 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void getNewsDetail(NewsCustom newsCustom) {
+        bind.setNewsCustom(newsCustom);
+        Glide.with(getContext())
+                .load(NewsAPI.BASE_IMAGE_URL+newsCustom.getImg())
+                .into(bind.newDetailImage);
 
     }
 
@@ -92,7 +122,10 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void updateZanSuccess() {
-        //你已经点赞了
+        showMsg("你已经点赞了");
+        //点赞成功，更新头像和状态
+        newsDetailPresenter.getNewsZansHeadData();
+        newsDetailPresenter.getNewsZanStatus();
     }
 
     @Override
@@ -102,12 +135,31 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void getZansHead(List<LikedVo> likedVos) {
-
+       //点赞人头像
     }
 
     @Override
     public void getZansHeadError() {
         showMsg("获取点赞头像失败");
+    }
+
+
+
+    @Override
+    public void getZanStatus(int status) {
+        newsStatus=status;
+        //当前用户的点赞状态获取
+        switch (status){
+            case 0:
+                bind.newDetailZan.setImageResource(R.mipmap.zan);
+                break;
+            case 1:
+                bind.newDetailZan.setImageResource(R.mipmap.normalzan);
+                break;
+            case 2:
+                bind.newDetailZan.setImageResource(R.mipmap.superzan);
+                break;
+        }
     }
 
     private void showMsg(String msg){

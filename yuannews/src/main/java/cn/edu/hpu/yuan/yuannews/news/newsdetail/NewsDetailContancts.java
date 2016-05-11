@@ -16,9 +16,11 @@ public interface NewsDetailContancts {
 
         void getNewsDetailData();
 
-        void updateNewsZan();
+        void updateNewsZan(int nid,int status);
 
         void getNewsZansHeadData();
+
+        void getNewsZanStatus();
     }
 
     interface NewsDetailView{
@@ -38,6 +40,8 @@ public interface NewsDetailContancts {
         void getZansHead(List<LikedVo> likedVos);
 
         void getZansHeadError();
+
+        void getZanStatus(int status);
     }
 
 }

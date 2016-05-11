@@ -109,6 +109,7 @@
                 android:background="@color/colorPrimaryDark"/>
 
             <TextView
+                android:id="@+id/newsDetailComment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorPrimary"
