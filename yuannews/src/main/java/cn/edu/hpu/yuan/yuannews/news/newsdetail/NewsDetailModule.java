@@ -15,10 +15,9 @@ public class NewsDetailModule {
 
     private NewsDetailContancts.NewsDetailView newsDetailView;
 
-    private int nid;
 
-    public NewsDetailModule(int nid) {
-        this.nid=nid;
+    public NewsDetailModule() {
+
     }
 
     public NewsDetailModule(NewsDetailContancts.NewsDetailView newsDetailView) {
@@ -27,7 +26,7 @@ public class NewsDetailModule {
 
     @Provides
     NewsDetailFragment provideNewsDetaulFragment(){
-        return NewsDetailFragment.getInstance(nid);
+        return NewsDetailFragment.getInstance();
     }
 
 

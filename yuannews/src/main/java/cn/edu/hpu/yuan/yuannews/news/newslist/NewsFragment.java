@@ -254,7 +254,7 @@ CustomRecyclerViewAdapter.NewsListItemClick{
     @Override
     public void onItemClick(int nid) {
         Intent intent=new Intent(getActivity(), NewsDetailActivity.class);
-        intent.getIntExtra("nid",nid);
+        intent.putExtra("nid",nid);
         startActivity(intent);
     }
 }

@@ -12,7 +12,7 @@
     <string name="newsItem_source">来源：</string>
 
     <!-- newsDetail -->
-    <string name="newsDetail_rcznum">%1$d次阅读 。 %2$d次评论 。 %3$d人点赞</string>
+    <string name="newsDetail_rcznum">%1$d次阅读   %2$d次评论   %3$d人点赞</string>
     <string name="newsDetail_comment">查看评论 %1$d</string>
     <string name="newsDetail_zan">点赞 %1$d</string>
 

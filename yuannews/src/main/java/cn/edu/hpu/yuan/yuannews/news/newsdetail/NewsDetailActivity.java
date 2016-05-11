@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.base.NormalBackActivity;
 
@@ -16,28 +17,42 @@ public class NewsDetailActivity extends NormalBackActivity{
 
 
 
+    private static final String NEWSDETAIL_FRAGMENT_NID_KEY="news_detail_nid_key";
+
     @Inject
     protected NewsDetailFragment newsDetailFragment;
 
     @Override
     protected void initView(Bundle savedInstanceState, Toolbar toolbar) {
 
+        int nid = getIntent().getIntExtra("nid", 400);
+        LogUtil.v(" initView : nid "+nid);
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        int nid = getIntent().getIntExtra("nid", 400);
+        LogUtil.v(" onCreate : nid "+nid);
     }
 
     @Override
     protected BaseFragment initFragment() {
+        Bundle bundle=new Bundle();
+        bundle.putInt(NEWSDETAIL_FRAGMENT_NID_KEY,getIntent().getIntExtra("nid",400));
+        newsDetailFragment.setArguments(bundle);
         return newsDetailFragment;
     }
 
     @Override
     protected void setComponent() {
-        int nid=getIntent().getIntExtra("nid",400);
         DaggerNewsDetailComponent
                 .builder()
-                .newsDetailModule(new NewsDetailModule(nid))
+                .newsDetailModule(new NewsDetailModule())
                 .build()
                 .injectNewsDetailActivity(this);
-
     }
 
 

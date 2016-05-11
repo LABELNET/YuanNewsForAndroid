@@ -31,12 +31,9 @@ public class NewsDetailFragment extends NorbalBackFragment
     protected NewsDetailContancts.NewsDetailPresenter newsDetailPresenter;
 
     private static final String NEWSDETAIL_FRAGMENT_NID_KEY="news_detail_nid_key";
-    public static NewsDetailFragment getInstance(Integer nid){
-        NewsDetailFragment newsDetailFragment=new NewsDetailFragment();
-        Bundle bundle=new Bundle();
-        bundle.putInt(NEWSDETAIL_FRAGMENT_NID_KEY,nid);
-        newsDetailFragment.setArguments(bundle);
-        return newsDetailFragment;
+
+    public static NewsDetailFragment getInstance(){
+        return new NewsDetailFragment();
     }
 
     private NewsDetailFragmentBinding bind;
@@ -77,6 +74,8 @@ public class NewsDetailFragment extends NorbalBackFragment
     protected void initView(View view, Bundle savedInstanceState) {
         //用户点赞
         nid=getArguments().getInt(NEWSDETAIL_FRAGMENT_NID_KEY);
+
+
         bind.newDetailZan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

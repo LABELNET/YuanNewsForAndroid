@@ -99,7 +99,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
 
         initView(savedInstanceState,toolbar);
-        initToolbar(toolbar);
+        initToolbar(toolbar,floatingActionButton);
     }
 
     private void showChoiceDialog(){
@@ -149,7 +149,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
-    protected void initToolbar(Toolbar toolbar){}
+    protected void initToolbar(Toolbar toolbar, FloatingActionButton floatingActionButton){}
 
     //初始化界面和toolbae添加其他的操作
     protected abstract void initView(Bundle savedInstanceState,Toolbar toolbar);
