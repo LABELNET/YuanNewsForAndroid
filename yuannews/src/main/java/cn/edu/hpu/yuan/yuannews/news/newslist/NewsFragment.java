@@ -2,6 +2,7 @@ package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
+import cn.edu.hpu.yuan.yuannews.news.newslist.adapter.CustomRecyclerViewAdapter;
 
 
 /**
@@ -26,6 +28,9 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Inject
     protected NewsContract.Presenter newsPresenter;
+
+    @Inject
+    protected CustomRecyclerViewAdapter customRecyclerViewAdapter;
 
     private  NewsFragmentBinding bind;
 
@@ -55,7 +60,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     protected void initComponent() {
         DaggerNewsComponent.builder()
-                .newsModule(new NewsModule(this))
+                .newsModule(new NewsModule(this,getContext()))
                 .build()
                 .injectNewsFragment(this);
     }
@@ -63,12 +68,26 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initRecyclerView();
+
+
+
+
         newsPresenter.showNewsListData(10,2,6);
         String type = getArguments().getString(NEWS_TYPE);
         Integer nType=getArguments().getInt(NEWS_TYPE_NTYPE);
         Integer id=getArguments().getInt(NEWS_TYPE_ID);
-        bind.setNewTitile(type+id+nType);
     }
+
+    /**
+     *  初始化RecyclerView
+     */
+    private void initRecyclerView() {
+        bind.recyclerView.setAdapter(customRecyclerViewAdapter);
+        bind.recyclerView.setHasFixedSize(true);
+        bind.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
 
     @Override
     public void showToast() {
@@ -81,7 +100,8 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     @Override
     public void showNewsList(ArrayList<NewsCustom> newsCustoms) {
-
+        customRecyclerViewAdapter.initData(newsCustoms);
+        customRecyclerViewAdapter.notifyDataSetChanged();
         LogUtil.v(newsCustoms.get(0).getTitle());
         Log.v(" NewsFragment "," NewsFragment --------------------------------: "+newsCustoms.get(0).toString());
     }

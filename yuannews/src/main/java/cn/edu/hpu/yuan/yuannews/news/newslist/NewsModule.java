@@ -1,5 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
+import android.content.Context;
+
+import cn.edu.hpu.yuan.yuannews.news.newslist.adapter.CustomRecyclerViewAdapter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -12,13 +15,14 @@ public class NewsModule {
 
 
     private NewsContract.View newsView;
-
-
     public NewsModule(){}
 
+    private Context context;
 
-    public NewsModule(NewsContract.View newsView) {
+
+    public NewsModule(NewsContract.View newsView, Context context) {
         this.newsView = newsView;
+        this.context=context;
     }
 
     @Provides
@@ -35,5 +39,11 @@ public class NewsModule {
     NewsContract.Presenter provideNewsPresenter(){
         return new MewsPresenter(newsView);
     }
+
+    @Provides
+    CustomRecyclerViewAdapter provideCustomRecyclerViewAdapter(){
+        return new CustomRecyclerViewAdapter(context);
+    }
+
 
 }

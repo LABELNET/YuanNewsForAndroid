@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout  xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-        <variable
-            name="newTitile"
-            type="java.lang.String"/>
-    </data>
-
-    <LinearLayout
+<layout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/colorPrimary"
-            android:gravity="center"
-            android:text="@{newTitile}"/>
+            android:scrollbars="none" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
 
