@@ -1,5 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.news.newsdetail;
 
+import android.content.Context;
+
+import cn.edu.hpu.yuan.yuannews.news.newsdetail.adapter.NewsDetailGridViewAdapter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,14 +17,16 @@ public class NewsDetailModule {
 
 
     private NewsDetailContancts.NewsDetailView newsDetailView;
+    private Context context;
 
 
     public NewsDetailModule() {
 
     }
 
-    public NewsDetailModule(NewsDetailContancts.NewsDetailView newsDetailView) {
+    public NewsDetailModule(NewsDetailContancts.NewsDetailView newsDetailView,Context context) {
         this.newsDetailView = newsDetailView;
+        this.context=context;
     }
 
     @Provides
@@ -33,6 +38,11 @@ public class NewsDetailModule {
     @Provides
     NewsDetailContancts.NewsDetailPresenter provideNewsDetailPresenter(){
         return new NewsDetailPresenter(newsDetailView);
+    }
+
+    @Provides
+    NewsDetailGridViewAdapter provideNewsDetailGridViewAdapter(){
+        return new NewsDetailGridViewAdapter(context);
     }
 
 }

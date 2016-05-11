@@ -13,12 +13,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsDetailFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
+import cn.edu.hpu.yuan.yuannews.news.newsdetail.adapter.NewsDetailGridViewAdapter;
 
 /**
  * Created by yuan on 16-5-11.
@@ -29,6 +31,9 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Inject
     protected NewsDetailContancts.NewsDetailPresenter newsDetailPresenter;
+
+    @Inject
+    protected NewsDetailGridViewAdapter newsDetailGridViewAdapter;
 
     private static final String NEWSDETAIL_FRAGMENT_NID_KEY="news_detail_nid_key";
 
@@ -53,7 +58,7 @@ public class NewsDetailFragment extends NorbalBackFragment
     protected void initComponent() {
         DaggerNewsDetailComponent
                 .builder()
-                .newsDetailModule(new NewsDetailModule(this))
+                .newsDetailModule(new NewsDetailModule(this,getContext()))
                 .build()
                 .injectNewsDetailFragment(this);
     }
@@ -68,13 +73,13 @@ public class NewsDetailFragment extends NorbalBackFragment
         //TODO 用户点赞操作，后面补充
         //TODO 用户点赞状态，获取（接口遗漏：获取当前用户，对这条新闻的点赞状态）
         //TODO 可以暂时使用这个 /html/getLikedStatus uid,nid可以获得
+
     }
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         //用户点赞
         nid=getArguments().getInt(NEWSDETAIL_FRAGMENT_NID_KEY);
-
 
         bind.newDetailZan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +96,8 @@ public class NewsDetailFragment extends NorbalBackFragment
                 showMsg("评论点击了");
             }
         });
+
+        bind.newDetailImages.setAdapter(newsDetailGridViewAdapter);
 
 
     }
@@ -134,7 +141,12 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void getZansHead(List<LikedVo> likedVos) {
-       //点赞人头像
+
+        LogUtil.v(likedVos.get(0).getHead());
+        //点赞人头像
+        newsDetailGridViewAdapter.clearData();
+        newsDetailGridViewAdapter.initData(likedVos);
+        newsDetailGridViewAdapter.notifyDataSetChanged();
     }
 
     @Override
