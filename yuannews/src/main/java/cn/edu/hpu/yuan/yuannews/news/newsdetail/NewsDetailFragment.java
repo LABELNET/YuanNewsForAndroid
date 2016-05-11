@@ -141,8 +141,6 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void getZansHead(List<LikedVo> likedVos) {
-
-        LogUtil.v(likedVos.get(0).getHead());
         //点赞人头像
         newsDetailGridViewAdapter.clearData();
         newsDetailGridViewAdapter.initData(likedVos);

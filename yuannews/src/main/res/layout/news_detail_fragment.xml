@@ -19,7 +19,8 @@
         <ScrollView
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
 
             <LinearLayout
                 android:id="@+id/newsDetail"
@@ -90,6 +91,17 @@
                     android:gravity="center"
                    >
                 </GridView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="没有了"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center"
+                    android:textSize="15dp"/>
+
             </LinearLayout>
         </ScrollView>
 
