@@ -74,19 +74,22 @@
                     android:lineSpacingMultiplier="1.2"
                     android:text="@{newsCustom.content}"/>
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="END"
+                    android:textStyle="italic"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:textSize="12dp"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/colorPrimaryDark"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="点赞列表"
-                    android:textSize="12dp"
-                    android:paddingLeft="16dp"/>
 
                 <GridView
                     android:id="@+id/newDetailImages"
@@ -99,15 +102,6 @@
                     android:gravity="center"
                    >
                 </GridView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:text="END"
-                    android:textStyle="italic"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:textSize="12dp"/>
 
             </LinearLayout>
         </ScrollView>
