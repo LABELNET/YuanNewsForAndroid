@@ -15,7 +15,7 @@ public abstract class NormalBackActivity extends BaseActivity{
     @Override
     protected void initToolbar(Toolbar toolbar, FloatingActionButton floatingActionButton) {
         super.initToolbar(toolbar,floatingActionButton);
-        floatingActionButton.setVisibility(View.VISIBLE);
+        floatingActionButton.setVisibility(View.GONE);
         toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
         toolbar.setTitle("新闻详情");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
