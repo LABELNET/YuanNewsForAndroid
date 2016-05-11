@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -31,7 +32,6 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
 
     @Inject
     protected MainViewPagerAdapter mainViewPagerAdapter;
-
 
     private   ViewPager mViewPager;
     private   TabLayout tabLayout;
@@ -87,12 +87,12 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
 
     @Override
     public void loadError() {
-        LogUtil.v("网络请求失败");
+        loadMsg("网络请求失败");
     }
 
     @Override
     public void loadMsg(String msg) {
-        LogUtil.v("loadMsg ： "+msg);
+        Snackbar.make(mViewPager,msg,Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

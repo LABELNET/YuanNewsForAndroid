@@ -1,14 +1,19 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import javax.inject.Inject;
+
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
@@ -31,6 +36,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     protected CustomRecyclerViewAdapter customRecyclerViewAdapter;
 
     private  NewsFragmentBinding bind;
+    private SwipeRefreshLayout.OnRefreshListener swipeOnRefresh;
 
     private static final String NEWS_TYPE="news_type";
     private static final String NEWS_TYPE_NTYPE="news_type_ntype";
@@ -69,7 +75,34 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView();
         initData();
+        initSwipeRefreshLayout();
+    }
+
+
+
+    /**
+     * 初始化下拉刷新
+     */
+    private void initSwipeRefreshLayout() {
+        bind.swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary
+                ,R.color.colorPrimaryDark
+                ,R.color.colorAccent);
+        bind.swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);
+        bind.swipeRefreshLayout.setProgressViewEndTarget(true,500);//进度条位置
+        bind.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+            }
+        });
+        refresh();
+    }
+
+    private void refresh() {
         onload(title,type,nType);
+    }
+
+    private void refreshMore(){
+        onLoadMore(title,type,nType);
     }
 
     /**
@@ -91,18 +124,48 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     }
 
     /**
+     * 加载更多
+     * @see #onload(String, int, int)
+     */
+    private void onLoadMore(String title,int type,int nType) {
+        newsPresenter.nextNewsListData(title, type, nType);
+    }
+
+    /**
      *  初始化RecyclerView
      */
     private void initRecyclerView() {
         bind.recyclerView.setAdapter(customRecyclerViewAdapter);
         bind.recyclerView.setHasFixedSize(true);
         bind.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        bind.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                RecyclerView.LayoutManager lm = recyclerView.getLayoutManager();
+                int lastVisibleItem = ((LinearLayoutManager) lm).findLastVisibleItemPosition();
+                int totalItemCount = lm.getItemCount();
+                //最后一项
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem == totalItemCount - 1) {
+                    refreshMore();
+                }
+            }
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
-
 
     @Override
     public void showDialog() {
-        //显示进度条
+        bind.swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                bind.swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+        swipeOnRefresh.onRefresh();
     }
 
     @Override
@@ -120,6 +183,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     public void dismssDiolog() {
         //隐藏进度条
+        bind.swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

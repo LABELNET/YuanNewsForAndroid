@@ -28,7 +28,7 @@ public class MewsPresenter implements NewsContract.Presenter{
     private int p=1;
 
     private void showNewsListData(String title,int type, int nType) {
-            newsPresenter.showDialog();
+             newsPresenter.showDialog();
              Map<String, String> options = NewsAPIMapUtil.getNewsListMap(title,type, p, nType);
              Call<DataBean<ArrayList<NewsCustom>>> newsList = BaseApplication.newsAPIService.getNewsList(options);
              newsList.enqueue(new Callback<DataBean<ArrayList<NewsCustom>>>(){
