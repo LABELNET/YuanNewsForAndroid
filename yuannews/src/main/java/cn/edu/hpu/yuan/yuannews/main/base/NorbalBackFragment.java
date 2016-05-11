@@ -13,7 +13,10 @@ public abstract class NorbalBackFragment extends BaseFragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view,savedInstanceState);
+        onloadData();
     }
+
+    protected abstract void onloadData();
 
     protected abstract void initView(View view, Bundle savedInstanceState);
 

@@ -12,10 +12,17 @@ import dagger.Provides;
 public class NewsDetailModule {
 
 
+
+    private NewsDetailContancts.NewsDetailView newsDetailView;
+
     private int nid;
 
     public NewsDetailModule(int nid) {
         this.nid=nid;
+    }
+
+    public NewsDetailModule(NewsDetailContancts.NewsDetailView newsDetailView) {
+        this.newsDetailView = newsDetailView;
     }
 
     @Provides
@@ -24,9 +31,9 @@ public class NewsDetailModule {
     }
 
 
-
-
-
-
+    @Provides
+    NewsDetailContancts.NewsDetailPresenter provideNewsDetailPresenter(){
+        return new NewsDetailPresenter(newsDetailView);
+    }
 
 }
