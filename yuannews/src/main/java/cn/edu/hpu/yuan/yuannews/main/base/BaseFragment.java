@@ -1,14 +1,12 @@
 package cn.edu.hpu.yuan.yuannews.main.base;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
+import com.pnikosis.materialishprogress.ProgressWheel;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 
@@ -42,6 +40,7 @@ public abstract class BaseFragment extends Fragment{
     }
 
     protected boolean isVisible;
+    private ProgressWheel wheel;
 
 
     @Override
@@ -62,11 +61,23 @@ public abstract class BaseFragment extends Fragment{
     }
 
 
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initProgress();
+    }
+
+    private void initProgress() {
+        wheel = new ProgressWheel(getContext());
+        wheel.setBarColor(Color.GREEN);
+    }
+
+    protected void showProgress(){
+        wheel.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideProgress(){
+        wheel.setVisibility(View.GONE);
     }
 
     /**

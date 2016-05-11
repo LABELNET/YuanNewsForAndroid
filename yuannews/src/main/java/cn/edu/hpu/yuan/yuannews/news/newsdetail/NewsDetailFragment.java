@@ -48,6 +48,15 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     protected void initComponent() {
+        DaggerNewsDetailComponent
+                .builder()
+                .newsDetailModule(new NewsDetailModule(this))
+                .build()
+                .injectNewsDetailFragment(this);
+    }
+
+    @Override
+    protected void onloadData() {
 
     }
 

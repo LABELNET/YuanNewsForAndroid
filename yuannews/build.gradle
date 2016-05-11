@@ -52,5 +52,8 @@ dependencies {
     //圆形头像
     compile 'de.hdodenhof:circleimageview:2.0.0'
 
+    //进度条
+    compile 'com.pnikosis:materialish-progress:1.7'
+
     compile project(path: ':yuancore')
 }
