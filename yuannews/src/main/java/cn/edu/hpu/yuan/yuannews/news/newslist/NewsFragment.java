@@ -21,6 +21,7 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
+import cn.edu.hpu.yuan.yuannews.news.newsdetail.NewsDetailActivity;
 import cn.edu.hpu.yuan.yuannews.news.newslist.adapter.CustomRecyclerViewAdapter;
 
 
@@ -30,7 +31,8 @@ import cn.edu.hpu.yuan.yuannews.news.newslist.adapter.CustomRecyclerViewAdapter;
  * 1.功能：加载新闻列表
  *
  */
-public class NewsFragment extends BaseFragment implements NewsContract.View{
+public class NewsFragment extends BaseFragment implements NewsContract.View ,
+CustomRecyclerViewAdapter.NewsListItemClick{
 
     @Inject
     protected NewsContract.Presenter newsPresenter;
@@ -83,7 +85,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     @Override
     protected void initComponent() {
         DaggerNewsComponent.builder()
-                .newsModule(new NewsModule(this,getContext()))
+                .newsModule(new NewsModule(this,getContext(),this))
                 .build()
                 .injectNewsFragment(this);
     }
@@ -249,4 +251,10 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
         }
     };
 
+    @Override
+    public void onItemClick(int nid) {
+        Intent intent=new Intent(getActivity(), NewsDetailActivity.class);
+        intent.getIntExtra("nid",nid);
+        startActivity(intent);
+    }
 }

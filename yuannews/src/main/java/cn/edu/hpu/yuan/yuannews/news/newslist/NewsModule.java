@@ -18,11 +18,13 @@ public class NewsModule {
     public NewsModule(){}
 
     private Context context;
+    private CustomRecyclerViewAdapter.NewsListItemClick newsListItemClick;
 
 
-    public NewsModule(NewsContract.View newsView, Context context) {
+    public NewsModule(NewsContract.View newsView, Context context,CustomRecyclerViewAdapter.NewsListItemClick newsListItemClick) {
         this.newsView = newsView;
         this.context=context;
+        this.newsListItemClick=newsListItemClick;
     }
 
     @Provides
@@ -42,7 +44,7 @@ public class NewsModule {
 
     @Provides
     CustomRecyclerViewAdapter provideCustomRecyclerViewAdapter(){
-        return new CustomRecyclerViewAdapter(context);
+        return new CustomRecyclerViewAdapter(context,newsListItemClick);
     }
 
 

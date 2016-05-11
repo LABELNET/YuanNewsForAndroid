@@ -2,14 +2,11 @@ package cn.edu.hpu.yuan.yuannews.news.newslist.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +38,12 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
 
     private LayoutInflater inflater;
     private Context context;
+    private NewsListItemClick newsListItemClick;
 
-    public CustomRecyclerViewAdapter(Context context){
+    public CustomRecyclerViewAdapter(Context context,NewsListItemClick newsListItemClick){
         this.context=context;
         inflater=LayoutInflater.from(context);
+        this.newsListItemClick=newsListItemClick;
     }
 
     @Override
@@ -75,9 +74,7 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     }
 
 
-    static class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
+     class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -87,8 +84,14 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
 
          @Override
          public void onClick(View v) {
-
+             int nid=newsCustoms.get(getLayoutPosition()).getId();
+             newsListItemClick.onItemClick(nid);
          }
      }
 
+    public interface  NewsListItemClick {
+
+        void onItemClick(int nid);
+
+    }
 }
