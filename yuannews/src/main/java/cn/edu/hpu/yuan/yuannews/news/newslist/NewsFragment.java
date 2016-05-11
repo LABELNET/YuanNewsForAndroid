@@ -51,7 +51,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     private Integer type=2; //正常情况，默认，是可以修改的通过floatButton修改
     private boolean isloadMore=false;
 
-    public static NewsFragment getNewsFragmentInstance(String title,String type,Integer nType){
+    public static NewsFragment getNewsFragmentInstance(String type,Integer nType){
         NewsFragment fragment = new NewsFragment();
         Bundle bundle=new Bundle();
         bundle.putString(NEWS_TYPE,type);
