@@ -8,7 +8,6 @@ import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIMapUtil;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
-import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,8 +27,8 @@ public class MewsPresenter implements NewsContract.Presenter{
     private int p=1;
 
     private void showNewsListData(String title,int type, int nType) {
-             newsPresenter.showDialog();
-             Map<String, String> options = NewsAPIMapUtil.getNewsListMap(title,type, p, nType);
+        newsPresenter.showDialog();
+        Map<String, String> options = NewsAPIMapUtil.getNewsListMap(title,type, p, nType);
              Call<DataBean<ArrayList<NewsCustom>>> newsList = BaseApplication.newsAPIService.getNewsList(options);
              newsList.enqueue(new Callback<DataBean<ArrayList<NewsCustom>>>(){
 

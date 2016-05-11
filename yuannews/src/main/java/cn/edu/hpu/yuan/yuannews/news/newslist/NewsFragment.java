@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import javax.inject.Inject;
 
-import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
