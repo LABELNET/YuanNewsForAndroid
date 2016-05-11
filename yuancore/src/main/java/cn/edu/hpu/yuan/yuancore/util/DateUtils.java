@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuancore.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +13,21 @@ import java.util.Locale;
  * 日期时间工具类，转换时间，将时间转换为 几分钟之前等
  */
 public class DateUtils {
+
+
+    public static String formatDateTime(String date){
+        if(date.length()<19){
+            date+=":00";
+        }
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date parse = simpleDateFormat.parse(date);
+            return formatDateTime(parse);
+        } catch (ParseException e) {
+            LogUtil.v(" DateUtils IS ParseException");
+            return date;
+        }
+    }
 
     public static String formatDateTime(Date date) {
         String text;

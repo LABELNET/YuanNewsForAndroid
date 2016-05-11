@@ -3,6 +3,7 @@
 <layout>
     <data>
         <import type="cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom"/>
+        <import type="cn.edu.hpu.yuan.yuancore.util.DateUtils"/>
         <variable
             name="newsCustom"
             type="NewsCustom"/>
@@ -44,7 +45,7 @@
 
                                 <TextView
                                     android:layout_marginLeft="10dp"
-                                    android:text="@{newsCustom.dt}"
+                                    android:text="@{DateUtils.formatDateTime(newsCustom.dt)}"
                                     android:textColor="@color/lightblack"
                                     android:textSize="10dp"
                                     android:layout_width="wrap_content"

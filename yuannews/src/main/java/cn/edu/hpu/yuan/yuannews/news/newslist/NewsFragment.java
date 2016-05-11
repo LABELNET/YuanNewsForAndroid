@@ -34,8 +34,8 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
 
     private static final String NEWS_TYPE="news_type";
     private static final String NEWS_TYPE_NTYPE="news_type_ntype";
-    private String title = getArguments().getString(NEWS_TYPE);//分类来源内容
-    private Integer nType=getArguments().getInt(NEWS_TYPE_NTYPE);//查询类型
+    private String title ="首页";//分类来源内容
+    private Integer nType=6;//查询类型
     private Integer type=2; //正常情况，默认，是可以修改的通过floatButton修改
 
     public static NewsFragment getNewsFragmentInstance(String type,Integer nType){
@@ -68,7 +68,16 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView();
+        initData();
         onload(title,type,nType);
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        title= getArguments().getString(NEWS_TYPE);
+        nType=getArguments().getInt(NEWS_TYPE_NTYPE);
     }
 
     /**
