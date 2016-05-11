@@ -113,7 +113,7 @@ public class NewsFragment extends BaseFragment implements NewsContract.View{
                 bind.swipeRefreshLayout.setRefreshing(false);
             }
         });
-
+        refresh();
     }
 
     private void refresh() {
