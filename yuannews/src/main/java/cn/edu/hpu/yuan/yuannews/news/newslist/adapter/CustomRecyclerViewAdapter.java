@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentPageItemBinding;
+import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 
 
@@ -36,8 +39,10 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     }
 
     private LayoutInflater inflater;
+    private Context context;
 
     public CustomRecyclerViewAdapter(Context context){
+        this.context=context;
         inflater=LayoutInflater.from(context);
     }
 
@@ -53,8 +58,10 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         NewsCustom newsCustom = newsCustoms.get(position);
         NewsFragmentPageItemBinding bind=DataBindingUtil.getBinding(holder.itemView);
-        bind.setTitle(newsCustom.getTitle());
-
+        bind.setNewsCustom(newsCustom);
+        Glide.with(context)
+                .load(NewsAPI.BASE_IMAGE_URL+newsCustom.getImg())
+                .into(bind.newsItemImage);
     }
 
     @Override

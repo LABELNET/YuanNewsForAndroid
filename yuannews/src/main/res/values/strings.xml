@@ -6,4 +6,9 @@
     <string name="drawer_open">打开</string>
     <string name="drawer_close">关闭</string>
 
+    <!--newsitem-->
+    <string name="newsItem_rnum">%1$d次阅读</string>
+    <string name="newsItem_cate">分类：</string>
+    <string name="newsItem_source">来源：</string>
+
 </resources>

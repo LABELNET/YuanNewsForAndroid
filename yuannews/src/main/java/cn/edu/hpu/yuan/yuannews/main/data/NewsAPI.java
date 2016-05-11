@@ -20,4 +20,6 @@ public @interface NewsAPI {
 
    String BASE_URL="http://"+BASE_IP+":8088/yuannews/api/";
 
+   String BASE_IMAGE_URL="http://"+BASE_IP+":8088/yuannews/";
+
 }
