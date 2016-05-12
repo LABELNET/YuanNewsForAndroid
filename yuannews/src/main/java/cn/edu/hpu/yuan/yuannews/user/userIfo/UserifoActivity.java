@@ -1,7 +1,9 @@
 package cn.edu.hpu.yuan.yuannews.user.userIfo;
 
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
+import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
 
@@ -21,7 +23,14 @@ public class UserifoActivity extends NormalBaseActivity{
 
     @Override
     protected void initToolbar(Toolbar toolbar) {
-
+        setTitle("用户信息编辑");
+        toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
