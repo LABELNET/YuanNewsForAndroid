@@ -20,7 +20,7 @@
 
         <activity android:name=".news.newslist.NewsActivity" />
         <activity android:name=".news.newsdetail.NewsDetailActivity"/>
-
+        <activity android:name=".user.login.LoginActivity"/>
     </application>
 
 </manifest>

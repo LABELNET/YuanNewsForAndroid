@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.login;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LoginFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
+import cn.edu.hpu.yuan.yuannews.news.main.MainActivity;
 
 /**
  * Created by yuan on 16-5-12.
@@ -44,7 +46,11 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
                 //登陆操作
                 int result=login();
                 LogUtil.v("登陆  登陆 "+result);
-
+                if(result==0){
+                    //主界面
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    getActivity().finish();
+                }
             }
         });
 
