@@ -1,10 +1,12 @@
 package cn.edu.hpu.yuan.yuannews.main.data.model.base;
 
 
+import java.io.Serializable;
+
 /**
  * Created by yuan on 16-4-1.
  */
-public class Taste {
+public class Taste implements Serializable{
     private int id;
     private String label;
 

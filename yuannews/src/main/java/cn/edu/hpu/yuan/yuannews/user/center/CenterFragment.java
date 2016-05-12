@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.center;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import cn.edu.hpu.yuan.yuannews.R;
@@ -21,6 +25,8 @@ import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
+import cn.edu.hpu.yuan.yuannews.user.label.LabelActivity;
+import cn.edu.hpu.yuan.yuannews.user.userIfo.UserifoActivity;
 
 /**
  * Created by yuan on 16-5-12.
@@ -36,6 +42,8 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     private CenterFragmentBinding binding;
 
+    private List<TasteVo> tasteVos=new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,13 +57,17 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
         binding.btnEditIfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 编辑用户信息
+                startActivity(new Intent(getActivity(), UserifoActivity.class));
             }
         });
         binding.btnEditLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 编辑兴趣标签
+                Intent intent=new Intent(getActivity(), LabelActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("tasteVos", (Serializable) tasteVos);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
@@ -97,7 +109,7 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     @Override
     public void showAllLabels(List<TasteVo> tasteVo) {
-
+        tasteVos.clear();
         if(tasteVo!=null){
             if(tasteVo.size()==0){
                 binding.userNoLabel.setVisibility(View.VISIBLE);
@@ -105,6 +117,7 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
                 binding.userNoLabel.setVisibility(View.GONE);
                 for (TasteVo taste : tasteVo){
                     addTextViewToLabels(taste);
+                    tasteVos.add(taste);
                 }
             }
         }else{

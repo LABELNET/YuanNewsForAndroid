@@ -1,6 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.main.data.model.basevo;
 
 
+
 import cn.edu.hpu.yuan.yuannews.main.data.model.base.Taste;
 
 /**
