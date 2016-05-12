@@ -24,7 +24,11 @@ public class CommenActivity extends NormalBaseActivity{
 
     @Override
     protected void setComponet() {
-
+        DaggerCommentComponent
+                .builder()
+                .commentModule(new CommentModule())
+                .build()
+                .injectCommentActivity(this);
     }
 
     @Override

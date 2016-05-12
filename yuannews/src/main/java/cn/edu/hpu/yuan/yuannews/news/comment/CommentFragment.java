@@ -17,7 +17,11 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
 
     @Override
     protected void initComponent() {
-
+        DaggerCommentComponent
+                .builder()
+                .commentModule(new CommentModule(this))
+                .build()
+                .injectCommentFragment(this);
     }
 
     @Override
