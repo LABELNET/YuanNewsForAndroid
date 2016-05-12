@@ -5,6 +5,7 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import cn.edu.hpu.yuan.yuancore.util.CrashHandler;
+import cn.edu.hpu.yuan.yuannews.main.data.Local.NewsAPIShared;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIModule;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
@@ -30,12 +31,15 @@ public class BaseApplication extends Application{
     @Inject
     public static Retrofit retrofit;
 
+    @Inject
+    public static NewsAPIShared newsAPIShared;
+
     @Override
     public void onCreate() {
         super.onCreate();
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(getApplicationContext()))
-                .newsAPIModule(new NewsAPIModule(NewsAPI.BASE_URL))
+                .newsAPIModule(new NewsAPIModule(NewsAPI.BASE_URL,this))
                 .build();
         applicationComponent.injectBaseApplication(this);
 

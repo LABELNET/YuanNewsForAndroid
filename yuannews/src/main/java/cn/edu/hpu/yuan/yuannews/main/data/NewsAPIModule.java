@@ -1,5 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.main.data;
 
+import android.content.Context;
+
+import cn.edu.hpu.yuan.yuannews.main.data.Local.NewsAPIShared;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 import dagger.Module;
 import dagger.Provides;
@@ -19,8 +22,11 @@ public class NewsAPIModule {
 
     protected  Retrofit retrofit;
 
-    public NewsAPIModule(String baseUrl) {
+    protected Context context;
+
+    public NewsAPIModule(String baseUrl,Context context) {
         this.baseUrl = baseUrl;
+        this.context=context;
     }
 
 
@@ -37,6 +43,11 @@ public class NewsAPIModule {
     NewsAPIService proviceNewsAPIService(){
         provideRetrofit();
         return retrofit.create(NewsAPIService.class);
+    }
+
+    @Provides
+    NewsAPIShared provideNewsAPIShared(){
+        return new NewsAPIShared(context);
     }
 
 
