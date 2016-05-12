@@ -62,19 +62,19 @@ public class RegisterFragment extends NorbalBackFragment implements RegisterCont
 
         String nick=binding.editUsernick.getText().toString().trim();
         if(nick.length()==0){
-            showMsg("请输入昵称");
+            binding.textnick.setError("请输入昵称");
             return;
         }
         String num=binding.editUserNum.getText().toString().trim();
 
         if(num.length()==11){
-            showMsg("手机号长度不够");
+            binding.textnum.setError("手机号长度不够");
             return;
         }
 
         String pass=binding.editUserPass.getText().toString().trim();
         if(pass.length()==0){
-            showMsg("请输入密码");
+            binding.textpass.setError("请输入密码");
             return;
         }
         registerContanctsPresenter.postUserRegister(nick,num,pass);

@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.news.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -34,6 +35,8 @@ public class MainActivity extends BaseActivity{
     private final int LOGIN_SUCCESS=2016;
     private final int RESULTCODE=2017;
 
+    private Context context;
+
     @Inject
     protected MainFragment mainFragment;
 
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity{
         ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+        context=this;
     }
 
     @Override
@@ -68,10 +72,9 @@ public class MainActivity extends BaseActivity{
             String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
             navigation_name.setText(nick);
             LogUtil.v(headUrl);
-            Glide.with(this)
+            Glide.with(context)
                     .load(headUrl)
                     .placeholder(R.mipmap.user_head)
-                    .error(R.mipmap.user_head)
                     .into(circleImageView);
             //点击头像进入个人信息
         }else{

@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LoginFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
+import cn.edu.hpu.yuan.yuannews.user.register.RegisterActivity;
 
 /**
  * Created by yuan on 16-5-12.
@@ -51,6 +53,7 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
             @Override
             public void onClick(View v) {
                 //跳转到注册
+                startActivity(new Intent(getActivity(), RegisterActivity.class));
             }
         });
 
