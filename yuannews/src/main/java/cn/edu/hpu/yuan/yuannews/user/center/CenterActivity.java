@@ -3,6 +3,8 @@ package cn.edu.hpu.yuan.yuannews.user.center;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import javax.inject.Inject;
+
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
@@ -12,6 +14,9 @@ import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
  */
 public class CenterActivity extends NormalBaseActivity{
 
+    @Inject
+    protected CenterFragment centerFragment;
+
     @Override
     protected void initView() {
 
@@ -19,7 +24,10 @@ public class CenterActivity extends NormalBaseActivity{
 
     @Override
     protected void setComponet() {
-
+       DaggerCenterComponent.builder()
+               .centerModule(new CenterModule())
+               .build()
+               .injectCenterActivity(this);
     }
 
     @Override

@@ -10,6 +10,8 @@ import dagger.Provides;
 public class CenterModule {
 
 
+    public CenterModule(){}
+
     private CenterContancts.CenterContanctsView centerContanctsView;
 
     public CenterModule(CenterContancts.CenterContanctsView centerContanctsView) {
