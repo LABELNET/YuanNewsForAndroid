@@ -7,9 +7,9 @@ public interface LabelContancts {
 
     interface LabelContanctsPresenter{
 
-        int postDeleteLabel(Integer tid);
+        void postDeleteLabel(Integer tid);
 
-        int postAddLabel(String label);
+        void postAddLabel(String label);
 
     }
 
@@ -18,6 +18,10 @@ public interface LabelContancts {
         void showDialog();
 
         void showMsg(String msg);
+
+        void deleteSuccess();
+
+        void addSuccess();
 
     }
 
