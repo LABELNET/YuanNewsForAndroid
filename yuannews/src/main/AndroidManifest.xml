@@ -23,6 +23,8 @@
         <activity android:name=".user.login.LoginActivity"/>
         <activity android:name=".user.register.RegisterActivity"/>
         <activity android:name=".user.center.CenterActivity"/>
+        <activity android:name=".user.userIfo.UserifoActivity"/>
+        <activity android:name=".user.label.LabelActivity"/>
     </application>
 
 </manifest>
