@@ -58,10 +58,12 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
 
         if(num.length()==0){
             binding.textnum.setError("请输入账户");
+            return -1;
         }
 
         if(pass.length()==0){
             binding.textpass.setError("请输入密码");
+            return -1;
         }
         return loginContractPresenter.postUserLogin(num,pass);
     }

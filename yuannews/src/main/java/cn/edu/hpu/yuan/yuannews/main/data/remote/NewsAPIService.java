@@ -5,6 +5,7 @@ import java.util.Map;
 
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.CSCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
 import retrofit2.Call;
@@ -53,6 +54,44 @@ public interface NewsAPIService {
      */
     @POST("getLikedHead")
     Call<DataBean<ArrayList<LikedVo>>> getNewsLikedVos(@Query("nid") Integer nid);
+
+
+    /**
+     * 用户登陆
+     * @param num
+     * @param pass
+     * @return
+     */
+    @POST("login")
+    Call<DataBean<UserVo>> postUserLogin(@Query("unum") String num,@Query("pass") String pass);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

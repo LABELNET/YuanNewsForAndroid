@@ -55,5 +55,9 @@ dependencies {
     //进度条
     compile 'com.pnikosis:materialish-progress:1.7'
 
+    //fastJson
+    compile 'com.alibaba:fastjson:1.1.15'
+
+
     compile project(path: ':yuancore')
 }
