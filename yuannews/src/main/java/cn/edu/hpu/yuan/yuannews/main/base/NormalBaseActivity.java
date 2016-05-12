@@ -32,22 +32,29 @@ public abstract class NormalBaseActivity extends AppCompatActivity {
     Toolbar toolbar;
     
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.normal_base_main);
+        setComponet();
 
         //初始化toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         //初始化fragment
         BaseFragment fragment = initFragment();
         fragment.setApplicationComponent(getApplicationComponent());
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.contentFrame, fragment).commit();
-
         //初始化toolbar
         initToolbar(toolbar);
+
+        initView();
+
     }
+
+    protected abstract void initView();
+
+    protected abstract void setComponet();
 
     protected abstract void initToolbar(Toolbar toolbar);
 
