@@ -44,7 +44,7 @@ public class CenterActivity extends NormalBaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return null;
+        return centerFragment;
     }
 
 }
