@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivlogin"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_news"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_below="@+id/ivlogin"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="新闻推荐"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textnum"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editUserNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="账户" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textpass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textnum">
+
+                <EditText
+                    android:id="@+id/editUserPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="密码" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Copy Right Yuan"
+                android:textSize="12dp"
+                android:textStyle="italic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"/>
+
+
+
+        </RelativeLayout>
+</layout>

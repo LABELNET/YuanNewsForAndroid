@@ -29,8 +29,6 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
-
-
     }
 
     @Override
