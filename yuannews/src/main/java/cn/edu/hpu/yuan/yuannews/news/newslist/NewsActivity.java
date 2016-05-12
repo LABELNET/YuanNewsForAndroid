@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.news.newslist;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -38,5 +39,10 @@ public class NewsActivity extends BaseActivity {
                  .newsModule(new NewsModule())
                  .build()
                  .injectNewsActivity(this);
+    }
+
+    @Override
+    protected Context getChildContext() {
+        return NewsActivity.this;
     }
 }

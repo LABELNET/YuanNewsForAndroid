@@ -22,6 +22,7 @@
         <activity android:name=".news.newsdetail.NewsDetailActivity"/>
         <activity android:name=".user.login.LoginActivity"/>
         <activity android:name=".user.register.RegisterActivity"/>
+        <activity android:name=".user.center.CenterActivity"/>
     </application>
 
 </manifest>

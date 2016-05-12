@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.news.newsdetail;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -44,4 +45,8 @@ public class NewsDetailActivity extends NormalBackActivity{
     }
 
 
+    @Override
+    protected Context getChildContext() {
+        return  NewsDetailActivity.this;
+    }
 }

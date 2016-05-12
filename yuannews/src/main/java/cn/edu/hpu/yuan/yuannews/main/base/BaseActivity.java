@@ -1,6 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.main.base;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,12 +14,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
+import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
+import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by yuan on 16-5-9.
@@ -29,6 +37,8 @@ import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+
+    private final int RESULTCODE=2017;
 
     /**
      * 得到ApplicationComponent对象
@@ -124,7 +134,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.navigation_item_example:
-                                showToast("navigation_item_example");
+                                //个人中心
+                                startActivity(new Intent(getChildContext(),CenterActivity.class));
                                 break;
                             case R.id.navigation_item_blog:
                                 showToast("navigation_item_blog");
@@ -143,7 +154,42 @@ public abstract class BaseActivity extends AppCompatActivity {
          initHeadView(navigationHeaderView);
     }
 
-    protected void initHeadView(View v){}
+    protected void initHeadView(View view) {
+        CircleImageView circleImageView= (CircleImageView) view.findViewById(R.id.profile_image);
+        TextView navigation_name= (TextView) view.findViewById(R.id.navigation_name);
+        if(BaseApplication.newsAPIShared.getSharedUserID()!=0){
+            //已经登陆
+            String nick=BaseApplication.newsAPIShared.getSharedUserNick();
+            String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
+            navigation_name.setText(nick);
+            LogUtil.v(headUrl);
+            Glide.with(view.getContext())
+                    .load(headUrl)
+                    .placeholder(R.mipmap.user_head)
+                    .error(R.mipmap.ic_news)
+                    .into(circleImageView);
+            //点击头像进入个人信息
+            circleImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivityForResult(new Intent(getChildContext(), CenterActivity.class),RESULTCODE);
+                }
+            });
+        }else{
+            navigation_name.setText("未登陆?点击头像登陆");
+            circleImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getChildContext(), LoginActivity.class);
+                    startActivityForResult(intent,RESULTCODE);
+                }
+            });
+        }
+    }
+
+    protected Context getChildContext(){
+        return null;
+    }
 
     protected View getNavigationView(){
         return navigationHeaderView;

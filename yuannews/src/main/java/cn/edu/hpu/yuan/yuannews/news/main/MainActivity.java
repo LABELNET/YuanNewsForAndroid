@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.news.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -54,39 +55,44 @@ public class MainActivity extends BaseActivity{
                 .injectMainActivity(this);
     }
 
-
     @Override
-    protected void initHeadView(View view) {
-        CircleImageView circleImageView= (CircleImageView) view.findViewById(R.id.profile_image);
-        TextView navigation_name= (TextView) view.findViewById(R.id.navigation_name);
-        if(BaseApplication.newsAPIShared.getSharedUserID()!=0){
-            //已经登陆
-            String nick=BaseApplication.newsAPIShared.getSharedUserNick();
-            String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
-            navigation_name.setText(nick);
-            LogUtil.v(headUrl);
-            Glide.with(view.getContext())
-                    .load(headUrl)
-                    .placeholder(R.mipmap.user_head)
-                    .into(circleImageView);
-            //点击头像进入个人信息
-            circleImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivityForResult(new Intent(MainActivity.this, CenterActivity.class),RESULTCODE);
-                }
-            });
-        }else{
-            navigation_name.setText("未登陆?点击头像登陆");
-            circleImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivityForResult(intent,RESULTCODE);
-                }
-            });
-        }
+    protected Context getChildContext() {
+        return MainActivity.this;
     }
+
+
+    //    @Override
+//    protected void initHeadView(View view) {
+//        CircleImageView circleImageView= (CircleImageView) view.findViewById(R.id.profile_image);
+//        TextView navigation_name= (TextView) view.findViewById(R.id.navigation_name);
+//        if(BaseApplication.newsAPIShared.getSharedUserID()!=0){
+//            //已经登陆
+//            String nick=BaseApplication.newsAPIShared.getSharedUserNick();
+//            String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
+//            navigation_name.setText(nick);
+//            LogUtil.v(headUrl);
+//            Glide.with(view.getContext())
+//                    .load(headUrl)
+//                    .placeholder(R.mipmap.user_head)
+//                    .into(circleImageView);
+//            //点击头像进入个人信息
+//            circleImageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivityForResult(new Intent(MainActivity.this, CenterActivity.class),RESULTCODE);
+//                }
+//            });
+//        }else{
+//            navigation_name.setText("未登陆?点击头像登陆");
+//            circleImageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                    startActivityForResult(intent,RESULTCODE);
+//                }
+//            });
+//        }
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
