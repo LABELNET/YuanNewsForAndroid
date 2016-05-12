@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity{
 
 
     private final int LOGIN_SUCCESS=2016;
+    private final int RESULTCODE=2017;
 
     @Inject
     protected MainFragment mainFragment;
@@ -77,7 +78,8 @@ public class MainActivity extends BaseActivity{
             circleImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivityForResult(intent,RESULTCODE);
                 }
             });
         }
@@ -86,11 +88,13 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //重新更新headview
-        if(LOGIN_SUCCESS==resultCode){
-            View navigationView = getNavigationView();
-            if(navigationView!=null){
-                initHeadView(navigationView);
+        if(requestCode==RESULTCODE) {
+            //重新更新headview
+            if (LOGIN_SUCCESS == resultCode) {
+                View navigationView = getNavigationView();
+                if (navigationView != null) {
+                    initHeadView(navigationView);
+                }
             }
         }
     }

@@ -11,18 +11,16 @@ import android.content.SharedPreferences;
 public class NewsAPIShared {
 
     private final String SHARED_PREFERENCES_NAME="yuannews";
-    private final String SHRAED_USER_IFO_HEAD_KEY="shared_user_ifo_json_key";
-    private final String SHRAED_USER_IFO_NICK_KEY="shared_user_ifo_json_key";
+    private final String SHRAED_USER_IFO_HEAD_KEY="shared_user_ifo_head_key";
+    private final String SHRAED_USER_IFO_NICK_KEY="shared_user_ifo_nick_key";
     private final String SHRAED_USER_ID_KEY="shared_user_id_key";
     private final String SHRAED_MOREN_USER_IFNO="No Data";
 
-    private Context context;
     private SharedPreferences  sharedPreferences;
     private SharedPreferences.Editor editor;
 
 
     public NewsAPIShared(Context context) {
-        this.context = context;
         sharedPreferences=context.getSharedPreferences(SHARED_PREFERENCES_NAME,Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
     }
