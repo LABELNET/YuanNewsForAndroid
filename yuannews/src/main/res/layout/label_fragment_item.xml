@@ -6,9 +6,6 @@
          <variable
              name="label"
              type="java.lang.String"/>
-        <variable
-            name="num"
-            type="java.lang.Integer"/>
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,17 +19,15 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_marginLeft="16dp"
-            android:text="@{num}"
             android:textColor="@color/colorAccent"
             android:textStyle="bold|italic"
             />
 
         <TextView
-            android:layout_toRightOf="@+id/num"
             android:text="@{label}"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="50dp"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -58,6 +53,12 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
             android:background="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 </layout>

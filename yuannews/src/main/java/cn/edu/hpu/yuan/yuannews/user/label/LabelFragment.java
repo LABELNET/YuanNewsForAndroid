@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 import javax.inject.Inject;
+
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LabelFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
@@ -75,7 +77,9 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         labelIfoAdapter.setOnDeleteItemClick(this);
+        binding.labelLists.setAdapter(labelIfoAdapter);
         List<TasteVo> tasteVos = (List<TasteVo>) getArguments().getSerializable("tasteVos");
+        LogUtil.v(" LABEL "+tasteVos.toString());
 
         if(tasteVos.size()==0){
             binding.noData.setVisibility(View.VISIBLE);
@@ -107,6 +111,8 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
             return;
         }
         this.label=label;
+        binding.btnEditIfo.setText("");
+
         labelContanctsPresenter.postAddLabel(label);
     }
 

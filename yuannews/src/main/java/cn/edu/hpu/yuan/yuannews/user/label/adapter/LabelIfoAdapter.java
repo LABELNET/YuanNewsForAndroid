@@ -68,7 +68,7 @@ public class LabelIfoAdapter extends BaseAdapter{
         convertView=binding.getRoot();
         final TasteVo tasteVo = tasteVos.get(position);
         binding.setLabel(tasteVo.getLabel());
-        binding.setNum(position);
+        binding.num.setText((position+1)+"");
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

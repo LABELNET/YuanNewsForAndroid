@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.label;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import retrofit2.Call;
@@ -29,6 +30,7 @@ public class LabelPresenter implements LabelContancts.LabelContanctsPresenter{
              @Override
              public void onResponse(Call<DataBean> call, Response<DataBean> response) {
                  if(response.isSuccessful()){
+                     LogUtil.v(response.body()+"");
                      if(response.body().getCode()==0){
                          labelContanctsView.deleteSuccess();
                      }else{
