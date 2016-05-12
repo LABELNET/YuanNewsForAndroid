@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.register;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,12 +8,14 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.RegisterFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
+import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 
 /**
  * Created by yuan on 16-5-12.
@@ -48,8 +51,14 @@ public class RegisterFragment extends NorbalBackFragment implements RegisterCont
             public void onClick(View v) {
                 register();
             }
+        });
 
-
+        binding.btnLoginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),LoginActivity.class));
+                getActivity().finish();
+            }
         });
 
     }
@@ -93,6 +102,8 @@ public class RegisterFragment extends NorbalBackFragment implements RegisterCont
     @Override
     public void showSuccess() {
         //跳转等
+        Toast.makeText(getContext(),"注册成功",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
     private void showMsg(String msg){

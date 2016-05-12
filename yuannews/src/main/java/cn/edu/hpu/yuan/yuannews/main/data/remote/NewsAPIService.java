@@ -66,7 +66,15 @@ public interface NewsAPIService {
     Call<DataBean<UserVo>> postUserLogin(@Query("unum") String num,@Query("pass") String pass);
 
 
-
+    /**
+     * 用户注册
+     * @param num
+     * @param pass
+     * @param nick
+     * @return
+     */
+    @POST("register")
+    Call<DataBean> postUserRegister(@Query("unum") String num,@Query("pass") String pass,@Query("nick")String nick);
 
 
 
