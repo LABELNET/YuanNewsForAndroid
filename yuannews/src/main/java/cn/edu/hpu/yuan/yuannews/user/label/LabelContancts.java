@@ -9,7 +9,7 @@ public interface LabelContancts {
 
         int postDeleteLabel(Integer tid);
 
-        void postAddLabel(Integer id,String label);
+        int postAddLabel(String label);
 
     }
 

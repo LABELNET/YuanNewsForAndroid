@@ -5,6 +5,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/noData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="没有更多数据了"
+            android:visibility="gone"
+            android:gravity="center"
+            />
+
         <ListView
             android:id="@+id/labelLists"
             android:layout_marginBottom="50dp"

@@ -68,19 +68,18 @@ public class LabelIfoAdapter extends BaseAdapter{
         convertView=binding.getRoot();
         final TasteVo tasteVo = tasteVos.get(position);
         binding.setLabel(tasteVo.getLabel());
+        binding.setNum(position);
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onDeleteItemClick.onDelete(tasteVo)==0) {
-                    removeTasteVo(position);
-                }
+                onDeleteItemClick.onDelete(tasteVo,position);
             }
         });
         return convertView;
     }
 
     public interface OnDeleteItemClick{
-        int onDelete(TasteVo tasteVo);
+        void onDelete(TasteVo tasteVo,int position);
     }
 
 }

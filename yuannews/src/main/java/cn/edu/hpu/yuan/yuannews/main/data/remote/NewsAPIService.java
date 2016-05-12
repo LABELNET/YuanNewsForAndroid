@@ -101,6 +101,15 @@ public interface NewsAPIService {
     Call<DataBean<List<TasteVo>>> postTasteVos(@Query("uid") Integer uid);
 
 
+    /**
+     * 添加兴趣标签
+     * @param uid
+     * @param label
+     * @return
+     */
+    @POST("addTasteLabel")
+    Call<DataBean> postAddLabel(@Query("uid") Integer uid,@Query("label") String label);
+
 
 
 

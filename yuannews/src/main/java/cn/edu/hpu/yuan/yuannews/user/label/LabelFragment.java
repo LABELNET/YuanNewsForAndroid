@@ -59,8 +59,48 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
     protected void initView(View view, Bundle savedInstanceState) {
         labelIfoAdapter.setOnDeleteItemClick(this);
         List<TasteVo> tasteVos = (List<TasteVo>) getArguments().getSerializable("tasteVos");
-        labelIfoAdapter.addTasteVo(tasteVos);
-        labelIfoAdapter.notifyDataSetChanged();
+
+        if(tasteVos.size()==0){
+            binding.noData.setVisibility(View.VISIBLE);
+        }else {
+            binding.noData.setVisibility(View.GONE);
+            labelIfoAdapter.addTasteVo(tasteVos);
+            labelIfoAdapter.notifyDataSetChanged();
+        }
+
+
+        binding.btnAddLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addLabel();
+            }
+        });
+
+
+    }
+
+    //添加兴趣标签
+    private void addLabel() {
+
+        String label=binding.btnEditIfo.getText().toString().trim();
+        if(label.length()>=0&&label.length()<3){
+            show("标签不足4个字，无法添加！");
+            return;
+        }
+
+        if(labelIfoAdapter.getCount()>=30){
+            show("最多给关注30个兴趣标签！");
+            return;
+        }
+
+        if(labelContanctsPresenter.postAddLabel(label)==0){
+            TasteVo tasteVo=new TasteVo();
+            tasteVo.setLabel(label);
+            labelIfoAdapter.addTasteVo(tasteVo);
+            labelIfoAdapter.notifyDataSetChanged();
+        }else{
+            show("添加标签： "+label +" 失败");
+        }
     }
 
     private void show(String msg){
@@ -68,7 +108,12 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
     }
 
     @Override
-    public int onDelete(TasteVo tasteVo) {
-        return labelContanctsPresenter.postDeleteLabel(tasteVo.getId());
+    public void onDelete(TasteVo tasteVo,int position) {
+        if(labelContanctsPresenter.postDeleteLabel(tasteVo.getId())==0){
+            labelIfoAdapter.removeTasteVo(position);
+            labelIfoAdapter.notifyDataSetChanged();
+        }else{
+            show("取消关注： "+tasteVo.getLabel() +" 标签失败");
+        }
     }
 }
