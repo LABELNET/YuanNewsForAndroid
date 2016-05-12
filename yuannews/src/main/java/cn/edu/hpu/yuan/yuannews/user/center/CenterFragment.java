@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -113,6 +114,8 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
      */
     private void addTextViewToLabels(TasteVo taste) {
         TextView tv=new TextView(getContext());
+        LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) tv.getLayoutParams();
+        layoutParams.setMargins(10,10,0,0);
         tv.setTextColor(Color.WHITE);
         tv.setBackgroundResource(R.drawable.label_background);
         tv.setGravity(Gravity.CENTER);

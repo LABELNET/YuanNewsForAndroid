@@ -163,7 +163,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
             navigation_name.setText(nick);
             LogUtil.v(headUrl);
-            Glide.with(view.getContext())
+            Glide.with(getChildContext())
                     .load(headUrl)
                     .placeholder(R.mipmap.user_head)
                     .error(R.mipmap.ic_news)

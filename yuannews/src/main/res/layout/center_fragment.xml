@@ -99,14 +99,14 @@
                           android:visibility="gone"
                           android:text="你还没有兴趣标签"/>
 
-                      <TextView
-                          android:text="新闻推荐"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textColor="@color/white"
-                          android:textSize="12dp"
-                          android:gravity="center"
-                          android:background="@drawable/label_background"/>
+                      <!--<TextView-->
+                          <!--android:text="新闻推荐"-->
+                          <!--android:layout_width="wrap_content"-->
+                          <!--android:layout_height="wrap_content"-->
+                          <!--android:textColor="@color/white"-->
+                          <!--android:textSize="12dp"-->
+                          <!--android:gravity="center"-->
+                          <!--android:background="@drawable/label_background"/>-->
 
                   </LinearLayout>
 
