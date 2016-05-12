@@ -12,7 +12,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@mipmap/ic_news"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     android:layout_centerHorizontal="true"/>
 
                 <TextView
@@ -21,7 +21,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:layout_below="@+id/ivlogin"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
                     android:text="新闻推荐"/>
@@ -87,7 +87,7 @@
                     android:textSize="12dp"
                     android:textStyle="italic"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="10dp"/>
 
 
     </RelativeLayout>
