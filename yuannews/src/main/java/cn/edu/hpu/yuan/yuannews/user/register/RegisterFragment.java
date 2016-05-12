@@ -76,7 +76,7 @@ public class RegisterFragment extends NorbalBackFragment implements RegisterCont
         }
         String num=binding.editUserNum.getText().toString().trim();
 
-        if(num.length()==11){
+        if(num.length()==10){
             binding.textnum.setError("手机号长度不够");
             return;
         }
@@ -91,7 +91,7 @@ public class RegisterFragment extends NorbalBackFragment implements RegisterCont
 
     @Override
     public void showDialog() {
-        showMsg("登陆中...");
+        showMsg("注册中...");
     }
 
     @Override
