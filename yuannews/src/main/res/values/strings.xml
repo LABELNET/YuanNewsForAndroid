@@ -16,6 +16,13 @@
     <string name="newsDetail_comment">查看评论 %1$d</string>
     <string name="newsDetail_zan">点赞 %1$d</string>
 
+    <string name="userDetal_ID">ID :    </string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="user">普通用户</string>
+    <string name="manager">管理员</string>
+    <string name="fuhao">   |   </string>
+
 
 
     <!-- 测试view -->
