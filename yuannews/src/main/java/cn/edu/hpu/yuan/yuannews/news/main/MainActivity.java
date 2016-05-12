@@ -56,31 +56,9 @@ public class MainActivity extends BaseActivity{
 
 
     @Override
-    protected void setupDrawerContent(NavigationView navigationView) {
-        super.setupDrawerContent(navigationView);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        switch (menuItem.getItemId()) {
-                            case R.id.navigation_item_example:
-                                showToast("navigation_item_example");
-                                break;
-                            case R.id.navigation_item_blog:
-                                showToast("navigation_item_blog");
-                                break;
-                            case R.id.navigation_item_about:
-                                showToast("navigation_item_about");
-                                break;
-
-                        }
-                        menuItem.setChecked(true);
-                        closeDrawerLayout();
-                        return true;
-                    }
-                });
-        CircleImageView circleImageView= (CircleImageView) navigationView.findViewById(R.id.profile_image);
-        TextView navigation_name= (TextView) navigationView.findViewById(R.id.navigation_name);
+    protected void initHeadView(View view) {
+        CircleImageView circleImageView= (CircleImageView) view.findViewById(R.id.profile_image);
+        TextView navigation_name= (TextView) view.findViewById(R.id.navigation_name);
         if(BaseApplication.newsAPIShared.getSharedUserID()!=0){
             //已经登陆
             UserVo userVo=BaseApplication.newsAPIShared.getSharedUser();
@@ -97,7 +75,6 @@ public class MainActivity extends BaseActivity{
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    finish();
                 }
             });
         }

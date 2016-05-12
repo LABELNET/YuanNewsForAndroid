@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
@@ -114,14 +115,34 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-
-    protected void closeDrawerLayout(){
-        mDrawerLayout.closeDrawers();
-    }
-
     //设置NavigationView点击事件
-    protected void setupDrawerContent(NavigationView navigationView) {
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.navigation_item_example:
+                                showToast("navigation_item_example");
+                                break;
+                            case R.id.navigation_item_blog:
+                                showToast("navigation_item_blog");
+                                break;
+                            case R.id.navigation_item_about:
+                                showToast("navigation_item_about");
+                                break;
+
+                        }
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
+         View view = navigationView.inflateHeaderView(R.layout.navigation_header);
+         initHeadView(view);
     }
+
+    protected void initHeadView(View v){}
 
     public  void showToast(String msg){
         Toast.makeText(getBaseContext(),msg,Toast.LENGTH_SHORT).show();

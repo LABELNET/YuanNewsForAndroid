@@ -31,8 +31,9 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater, R.layout.login_fragment,container,false);
-        return binding.getRoot();
+        View view = inflater.inflate(R.layout.login_fragment, container, false);
+        binding= LoginFragmentBinding.bind(view);
+        return view;
     }
 
     @Override
@@ -53,7 +54,6 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
                 }
             }
         });
-
 
     }
     //登陆操作
