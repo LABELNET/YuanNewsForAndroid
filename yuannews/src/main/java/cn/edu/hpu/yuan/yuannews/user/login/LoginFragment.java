@@ -43,14 +43,7 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //登陆操作
-                int result=login();
-                LogUtil.v("登陆  登陆 "+result);
-                if(result==0){
-                    //主界面
-                    getActivity().setResult(LOGIN_SUCCESS);
-                    getActivity().finish();
-                }
+                login();
             }
         });
 
@@ -63,21 +56,21 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
 
     }
     //登陆操作
-    private int login() {
+    private void login() {
 
         String num = binding.textnum.getEditText().getText().toString().trim();
         String pass=binding.textpass.getEditText().getText().toString().trim();
 
         if(num.length()==0){
             binding.textnum.setError("请输入账户");
-            return -1;
+            return;
         }
 
         if(pass.length()==0){
             binding.textpass.setError("请输入密码");
-            return -1;
+            return;
         }
-        return loginContractPresenter.postUserLogin(num,pass);
+        loginContractPresenter.postUserLogin(num,pass);
     }
 
     @Override
@@ -97,6 +90,10 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     @Override
     public void success() {
         showMsg("登陆成功，正在跳转");
+        //主界面
+        getActivity().setResult(LOGIN_SUCCESS);
+        getActivity().onBackPressed();
+        getActivity().finish();
     }
 
     @Override

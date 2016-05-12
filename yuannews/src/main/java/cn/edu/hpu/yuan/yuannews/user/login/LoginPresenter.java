@@ -14,8 +14,6 @@ import retrofit2.Response;
 public class LoginPresenter implements LoginContract.LoginContractPresenter{
 
 
-    private int result=-1;
-
     private LoginContract.LoginContractView loginContractView;
 
     public LoginPresenter(LoginContract.LoginContractView loginContractView) {
@@ -23,8 +21,7 @@ public class LoginPresenter implements LoginContract.LoginContractPresenter{
     }
 
     @Override
-    public Integer postUserLogin(String num, String pass) {
-        result=-1;
+    public void postUserLogin(String num, String pass) {
         loginContractView.showDialog();
         BaseApplication.newsAPIService.postUserLogin(num,pass).enqueue(new Callback<DataBean<UserVo>>() {
             @Override
@@ -40,7 +37,7 @@ public class LoginPresenter implements LoginContract.LoginContractPresenter{
                             BaseApplication.newsAPIShared.putSharedUserIfo(NewsAPI.BASE_URL+data.getHead()
                                     ,data.getId(),
                                     data.getNick());
-                            result=0;
+                            loginContractView.success();
                         }else{
                             loginContractView.error("请求失败");
                         }
@@ -56,6 +53,5 @@ public class LoginPresenter implements LoginContract.LoginContractPresenter{
                 loginContractView.error("网络错误");
             }
         });
-        return result;
     }
 }

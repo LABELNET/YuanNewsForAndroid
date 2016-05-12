@@ -8,7 +8,7 @@ public interface LoginContract {
 
     interface LoginContractPresenter{
 
-      Integer  postUserLogin(String num,String pass);
+      void postUserLogin(String num,String pass);
 
     }
 
