@@ -90,6 +90,7 @@ public class MainActivity extends BaseActivity{
                     .placeholder(R.mipmap.user_head)
                     .error(R.mipmap.user_head)
                     .into(circleImageView);
+            //点击头像进入个人信息
         }else{
             navigation_name.setText("未登陆?点击头像登陆");
             circleImageView.setOnClickListener(new View.OnClickListener() {
