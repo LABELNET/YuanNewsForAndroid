@@ -30,6 +30,10 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     @Inject
     protected  CenterContancts.CenterContanctsPresenter centerContanctsPresenter;
+
+    @Inject
+    protected LinearLayout.LayoutParams layoutParams;
+
     private CenterFragmentBinding binding;
 
     @Nullable
@@ -114,13 +118,12 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
      */
     private void addTextViewToLabels(TasteVo taste) {
         TextView tv=new TextView(getContext());
-        LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) tv.getLayoutParams();
-        layoutParams.setMargins(10,10,0,0);
         tv.setTextColor(Color.WHITE);
         tv.setBackgroundResource(R.drawable.label_background);
         tv.setGravity(Gravity.CENTER);
         tv.setTextSize(12);
         tv.setText(taste.getLabel());
+        tv.setLayoutParams(layoutParams);
         binding.userlabels.addView(tv);
     }
 
