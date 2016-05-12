@@ -1,7 +1,5 @@
 package cn.edu.hpu.yuan.yuannews.user.login;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -15,7 +13,6 @@ import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LoginFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
-import cn.edu.hpu.yuan.yuannews.news.main.MainActivity;
 
 /**
  * Created by yuan on 16-5-12.
@@ -26,6 +23,8 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     @Inject
     protected LoginContract.LoginContractPresenter loginContractPresenter;
 
+    private final int LOGIN_SUCCESS=2016;
+
     //初始化binding
     protected LoginFragmentBinding binding;
     @Nullable
@@ -33,7 +32,7 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login_fragment, container, false);
         binding= LoginFragmentBinding.bind(view);
-        return view;
+        return binding.getRoot();
     }
 
     @Override
@@ -49,9 +48,16 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
                 LogUtil.v("登陆  登陆 "+result);
                 if(result==0){
                     //主界面
-                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    getActivity().setResult(LOGIN_SUCCESS);
                     getActivity().finish();
                 }
+            }
+        });
+
+        binding.btnRegisterText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到注册
             }
         });
 

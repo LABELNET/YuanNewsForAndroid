@@ -2,16 +2,14 @@ package cn.edu.hpu.yuan.yuannews.user.login;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-
 import javax.inject.Inject;
-
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
 
 /**
  * Created by yuan on 16-5-12.
- * 用户登陆页面独立出来
+ * 用户登陆页面
  */
 public class LoginActivity extends NormalBaseActivity {
 

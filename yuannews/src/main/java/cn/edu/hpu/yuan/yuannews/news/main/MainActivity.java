@@ -30,6 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends BaseActivity{
 
 
+    private final int LOGIN_SUCCESS=2016;
 
     @Inject
     protected MainFragment mainFragment;
@@ -84,7 +85,12 @@ public class MainActivity extends BaseActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //重新更新headview
+        if(LOGIN_SUCCESS==resultCode){
+            View navigationView = getNavigationView();
+            if(navigationView!=null){
+                initHeadView(navigationView);
+            }
+        }
     }
-
 
 }

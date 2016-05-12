@@ -53,6 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private  AlertDialog dialog;
     private  FloatDialogClickListener floatDialogClickListener;
     private static final String NEWSFRAGMENT_TYPE_ACTION="newsfragment_type_action";
+    private View navigationHeaderView;
 
 
     @Override
@@ -138,11 +139,15 @@ public abstract class BaseActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-         View view = navigationView.inflateHeaderView(R.layout.navigation_header);
-         initHeadView(view);
+         navigationHeaderView = navigationView.inflateHeaderView(R.layout.navigation_header);
+         initHeadView(navigationHeaderView);
     }
 
     protected void initHeadView(View v){}
+
+    protected View getNavigationView(){
+        return navigationHeaderView;
+    }
 
     public  void showToast(String msg){
         Toast.makeText(getBaseContext(),msg,Toast.LENGTH_SHORT).show();
