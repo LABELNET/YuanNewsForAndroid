@@ -3,6 +3,8 @@ package cn.edu.hpu.yuan.yuannews.user.register;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import javax.inject.Inject;
+
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
 import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
@@ -12,6 +14,7 @@ import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
  */
 public class RegisterActivity extends NormalBaseActivity{
 
+    @Inject
     protected RegisterFragment registerFragment;
 
     @Override
@@ -20,6 +23,12 @@ public class RegisterActivity extends NormalBaseActivity{
     }
     @Override
     protected void setComponet() {
+
+        DaggerRegisterComponent
+                .builder()
+                .registerModule(new RegisterModule())
+                .build()
+                .injectRegisterActivity(this);
 
     }
     @Override
