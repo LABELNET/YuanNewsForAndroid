@@ -43,7 +43,7 @@ public class NewsAPIShared {
             LogUtil.v(" SHRAED_MOREN_USER_IFNO " + SHRAED_MOREN_USER_IFNO);
             return null;
         }
-        return (UserVo) JSON.parseArray(json,UserVo.class);
+        return JSON.parseObject(json,UserVo.class);
     }
 
     private void putSharedUserID(Integer uid){

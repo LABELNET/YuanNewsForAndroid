@@ -10,7 +10,9 @@
         <item name="android:windowActionBar">false</item>
     </style>
 
-    <style name="Toolbar" parent="ThemeOverlay.AppCompat.ActionBar" />
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.ActionBar" >
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 
 

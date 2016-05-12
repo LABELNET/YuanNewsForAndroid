@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseActivity;
@@ -63,12 +64,17 @@ public class MainActivity extends BaseActivity{
         if(BaseApplication.newsAPIShared.getSharedUserID()!=0){
             //已经登陆
             UserVo userVo=BaseApplication.newsAPIShared.getSharedUser();
-            navigation_name.setText(userVo.getNick());
-            Glide.with(this)
-                    .load(NewsAPI.BASE_IMAGE_URL+userVo.getHead())
-                    .placeholder(R.mipmap.user_head)
-                    .error(R.mipmap.user_head)
-                    .into(circleImageView);
+            if(userVo==null){
+                LogUtil.v(" userVo is null ");
+                return;
+            }
+            LogUtil.v(userVo.toString());
+//            navigation_name.setText(userVo.getNick());
+//            Glide.with(this)
+//                    .load(NewsAPI.BASE_IMAGE_URL+userVo.getHead())
+//                    .placeholder(R.mipmap.user_head)
+//                    .error(R.mipmap.user_head)
+//                    .into(circleImageView);
             //点击头像进入个人信息
         }else{
             navigation_name.setText("未登陆?点击头像登陆");
