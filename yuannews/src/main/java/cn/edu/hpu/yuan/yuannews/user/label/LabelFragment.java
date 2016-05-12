@@ -6,18 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
+import cn.edu.hpu.yuan.yuannews.user.label.adapter.LabelIfoAdapter;
 
 /**
  * Created by yuan on 16-5-12.
  */
 public class LabelFragment extends NorbalBackFragment implements LabelContancts.LabelContanctsView{
 
+
+    @Inject
+    protected LabelContancts.LabelContanctsPresenter labelContanctsPresenter;
+
+    @Inject
+    protected LabelIfoAdapter labelIfoAdapter;
+
     @Override
     protected void initComponent() {
 
     }
-
 
     @Nullable
     @Override
