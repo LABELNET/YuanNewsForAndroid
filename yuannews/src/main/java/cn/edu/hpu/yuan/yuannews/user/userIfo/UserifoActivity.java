@@ -25,6 +25,11 @@ public class UserifoActivity extends NormalBaseActivity{
 
     @Override
     protected void setComponet() {
+        DaggerUserifoComponent
+                .builder()
+                .userIfoModule(new UserIfoModule())
+                .build()
+                .injectUserIfoActivity(this);
 
     }
 

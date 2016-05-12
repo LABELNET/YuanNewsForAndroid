@@ -19,6 +19,12 @@ public class UserIfoFragment extends NorbalBackFragment implements UserIfoContra
     @Override
     protected void initComponent() {
 
+        DaggerUserifoComponent
+                .builder()
+                .userIfoModule(new UserIfoModule(this))
+                .build()
+                .injectUserIfoFragment(this);
+
     }
 
     @Override
