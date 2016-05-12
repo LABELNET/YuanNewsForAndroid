@@ -3,12 +3,14 @@ package cn.edu.hpu.yuan.yuannews.user.login;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LoginFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
@@ -33,8 +35,35 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        binding.textnum.setErrorEnabled(true);
+        binding.textpass.setErrorEnabled(true);
+
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //登陆操作
+                int result=login();
+                LogUtil.v("登陆  登陆 "+result);
+
+            }
+        });
 
 
+    }
+    //登陆操作
+    private int login() {
+
+        String num = binding.textnum.getEditText().getText().toString().trim();
+        String pass=binding.textpass.getEditText().getText().toString().trim();
+
+        if(num.length()==0){
+            binding.textnum.setError("请输入账户");
+        }
+
+        if(pass.length()==0){
+            binding.textpass.setError("请输入密码");
+        }
+        return loginContractPresenter.postUserLogin(num,pass);
     }
 
     @Override
@@ -48,21 +77,25 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
 
     @Override
     public void showDialog() {
-
+        showMsg("登陆中...");
     }
 
     @Override
     public void success() {
-
+        showMsg("登陆成功，正在跳转");
     }
 
     @Override
     public void error() {
-
+        showMsg("登陆失败");
     }
 
     @Override
     public void dmissDialog() {
 
+    }
+
+    private void showMsg(String msg){
+        Snackbar.make(binding.loginView,msg,Snackbar.LENGTH_SHORT).show();
     }
 }

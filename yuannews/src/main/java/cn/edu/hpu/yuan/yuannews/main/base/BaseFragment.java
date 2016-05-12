@@ -70,6 +70,9 @@ public abstract class BaseFragment extends Fragment{
     private void initProgress() {
         wheel = new ProgressWheel(getContext());
         wheel.setBarColor(Color.GREEN);
+        wheel.setEnabled(true);
+        wheel.setBarColor(Color.BLUE);
+        wheel.setBackgroundColor(Color.GRAY);
     }
 
     protected void showProgress(){

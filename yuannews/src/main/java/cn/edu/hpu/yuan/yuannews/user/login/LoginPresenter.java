@@ -13,7 +13,8 @@ public class LoginPresenter implements LoginContract.LoginContractPresenter{
     }
 
     @Override
-    public void postUserLogin(String num, String pass) {
+    public Integer postUserLogin(String num, String pass) {
         loginContractView.showDialog();
+        return -1;
     }
 }
