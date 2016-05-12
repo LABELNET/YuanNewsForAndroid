@@ -1,5 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.user.center;
 
+import java.util.List;
+
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
 
@@ -24,7 +26,7 @@ public interface CenterContancts {
 
           void showUserDetail(UserVo userVo);
 
-          void showAllLabels(TasteVo tasteVo);
+          void showAllLabels(List<TasteVo> tasteVo);
     }
 
 }

@@ -96,6 +96,7 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:textColor="@color/black"
+                          android:visibility="gone"
                           android:text="你还没有兴趣标签"/>
 
                       <TextView
