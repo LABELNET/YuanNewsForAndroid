@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentJo;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
@@ -111,15 +113,67 @@ public interface NewsAPIService {
     Call<DataBean> postAddLabel(@Query("uid") Integer uid,@Query("label") String label);
 
 
+    /**
+     * 删除兴趣标签
+     * @param tid
+     * @return
+     */
+    @POST("deleteLabel")
+    Call<DataBean> postDeleteLabel(@Query("tid") Integer tid);
+
+    /**
+     * 修改用户信息
+     * @param uid
+     * @param sex
+     * @param nick
+     * @return
+     */
+    @POST("updateUserIfo")
+    Call<DataBean> postUpdateUserIfo(@Query("uid") Integer uid,@Query("sex") Integer sex,@Query("nick") String nick);
+
+    /**
+     * 修改用户密码
+     * @param uid
+     * @param pass
+     * @return
+     */
+    @POST("updateUserPass")
+    Call<DataBean> postupdateUserPass(@Query("uid") Integer uid,@Query("pass") String pass);
 
 
+    //TODO 上传头像 和 获取当前新闻当前用户的点赞状态（服务器端）
+
+    /**
+     * 用户点赞
+     * @param uid
+     * @param nid
+     * @param status
+     * @return
+     */
+    @POST("userZanNews")
+    Call<DataBean> postZan(@Query("uid") Integer uid,@Query("nid") Integer nid,@Query("status") Integer status);
 
 
+    /**
+     * 用户评论
+     * @param uid
+     * @param nid
+     * @param content
+     * @return
+     */
+    @POST("userCommentNews")
+    Call<DataBean> postComment(@Query("uid") Integer uid,@Query("nid") Integer nid,@Query("content") String content);
 
 
-
-
-
+    /**
+     * 用户评论分页查询
+     * @param p
+     * @param num
+     * @param nid
+     * @return
+     */
+    @POST("getNewsComment")
+    Call<DataBean<ArrayList<CommentJo>>> getCommentIfo(@Query("p") Integer p,@Query("num") Integer num,@Query("nid") Integer nid);
 
 
 
