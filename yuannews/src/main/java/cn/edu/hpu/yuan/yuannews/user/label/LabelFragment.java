@@ -29,6 +29,9 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
 
     private LabelFragmentBinding binding;
 
+    private String label;
+    private int position;
+
     @Override
     protected void initComponent() {
         DaggerLabelComponent
@@ -56,6 +59,20 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
     }
 
     @Override
+    public void deleteSuccess() {
+        labelIfoAdapter.removeTasteVo(position);
+        labelIfoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addSuccess() {
+        TasteVo tasteVo=new TasteVo();
+        tasteVo.setLabel(label);
+        labelIfoAdapter.addTasteVo(tasteVo);
+        labelIfoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected void initView(View view, Bundle savedInstanceState) {
         labelIfoAdapter.setOnDeleteItemClick(this);
         List<TasteVo> tasteVos = (List<TasteVo>) getArguments().getSerializable("tasteVos");
@@ -68,15 +85,12 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
             labelIfoAdapter.notifyDataSetChanged();
         }
 
-
         binding.btnAddLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addLabel();
             }
         });
-
-
     }
 
     //添加兴趣标签
@@ -92,15 +106,8 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
             show("最多给关注30个兴趣标签！");
             return;
         }
-
-        if(labelContanctsPresenter.postAddLabel(label)==0){
-            TasteVo tasteVo=new TasteVo();
-            tasteVo.setLabel(label);
-            labelIfoAdapter.addTasteVo(tasteVo);
-            labelIfoAdapter.notifyDataSetChanged();
-        }else{
-            show("添加标签： "+label +" 失败");
-        }
+        this.label=label;
+        labelContanctsPresenter.postAddLabel(label);
     }
 
     private void show(String msg){
@@ -109,11 +116,7 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
 
     @Override
     public void onDelete(TasteVo tasteVo,int position) {
-        if(labelContanctsPresenter.postDeleteLabel(tasteVo.getId())==0){
-            labelIfoAdapter.removeTasteVo(position);
-            labelIfoAdapter.notifyDataSetChanged();
-        }else{
-            show("取消关注： "+tasteVo.getLabel() +" 标签失败");
-        }
+        this.position=position;
+        labelContanctsPresenter.postDeleteLabel(tasteVo.getId());
     }
 }
