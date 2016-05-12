@@ -68,13 +68,13 @@ public class MainActivity extends BaseActivity{
                 LogUtil.v(" userVo is null ");
                 return;
             }
-            LogUtil.v(userVo.toString());
-//            navigation_name.setText(userVo.getNick());
-//            Glide.with(this)
-//                    .load(NewsAPI.BASE_IMAGE_URL+userVo.getHead())
-//                    .placeholder(R.mipmap.user_head)
-//                    .error(R.mipmap.user_head)
-//                    .into(circleImageView);
+            LogUtil.v(userVo.getNick());
+            navigation_name.setText(userVo.getNick());
+            Glide.with(this)
+                    .load(NewsAPI.BASE_IMAGE_URL+userVo.getHead())
+                    .placeholder(R.mipmap.user_head)
+                    .error(R.mipmap.user_head)
+                    .into(circleImageView);
             //点击头像进入个人信息
         }else{
             navigation_name.setText("未登陆?点击头像登陆");
