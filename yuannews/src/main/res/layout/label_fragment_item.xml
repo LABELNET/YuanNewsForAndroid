@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+         <variable
+             name="label"
+             type="java.lang.String"/>
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:text="@{label}"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="12dp"
+            android:gravity="center"
+            android:minWidth="100dp"
+            android:maxWidth="240dp"
+            android:lines="1"
+            android:maxLength="20"
+            android:background="@drawable/label_background"/>
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:text="取消关注"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/colorPrimary"/>
+
+    </RelativeLayout>
+</layout>
