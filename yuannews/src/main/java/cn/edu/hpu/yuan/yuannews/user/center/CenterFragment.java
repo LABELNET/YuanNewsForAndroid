@@ -25,7 +25,11 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     @Override
     protected void initComponent() {
-
+        DaggerCenterComponent
+                .builder()
+                .centerModule(new CenterModule(this))
+                .build()
+                .injectCenterFragment(this);
     }
 
 
