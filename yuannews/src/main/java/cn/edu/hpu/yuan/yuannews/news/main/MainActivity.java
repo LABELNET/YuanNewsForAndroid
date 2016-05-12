@@ -67,6 +67,7 @@ public class MainActivity extends BaseActivity{
             String nick=BaseApplication.newsAPIShared.getSharedUserNick();
             String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
             navigation_name.setText(nick);
+            LogUtil.v(headUrl);
             Glide.with(this)
                     .load(headUrl)
                     .placeholder(R.mipmap.user_head)

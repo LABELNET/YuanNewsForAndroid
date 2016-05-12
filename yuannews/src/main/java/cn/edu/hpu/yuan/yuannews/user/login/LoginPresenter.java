@@ -34,7 +34,7 @@ public class LoginPresenter implements LoginContract.LoginContractPresenter{
                         UserVo data = body.getData();
                         if(data!=null){
                             //存储用户信息
-                            BaseApplication.newsAPIShared.putSharedUserIfo(NewsAPI.BASE_URL+data.getHead()
+                            BaseApplication.newsAPIShared.putSharedUserIfo(NewsAPI.BASE_IMAGE_URL+data.getHead()
                                     ,data.getId(),
                                     data.getNick());
                             loginContractView.success();
