@@ -18,7 +18,7 @@ public interface LoginContract {
 
         void success();
 
-        void error();
+        void error(String msg);
 
         void dmissDialog();
     }

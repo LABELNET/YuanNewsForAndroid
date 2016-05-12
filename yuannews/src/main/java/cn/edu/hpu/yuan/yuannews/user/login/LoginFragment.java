@@ -88,8 +88,8 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     }
 
     @Override
-    public void error() {
-        showMsg("登陆失败");
+    public void error(String msg) {
+        showMsg(msg);
     }
 
     @Override
