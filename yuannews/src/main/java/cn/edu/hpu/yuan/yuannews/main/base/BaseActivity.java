@@ -15,12 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by yuan on 16-5-9.
@@ -101,7 +103,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView(savedInstanceState,toolbar);
         initToolbar(toolbar,floatingActionButton);
     }
-
     private void showChoiceDialog(){
         floatDialogClickListener=new FloatDialogClickListener();
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -119,30 +120,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
 
+    protected void closeDrawerLayout(){
+        mDrawerLayout.closeDrawers();
+    }
 
     //设置NavigationView点击事件
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        switch (menuItem.getItemId()) {
-                            case R.id.navigation_item_example:
-                                showToast("navigation_item_example");
-                                break;
-                            case R.id.navigation_item_blog:
-                                showToast("navigation_item_blog");
-                                break;
-                            case R.id.navigation_item_about:
-                                showToast("navigation_item_about");
-                                break;
-
-                        }
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
+    protected void setupDrawerContent(NavigationView navigationView) {
     }
 
     public  void showToast(String msg){

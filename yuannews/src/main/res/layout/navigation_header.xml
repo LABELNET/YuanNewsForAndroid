@@ -19,6 +19,7 @@
         app:civ_border_width="2dp" />
 
     <TextView
+        android:id="@+id/navigation_name"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:layout_width="match_parent"
