@@ -25,7 +25,11 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
 
     @Override
     protected void initComponent() {
-
+        DaggerLabelComponent
+                .builder()
+                .labelModule(new LabelModule(this))
+                .build()
+                .injectLabelFragment(this);
     }
 
     @Nullable
