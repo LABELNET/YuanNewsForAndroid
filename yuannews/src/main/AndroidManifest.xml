@@ -25,6 +25,8 @@
         <activity android:name=".user.center.CenterActivity"/>
         <activity android:name=".user.userIfo.UserifoActivity"/>
         <activity android:name=".user.label.LabelActivity"/>
+        <activity android:name=".news.labels.LabelsActivity"/>
+        <activity android:name=".news.comment.CommenActivity"/>
     </application>
 
 </manifest>
