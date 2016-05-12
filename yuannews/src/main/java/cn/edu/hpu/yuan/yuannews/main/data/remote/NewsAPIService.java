@@ -1,10 +1,16 @@
 package cn.edu.hpu.yuan.yuannews.main.data.remote;
 
+import android.databinding.tool.util.L;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.CSCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
@@ -76,6 +82,23 @@ public interface NewsAPIService {
     @POST("register")
     Call<DataBean> postUserRegister(@Query("unum") String num,@Query("pass") String pass,@Query("nick")String nick);
 
+
+    /**
+     * 获取用户详情信息
+     * @param uid 用户id
+     * @return
+     */
+    @POST("getUserDetail")
+    Call<DataBean<UserVo>> postUserDetail(@Query("uid") Integer uid);
+
+
+    /**
+     * 获取用户所有兴趣标签
+     * @param uid
+     * @return
+     */
+    @POST("allLabels")
+    Call<DataBean<List<TasteVo>>> postTasteVos(@Query("uid") Integer uid);
 
 
 

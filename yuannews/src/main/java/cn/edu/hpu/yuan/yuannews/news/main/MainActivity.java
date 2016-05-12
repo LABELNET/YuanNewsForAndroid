@@ -1,12 +1,9 @@
 package cn.edu.hpu.yuan.yuannews.news.main;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,8 +16,7 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseActivity;
 import cn.edu.hpu.yuan.yuannews.main.base.BaseFragment;
-import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
-import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
+import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,7 +30,6 @@ public class MainActivity extends BaseActivity{
 
     private final int LOGIN_SUCCESS=2016;
     private final int RESULTCODE=2017;
-
 
     @Inject
     protected MainFragment mainFragment;
@@ -75,6 +70,12 @@ public class MainActivity extends BaseActivity{
                     .placeholder(R.mipmap.user_head)
                     .into(circleImageView);
             //点击头像进入个人信息
+            circleImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivityForResult(new Intent(MainActivity.this, CenterActivity.class),RESULTCODE);
+                }
+            });
         }else{
             navigation_name.setText("未登陆?点击头像登陆");
             circleImageView.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +98,7 @@ public class MainActivity extends BaseActivity{
                 if (navigationView != null) {
                     initHeadView(navigationView);
                 }
+                //个人中心返回的刷新
             }
         }
     }
