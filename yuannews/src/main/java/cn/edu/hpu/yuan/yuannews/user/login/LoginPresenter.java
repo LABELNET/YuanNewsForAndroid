@@ -1,6 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.user.login;
 
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
+import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
 import retrofit2.Call;
@@ -35,7 +36,10 @@ public class LoginPresenter implements LoginContract.LoginContractPresenter{
 
                         UserVo data = body.getData();
                         if(data!=null){
-                            BaseApplication.newsAPIShared.putSharedUser(data);
+                            //存储用户信息
+                            BaseApplication.newsAPIShared.putSharedUserIfo(NewsAPI.BASE_URL+data.getHead()
+                                    ,data.getId(),
+                                    data.getNick());
                             result=0;
                         }else{
                             loginContractView.error("请求失败");

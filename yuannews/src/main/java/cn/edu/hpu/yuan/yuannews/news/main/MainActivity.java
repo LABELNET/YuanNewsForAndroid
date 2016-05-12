@@ -63,15 +63,11 @@ public class MainActivity extends BaseActivity{
         TextView navigation_name= (TextView) view.findViewById(R.id.navigation_name);
         if(BaseApplication.newsAPIShared.getSharedUserID()!=0){
             //已经登陆
-            UserVo userVo=BaseApplication.newsAPIShared.getSharedUser();
-            if(userVo==null){
-                LogUtil.v(" userVo is null ");
-                return;
-            }
-            LogUtil.v(userVo.getNick());
-            navigation_name.setText(userVo.getNick());
+            String nick=BaseApplication.newsAPIShared.getSharedUserNick();
+            String headUrl=BaseApplication.newsAPIShared.getSharedUserHead();
+            navigation_name.setText(nick);
             Glide.with(this)
-                    .load(NewsAPI.BASE_IMAGE_URL+userVo.getHead())
+                    .load(headUrl)
                     .placeholder(R.mipmap.user_head)
                     .error(R.mipmap.user_head)
                     .into(circleImageView);
