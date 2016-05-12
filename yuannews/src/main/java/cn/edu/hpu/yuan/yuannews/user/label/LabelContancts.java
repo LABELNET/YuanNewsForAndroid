@@ -7,7 +7,7 @@ public interface LabelContancts {
 
     interface LabelContanctsPresenter{
 
-        void postDeleteLabel(Integer tid);
+        int postDeleteLabel(Integer tid);
 
         void postAddLabel(Integer id,String label);
 

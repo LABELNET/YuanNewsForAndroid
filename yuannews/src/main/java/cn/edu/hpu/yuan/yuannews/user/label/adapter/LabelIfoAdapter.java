@@ -1,5 +1,8 @@
 package cn.edu.hpu.yuan.yuannews.user.label.adapter;
 
+import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -7,6 +10,8 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.hpu.yuan.yuannews.R;
+import cn.edu.hpu.yuan.yuannews.databinding.LabelFragmentItemBinding;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 
 /**
@@ -28,6 +33,20 @@ public class LabelIfoAdapter extends BaseAdapter{
         tasteVos.add(0,tasteVo);
     }
 
+    private LayoutInflater inflater;
+
+    private OnDeleteItemClick onDeleteItemClick;
+
+    public void setOnDeleteItemClick(OnDeleteItemClick onDeleteItemClick) {
+        this.onDeleteItemClick = onDeleteItemClick;
+    }
+
+    public LabelIfoAdapter(Context context){
+        inflater=LayoutInflater.from(context);
+    }
+
+
+
     @Override
     public int getCount() {
         return tasteVos.size();
@@ -44,7 +63,24 @@ public class LabelIfoAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        LabelFragmentItemBinding binding= DataBindingUtil.inflate(inflater, R.layout.label_fragment_item,parent,false);
+        convertView=binding.getRoot();
+        final TasteVo tasteVo = tasteVos.get(position);
+        binding.setLabel(tasteVo.getLabel());
+        binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onDeleteItemClick.onDelete(tasteVo)==0) {
+                    removeTasteVo(position);
+                }
+            }
+        });
+        return convertView;
     }
+
+    public interface OnDeleteItemClick{
+        int onDelete(TasteVo tasteVo);
+    }
+
 }

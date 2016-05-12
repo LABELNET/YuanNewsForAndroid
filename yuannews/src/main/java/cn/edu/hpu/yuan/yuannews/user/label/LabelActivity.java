@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.label;
 
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -44,6 +45,8 @@ public class LabelActivity extends NormalBaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
+        Bundle tasteVos = getIntent().getExtras();
+        labelFragment.setArguments(tasteVos);
         return labelFragment;
     }
 

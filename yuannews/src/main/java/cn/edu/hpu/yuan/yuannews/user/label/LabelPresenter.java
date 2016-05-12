@@ -12,8 +12,9 @@ public class LabelPresenter implements LabelContancts.LabelContanctsPresenter{
     }
 
     @Override
-    public void postDeleteLabel(Integer tid) {
+    public int postDeleteLabel(Integer tid) {
 
+        return -1;
     }
 
     @Override

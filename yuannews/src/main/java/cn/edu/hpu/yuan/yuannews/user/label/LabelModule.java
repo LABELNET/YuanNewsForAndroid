@@ -1,5 +1,7 @@
 package cn.edu.hpu.yuan.yuannews.user.label;
 
+import android.content.Context;
+
 import cn.edu.hpu.yuan.yuannews.user.label.adapter.LabelIfoAdapter;
 import dagger.Module;
 import dagger.Provides;
@@ -13,9 +15,11 @@ public class LabelModule {
     public LabelModule(){}
 
     LabelContancts.LabelContanctsView labelContanctsView;
+    private Context context;
 
-    public LabelModule(LabelContancts.LabelContanctsView labelContanctsView) {
+    public LabelModule(LabelContancts.LabelContanctsView labelContanctsView, Context context) {
         this.labelContanctsView = labelContanctsView;
+        this.context=context;
     }
 
     @Provides
@@ -31,7 +35,7 @@ public class LabelModule {
 
     @Provides
     LabelIfoAdapter provideLabelIfoAdapter(){
-        return new LabelIfoAdapter();
+        return new LabelIfoAdapter(context);
     }
 
 }

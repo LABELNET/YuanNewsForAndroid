@@ -7,19 +7,18 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
+import java.util.List;
 import javax.inject.Inject;
-
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LabelFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.user.label.adapter.LabelIfoAdapter;
 
 /**
  * Created by yuan on 16-5-12.
  */
-public class LabelFragment extends NorbalBackFragment implements LabelContancts.LabelContanctsView{
+public class LabelFragment extends NorbalBackFragment implements LabelContancts.LabelContanctsView,LabelIfoAdapter.OnDeleteItemClick{
 
 
     @Inject
@@ -34,7 +33,7 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
     protected void initComponent() {
         DaggerLabelComponent
                 .builder()
-                .labelModule(new LabelModule(this))
+                .labelModule(new LabelModule(this,getContext()))
                 .build()
                 .injectLabelFragment(this);
     }
@@ -58,10 +57,18 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
+        labelIfoAdapter.setOnDeleteItemClick(this);
+        List<TasteVo> tasteVos = (List<TasteVo>) getArguments().getSerializable("tasteVos");
+        labelIfoAdapter.addTasteVo(tasteVos);
+        labelIfoAdapter.notifyDataSetChanged();
     }
 
     private void show(String msg){
         Snackbar.make(binding.labelFragment,msg,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public int onDelete(TasteVo tasteVo) {
+        return labelContanctsPresenter.postDeleteLabel(tasteVo.getId());
     }
 }
