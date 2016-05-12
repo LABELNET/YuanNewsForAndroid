@@ -11,16 +11,17 @@ import cn.edu.hpu.yuan.yuannews.main.base.NormalBaseActivity;
  * Created by yuan on 16-5-12.
  */
 public class RegisterActivity extends NormalBaseActivity{
+
+    protected RegisterFragment registerFragment;
+
     @Override
     protected void initView() {
 
     }
-
     @Override
     protected void setComponet() {
 
     }
-
     @Override
     protected void initToolbar(Toolbar toolbar) {
         setTitle("用户注册");
@@ -35,6 +36,6 @@ public class RegisterActivity extends NormalBaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return null;
+        return registerFragment;
     }
 }
