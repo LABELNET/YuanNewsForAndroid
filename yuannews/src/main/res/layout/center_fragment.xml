@@ -83,12 +83,12 @@
                       android:layout_marginTop="12dp"
                       android:background="@color/colorPrimaryDark"/>
 
-                  <LinearLayout
+                  <cn.edu.hpu.yuan.yuancore.ui.view.FlowLayout
                       android:id="@+id/userlabels"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:padding="16dp"
-                      android:orientation="horizontal"
+                      android:padding="10dp"
+                      app:lineSpacing="10dp"
                       android:layout_below="@+id/userifoline2">
 
                       <TextView
@@ -108,7 +108,7 @@
                           <!--android:gravity="center"-->
                           <!--android:background="@drawable/label_background"/>-->
 
-                  </LinearLayout>
+                  </cn.edu.hpu.yuan.yuancore.ui.view.FlowLayout>
 
               </RelativeLayout>
 

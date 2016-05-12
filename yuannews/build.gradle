@@ -58,6 +58,5 @@ dependencies {
     //fastJson
     compile 'com.alibaba:fastjson:1.1.15'
 
-
     compile project(path: ':yuancore')
 }

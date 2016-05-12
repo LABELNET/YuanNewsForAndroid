@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -34,11 +33,13 @@ import cn.edu.hpu.yuan.yuannews.user.userIfo.UserifoActivity;
 public class CenterFragment extends NorbalBackFragment implements CenterContancts.CenterContanctsView {
 
 
+    private final int REQUEST_CODE=2018;
+
     @Inject
     protected  CenterContancts.CenterContanctsPresenter centerContanctsPresenter;
 
     @Inject
-    protected LinearLayout.LayoutParams layoutParams;
+    protected ViewGroup.MarginLayoutParams marginLayoutParams;
 
     private CenterFragmentBinding binding;
 
@@ -57,7 +58,7 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
         binding.btnEditIfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), UserifoActivity.class));
+                startActivityForResult(new Intent(getActivity(), UserifoActivity.class),REQUEST_CODE);
             }
         });
         binding.btnEditLabel.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +68,7 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("tasteVos", (Serializable) tasteVos);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE);
             }
         });
     }
@@ -109,6 +110,7 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     @Override
     public void showAllLabels(List<TasteVo> tasteVo) {
+        binding.userlabels.removeAllViews();
         tasteVos.clear();
         if(tasteVo!=null){
             if(tasteVo.size()==0){
@@ -133,14 +135,21 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
         TextView tv=new TextView(getContext());
         tv.setTextColor(Color.WHITE);
         tv.setBackgroundResource(R.drawable.label_background);
-        tv.setGravity(Gravity.CENTER);
+        tv.setGravity(Gravity.CENTER_VERTICAL);
         tv.setTextSize(12);
         tv.setText(taste.getLabel());
-        tv.setLayoutParams(layoutParams);
-        binding.userlabels.addView(tv);
+        tv.setLines(1);
+        binding.userlabels.addView(tv,marginLayoutParams);
     }
 
     private void showMsg(String msg){
         Snackbar.make(binding.userCenterPage,msg,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(REQUEST_CODE==requestCode){
+            onloadData();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.user.center;
 
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import dagger.Module;
@@ -34,8 +35,8 @@ public class CenterModule {
     }
 
     @Provides
-    LinearLayout.LayoutParams provideLayoutParams(){
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    ViewGroup.MarginLayoutParams provideLayoutParams(){
+        ViewGroup.MarginLayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(10,10,0,0);
         return layoutParams;
     }
