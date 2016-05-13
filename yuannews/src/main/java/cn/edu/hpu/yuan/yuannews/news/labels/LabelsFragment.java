@@ -30,7 +30,7 @@ import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 /**
  * Created by yuan on 16-5-13.
  */
-public class LabelsFragment extends NorbalBackFragment implements LabelsContancts.LabelsContanctsView,LabelIfoAdapter.OnDeleteItemClick{
+public class LabelsFragment extends NorbalBackFragment implements LabelsContancts.LabelsContanctsView,LabelsAdapter.OnDeleteItemClick{
 
 
     @Inject
@@ -52,7 +52,6 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        binding.labelLists.setAdapter(labelsAdapter);
         initSwipeRefreshLayout();
         binding.labelLists.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int lastItemIndex=0;
@@ -68,6 +67,10 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
                 lastItemIndex = firstVisibleItem + visibleItemCount - 1 ;
             }
         });
+
+        labelsAdapter.setOnDeleteItemClick(this);
+        binding.labelLists.setAdapter(labelsAdapter);
+
     }
 
     private void initSwipeRefreshLayout() {
@@ -79,7 +82,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         binding.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                onloadData();
+                onloadDataTast();
             }
         });
 
@@ -92,8 +95,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         swipeOnRefresh.onRefresh();
     }
 
-    @Override
-    protected void onloadData() {
+    protected void onloadDataTast() {
         labelsAdapter.initTasteVo();
         labelsContanctsPresenter.initgetTasteData();
     }
@@ -118,11 +120,11 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
             binding.swipeRefreshLayout.setRefreshing(false);
         }
         labelsAdapter.addTasteVo(tastes);
+        labelsAdapter.notifyDataSetChanged();
         if(labelsAdapter.getCount()==0){
             binding.noData.setVisibility(View.VISIBLE);
         }else {
             binding.noData.setVisibility(View.GONE);
-            labelsAdapter.notifyDataSetChanged();
         }
     }
 
@@ -131,17 +133,6 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         showSnack(msg);
     }
 
-
-    @Override
-    public void onDelete(TasteVo tasteVo, int position) {
-        //这个是点击关注后，移除的详情标签
-        if(BaseApplication.newsAPIShared.getSharedUserID()>0){
-            //可以关注
-            showSnack("点击关注了");
-        }else{
-            showSnackAction("你还未登陆");
-        }
-    }
 
     private void showSnack(String msg){
         Snackbar.make(binding.labelsFragmentPage,msg,Snackbar.LENGTH_SHORT).show();
@@ -156,5 +147,16 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
                         startActivity(new Intent(getActivity(), LoginActivity.class));
                     }
                 }).show();
+    }
+
+    @Override
+    public void onDelete(String tasteVo, int position) {
+        //这个是点击关注后，移除的详情标签
+        if(BaseApplication.newsAPIShared.getSharedUserID()>0){
+            //可以关注
+            showSnack("点击关注了");
+        }else{
+            showSnackAction("你还未登陆");
+        }
     }
 }
