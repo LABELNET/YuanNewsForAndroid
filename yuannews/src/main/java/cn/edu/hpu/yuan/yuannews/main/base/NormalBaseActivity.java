@@ -43,13 +43,11 @@ public abstract class NormalBaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 //        LollipopUtils.setStatusbarColor(this, toolbar);
 
-        //初始化fragment
-        BaseFragment fragment = initFragment();
-        if(fragment!=null) {
+            //初始化fragment
+            BaseFragment fragment = initFragment();
             fragment.setApplicationComponent(getApplicationComponent());
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.contentFrame, fragment).commit();
-        }
         //初始化toolbar
         initToolbar(toolbar);
 

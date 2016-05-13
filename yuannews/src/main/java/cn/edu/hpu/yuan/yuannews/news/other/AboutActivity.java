@@ -14,7 +14,6 @@ public class AboutActivity extends NormalBaseActivity{
 
     @Override
     protected void initView() {
-        setContentView(R.layout.about_activity);
     }
 
     @Override
@@ -36,6 +35,6 @@ public class AboutActivity extends NormalBaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
-        return null;
+        return new AboutFragment();
     }
 }
