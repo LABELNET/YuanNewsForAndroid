@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,8 +21,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+
+import cn.edu.hpu.yuan.yuancore.ui.dialog.ColorDialog;
+import cn.edu.hpu.yuan.yuancore.ui.dialog.PromptDialog;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.CenterFragmentBinding;
+import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
@@ -34,6 +41,8 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
 
     private final int REQUEST_CODE=2018;
+    private final String SHRAED_MOREN_USER_IFNO="No Data";
+    private final String BASE_BORDERCAST_ACTION="base_bordercast_action";
 
     @Inject
     protected  CenterContancts.CenterContanctsPresenter centerContanctsPresenter;
@@ -54,6 +63,7 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
 
         binding.btnEditIfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +81,18 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.detail,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        showOutDialog();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -151,5 +173,21 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
         if(REQUEST_CODE==requestCode){
             onloadData();
         }
+    }
+
+    private void showOutDialog(){
+        new PromptDialog(getContext()).setDialogType(PromptDialog.DIALOG_TYPE_WARNING)
+                .setTitleText("温馨提示").setContentText("你确定注销账户吗")
+                .setPositiveListener("确定", new PromptDialog.OnPositiveListener() {
+                    @Override
+                    public void onClick(PromptDialog dialog) {
+                        BaseApplication.newsAPIShared.putSharedUserIfo(SHRAED_MOREN_USER_IFNO,0,"新闻推荐");
+                        Intent intent=new Intent(BASE_BORDERCAST_ACTION);
+                        activity.sendBroadcast(intent);
+                        dialog.dismiss();
+                        activity.finish();
+                    }
+                }).show();
+
     }
 }

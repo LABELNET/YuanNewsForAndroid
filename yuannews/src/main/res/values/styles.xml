@@ -10,6 +10,7 @@
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
+        <item name="actionMenuTextColor">#000000</item>
     </style>
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.ActionBar" >

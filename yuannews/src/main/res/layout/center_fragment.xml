@@ -63,7 +63,8 @@
                       android:layout_height="1dp"
                       android:layout_below="@+id/userIfo"
                       android:layout_marginTop="20dp"
-                      android:background="@color/black"/>
+                      android:layout_marginLeft="16dp"
+                      android:background="@color/white"/>
 
                   <TextView
                       android:id="@+id/textLiked"
@@ -81,7 +82,8 @@
                       android:layout_height="1dp"
                       android:layout_below="@+id/textLiked"
                       android:layout_marginTop="12dp"
-                      android:background="@color/black"/>
+                      android:layout_marginLeft="16dp"
+                      android:background="@color/white"/>
 
                   <TextView
                       android:id="@+id/userNoLabel"
