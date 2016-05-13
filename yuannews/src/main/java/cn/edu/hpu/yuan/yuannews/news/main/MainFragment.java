@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.news.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -32,6 +33,8 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
 
     @Inject
     protected MainViewPagerAdapter mainViewPagerAdapter;
+
+    private final String BASE_BORDERCAST_ACTION="base_bordercast_action";
 
     private   ViewPager mViewPager;
     private   TabLayout tabLayout;
@@ -77,6 +80,9 @@ public class MainFragment extends BaseFragment implements MainContract.MainView{
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mainViewPagerAdapter.initAdapter(fragments,titles);
         mainViewPagerAdapter.notifyDataSetChanged();
+        Intent intent=new Intent();
+        intent.setAction(BASE_BORDERCAST_ACTION);
+        activity.sendBroadcast(intent);
     }
 
     @Override
