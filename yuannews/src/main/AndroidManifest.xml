@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".news.main.MainActivity">
+        <activity android:name=".news.other.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,6 +28,8 @@
         <activity android:name=".news.labels.LabelsActivity"/>
         <activity android:name=".news.comment.CommenActivity"/>
         <activity android:name=".news.other.AboutActivity"/>
+        <activity android:name=".news.main.MainActivity"/>
+        <activity android:name=".news.other.GuideActivity"/>
 
     </application>
 
