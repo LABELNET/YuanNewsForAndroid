@@ -2,6 +2,7 @@ package cn.edu.hpu.yuan.yuannews.news.labels;
 
 import android.content.Context;
 
+import cn.edu.hpu.yuan.yuannews.news.labels.adapter.LabelsAdapter;
 import cn.edu.hpu.yuan.yuannews.user.label.adapter.LabelIfoAdapter;
 import dagger.Module;
 import dagger.Provides;
@@ -34,8 +35,8 @@ public class LabelsModule {
     }
 
     @Provides
-    LabelIfoAdapter provideLabelsIfoAdapter(){
-        return new LabelIfoAdapter(context);
+    LabelsAdapter provideLabelsIfoAdapter(){
+        return new LabelsAdapter(context);
     }
 
 }

@@ -22,7 +22,7 @@ public class LabelsPresenter implements LabelsContancts.LabelsContanctsPresenter
     public LabelsPresenter(LabelsContancts.LabelsContanctsView labelsContanctsView) {
         this.labelsContanctsView = labelsContanctsView;
         uid= BaseApplication.newsAPIShared.getSharedUserID();
-        p=1;
+        p=0;
     }
 
     public void getLabelsPageData(int p) {

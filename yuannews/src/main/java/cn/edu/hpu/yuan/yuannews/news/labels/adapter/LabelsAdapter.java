@@ -19,15 +19,14 @@ import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
  */
 public class LabelsAdapter extends BaseAdapter{
 
-    private final List<TasteVo>  tasteVos=new ArrayList<>();
+    private final List<String>  tasteVos=new ArrayList<>();
 
 
-    public void initTasteVo(List<TasteVo> tastes){
+    public void initTasteVo(){
         tasteVos.clear();
-        tasteVos.addAll(tastes);
     }
 
-    public void addTasteVo(List<TasteVo> tastes){
+    public void addTasteVo(List<String> tastes){
         tasteVos.addAll(tastes);
     }
 
@@ -69,8 +68,8 @@ public class LabelsAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         LabelFragmentItemBinding binding= DataBindingUtil.inflate(inflater, R.layout.label_fragment_item,parent,false);
         convertView=binding.getRoot();
-        final TasteVo tasteVo = tasteVos.get(position);
-        binding.setLabel(tasteVo.getLabel());
+        final String tasteVo = tasteVos.get(position);
+        binding.setLabel(tasteVo);
         binding.num.setText((position+1)+"");
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +81,7 @@ public class LabelsAdapter extends BaseAdapter{
     }
 
     public interface OnDeleteItemClick{
-        void onDelete(TasteVo tasteVo, int position);
+        void onDelete(String tasteVo, int position);
     }
 
 }
