@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,7 +87,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        LollipopUtils.setStatusbarColor(this, toolbar);
 
         //设置DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

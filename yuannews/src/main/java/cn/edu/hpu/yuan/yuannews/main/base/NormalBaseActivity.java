@@ -5,6 +5,7 @@ import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.WindowManager;
 
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
@@ -40,8 +41,7 @@ public abstract class NormalBaseActivity extends AppCompatActivity {
         //初始化toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        LollipopUtils.setStatusbarColor(this, toolbar);
+//        LollipopUtils.setStatusbarColor(this, toolbar);
 
         //初始化fragment
         BaseFragment fragment = initFragment();
