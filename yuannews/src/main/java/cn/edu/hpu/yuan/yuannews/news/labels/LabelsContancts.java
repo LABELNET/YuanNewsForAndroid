@@ -1,17 +1,21 @@
 package cn.edu.hpu.yuan.yuannews.news.labels;
 
+import java.util.List;
+
 /**
  * Created by yuan on 16-5-13.
  */
 public interface LabelsContancts {
 
     interface LabelsContanctsPresenter{
-        void getLabelsPageData(int p);
+        void initgetTasteData();
+        void nextgetTasteData();
     }
 
     interface LabelsContanctsView{
         void showDialog();
-        void showLabelsData();
+        void showLabelsData(List<String> tastes);
+        void showErrorMsg(String msg);
     }
 
 }
