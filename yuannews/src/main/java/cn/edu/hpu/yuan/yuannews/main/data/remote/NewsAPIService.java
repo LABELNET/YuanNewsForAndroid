@@ -141,7 +141,7 @@ public interface NewsAPIService {
     Call<DataBean> postupdateUserPass(@Query("uid") Integer uid,@Query("pass") String pass);
 
 
-    //TODO 上传头像 和 获取当前新闻当前用户的点赞状态（服务器端）
+    //TODO 上传头像
 
     /**
      * 用户点赞
@@ -176,14 +176,25 @@ public interface NewsAPIService {
     Call<DataBean<ArrayList<CommentJo>>> getCommentIfo(@Query("p") Integer p,@Query("num") Integer num,@Query("nid") Integer nid);
 
 
+    /**
+     * 获取当前用户当前新闻的点赞状态
+     * @param uid
+     * @param nid
+     * @return
+     */
+
+    @POST("getLikedApiStatus")
+    Call<DataBean<Integer>> getNewsUserZanStatus(@Query("uid") Integer uid,@Query("nid") Integer nid);
 
 
-
-
-
-
-
-
+    /**
+     * 分页获取兴趣标签
+     * @param uid
+     * @param num
+     * @param p
+     * @return
+     */
+    Call<DataBean<List<String>>> getNewsTaste(@Query("uid") Integer uid,@Query("num") Integer num,@Query("p") Integer p);
 
 
 

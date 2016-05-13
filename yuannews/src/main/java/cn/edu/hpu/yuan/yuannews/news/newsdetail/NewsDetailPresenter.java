@@ -85,7 +85,8 @@ public class NewsDetailPresenter implements NewsDetailContancts.NewsDetailPresen
     }
 
     @Override
-    public void getNewsZanStatus() {
-       // TODO
+    public void getNewsZanStatus(int nid) {
+
     }
+
 }

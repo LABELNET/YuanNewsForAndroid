@@ -20,7 +20,7 @@ public interface NewsDetailContancts {
 
         void getNewsZansHeadData(int nid);
 
-        void getNewsZanStatus();
+        void getNewsZanStatus(int nid);
     }
 
     interface NewsDetailView{
