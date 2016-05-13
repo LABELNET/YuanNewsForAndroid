@@ -60,7 +60,7 @@
                   <TextView
                       android:id="@+id/userifoline1"
                       android:layout_width="match_parent"
-                      android:layout_height="2dp"
+                      android:layout_height="1dp"
                       android:layout_below="@+id/userIfo"
                       android:layout_marginTop="20dp"
                       android:background="@color/black"/>
@@ -78,7 +78,7 @@
                   <TextView
                       android:id="@+id/userifoline2"
                       android:layout_width="match_parent"
-                      android:layout_height="2dp"
+                      android:layout_height="1dp"
                       android:layout_below="@+id/textLiked"
                       android:layout_marginTop="12dp"
                       android:background="@color/black"/>
