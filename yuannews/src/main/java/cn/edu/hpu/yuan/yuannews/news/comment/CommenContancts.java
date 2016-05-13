@@ -1,5 +1,9 @@
 package cn.edu.hpu.yuan.yuannews.news.comment;
 
+import java.util.ArrayList;
+
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentJo;
+
 /**
  * Created by yuan on 16-5-13.
  */
@@ -7,19 +11,21 @@ public interface CommenContancts {
 
     interface  CommenContanctsPresenter{
 
-        //分页加载评论
-        void getLoadCommenData(int p);
+
+        void initLoadCommentData(int nid);
+
+        void nextLoadCommentData(int nid);
 
         //用户评论
-        void userCommenData();
+        void userCommenData(String content,Integer nid);
     }
 
     interface CommenContanctsView{
         void showDialog();
 
-        void showComentData();
+        void showComentData(ArrayList<CommentJo>  comments);
 
-        void showError(String msg);
+        void showErrorMsg(String msg);
 
         void showSuccess();
     }
