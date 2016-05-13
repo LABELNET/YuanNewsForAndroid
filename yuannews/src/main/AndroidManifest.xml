@@ -30,6 +30,7 @@
         <activity android:name=".news.other.AboutActivity"/>
         <activity android:name=".news.main.MainActivity"/>
         <activity android:name=".news.other.GuideActivity"/>
+        <activity android:name=".news.tuijian.TuijianActivity"/>
 
     </application>
 
