@@ -36,6 +36,7 @@
                         android:id="@+id/editUserNum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:inputType="textEmailAddress"
                         android:hint="账户" />
 
@@ -52,6 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:textColor="@color/black"
                         android:hint="密码" />
 
                 </android.support.design.widget.TextInputLayout>

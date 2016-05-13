@@ -63,7 +63,7 @@
                       android:layout_height="2dp"
                       android:layout_below="@+id/userIfo"
                       android:layout_marginTop="20dp"
-                      android:background="@color/colorPrimaryDark"/>
+                      android:background="@color/black"/>
 
                   <TextView
                       android:id="@+id/textLiked"
@@ -81,7 +81,7 @@
                       android:layout_height="2dp"
                       android:layout_below="@+id/textLiked"
                       android:layout_marginTop="12dp"
-                      android:background="@color/colorPrimaryDark"/>
+                      android:background="@color/black"/>
 
                   <cn.edu.hpu.yuan.yuancore.ui.view.FlowLayout
                       android:id="@+id/userlabels"

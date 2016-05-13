@@ -3,9 +3,12 @@
     <color name="colorPrimary">#19a97b</color>
     <color name="colorPrimaryDark">#EDEDED</color>
     <color name="colorAccent">#800080</color>
+    <color name="textColorPrimary">#fff</color>
 
     <color name="white">#fff</color>
     <color name="black">#88000000</color>
+
+    <color name="colorPrimaryDark1">#00C853</color>
 
     <color name="lightblack">#2E2E2E</color>
 </resources>
