@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/labelsFragmentPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="没有更多数据了"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:gravity="center"
+            />
+
+        <ListView
+            android:id="@+id/labelLists"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+    </RelativeLayout>
+</layout>
