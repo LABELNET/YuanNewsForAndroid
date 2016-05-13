@@ -12,6 +12,9 @@ import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
  */
 public class CommentFragment extends NorbalBackFragment implements CommenContancts.CommenContanctsView {
 
+
+
+
     @Inject
     protected CommenContancts.CommenContanctsPresenter commenContanctsPresenter;
 

@@ -38,6 +38,9 @@ public class NewsDetailFragment extends NorbalBackFragment
     protected NewsDetailContancts.NewsDetailPresenter newsDetailPresenter;
 
     private final int REQUEST_CODE=2019;
+    private final int LOGIN_SUCCESS=2016;
+    private final int COMMENT_SUCCESS=2020;
+
 
     @Inject
     protected NewsDetailGridViewAdapter newsDetailGridViewAdapter;
@@ -136,10 +139,7 @@ public class NewsDetailFragment extends NorbalBackFragment
 
     @Override
     public void updateZanSuccess() {
-
-        //点赞成功，更新头像和状态
-        newsDetailPresenter.getNewsZansHeadData(nid);
-        newsDetailPresenter.getNewsZanStatus(nid);
+        onloadData();
     }
 
     @Override
@@ -206,8 +206,16 @@ public class NewsDetailFragment extends NorbalBackFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==REQUEST_CODE){
-            //评论改变刷新数据，否则不刷新 resultCode
             //登陆后，返回后的，检测是否登陆，登陆成功，刷新数据,更新uid的值
+            if(LOGIN_SUCCESS==resultCode){
+                uid=BaseApplication.newsAPIShared.getSharedUserID();
+                onloadData();
+            }
+            //评论改变刷新数据，否则不刷新 resultCode
+            if(COMMENT_SUCCESS==resultCode){
+                onloadData();
+            }
+
         }
     }
 }

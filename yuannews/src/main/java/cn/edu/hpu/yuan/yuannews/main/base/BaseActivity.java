@@ -1,8 +1,10 @@
 package cn.edu.hpu.yuan.yuannews.main.base;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -40,6 +42,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private final int RESULTCODE=2017;
 
+    private final String BASE_BORDERCAST_ACTION="base_bordercast_action";
+
     /**
      * 得到ApplicationComponent对象
      *
@@ -69,6 +73,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        registerBaseBroadReceiver();
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 //        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         setContentView(R.layout.base_main);
@@ -210,6 +215,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     //初始化Component
     protected abstract void setComponent();
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unRegisterBaseBroadReceiver();
+    }
 
     //dialog的点击事件
      class FloatDialogClickListener implements View.OnClickListener{
@@ -244,6 +254,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         intent.putExtra(NEWSFRAGMENT_TYPE_ACTION,type);
         sendBroadcast(intent);
     }
+
+    private void registerBaseBroadReceiver(){
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(BASE_BORDERCAST_ACTION);
+        registerReceiver(baseBroadReceiver,filter);
+    }
+
+    private void unRegisterBaseBroadReceiver(){
+        unregisterReceiver(baseBroadReceiver);
+    }
+
+    private BroadcastReceiver baseBroadReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action=intent.getAction();
+
+        }
+    };
 
 
 
