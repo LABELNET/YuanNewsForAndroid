@@ -1,4 +1,4 @@
-package cn.edu.hpu.yuan.yuannews.news.welcome;
+package cn.edu.hpu.yuan.yuannews.news.other;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
