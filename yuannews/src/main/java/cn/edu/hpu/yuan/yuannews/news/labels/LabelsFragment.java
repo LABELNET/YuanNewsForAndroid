@@ -120,7 +120,6 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
             binding.swipeRefreshLayout.setRefreshing(false);
         }
         if(tastes.size()==0){
-            binding.noData.setVisibility(View.VISIBLE);
             showSnack("没有更多数据了");
             return;
         }
