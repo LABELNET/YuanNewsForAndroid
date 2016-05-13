@@ -1,5 +1,10 @@
 # YuanNewsForAndroid
 新闻推荐系统-Android客户端
+  * 历史遗留 - 兴趣标签页面 改为 使用RecyclerView实现 , 不使用ListView;
+  * 
+  
+ 
+
 
 # 2016.05.13
   * 接口：1.获取当前新闻当前用户的新闻状态，2.分页查询所有的新闻标签
