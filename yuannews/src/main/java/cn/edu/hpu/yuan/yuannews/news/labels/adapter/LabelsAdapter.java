@@ -2,10 +2,10 @@ package cn.edu.hpu.yuan.yuannews.news.labels.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import cn.edu.hpu.yuan.yuannews.databinding.LabelFragmentItemBinding;
 /**
  * Created by yuan on 16-5-12.
  */
-public class LabelsAdapter extends BaseAdapter{
+public class LabelsAdapter extends RecyclerView.Adapter<LabelsAdapter.LabelsViewHolder>{
 
 
     private final List<String> tasteVos=new ArrayList<>();
@@ -46,28 +46,17 @@ public class LabelsAdapter extends BaseAdapter{
         inflater=LayoutInflater.from(context);
     }
 
-
-
     @Override
-    public int getCount() {
-        return tasteVos.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return tasteVos.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public LabelsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LabelFragmentItemBinding binding= DataBindingUtil.inflate(inflater, R.layout.label_fragment_item,parent,false);
-        convertView=binding.getRoot();
+        LabelsViewHolder labelsViewHolder=new LabelsViewHolder(binding.getRoot());
+        return labelsViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(LabelsViewHolder holder, final int position) {
         final String tasteVo = tasteVos.get(position);
+        LabelFragmentItemBinding binding=DataBindingUtil.getBinding(holder.itemView);
         binding.setLabel(tasteVo);
         binding.num.setText((position+1)+"");
         binding.btnDelete.setText("关注");
@@ -77,8 +66,20 @@ public class LabelsAdapter extends BaseAdapter{
                 onDeleteItemClick.onDelete(tasteVo,position);
             }
         });
-        return convertView;
     }
+
+    @Override
+    public int getItemCount() {
+        return tasteVos.size();
+    }
+
+    class LabelsViewHolder extends RecyclerView.ViewHolder{
+
+        public LabelsViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
 
     public interface OnDeleteItemClick{
         void onDelete(String tasteVo, int position);

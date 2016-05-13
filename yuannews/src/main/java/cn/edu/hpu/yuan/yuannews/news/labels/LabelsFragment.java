@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,25 +57,9 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        initSwipeRefreshLayout();
-        binding.labelLists.setOnScrollListener(new AbsListView.OnScrollListener() {
-            private int lastItemIndex=0,pageItem=0;
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (lastItemIndex==pageItem && SCROLL_STATE_IDLE==scrollState) {
-                    labelsContanctsPresenter.nextgetTasteData();//加载更多
-                  }
-            }
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                pageItem=firstVisibleItem+visibleItemCount;
-                lastItemIndex=totalItemCount;
-            }
-        });
-
         labelsAdapter.setOnDeleteItemClick(this);
-        binding.labelLists.setAdapter(labelsAdapter);
-
+        initSwipeRefreshLayout();
+        initRecyclerView();
     }
 
     private void initSwipeRefreshLayout() {
@@ -85,7 +71,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         binding.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                onloadData();
+                onloadInitData();
             }
         });
 
@@ -95,10 +81,37 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
                 binding.swipeRefreshLayout.setRefreshing(true);
             }
         });
+        swipeOnRefresh.onRefresh();
     }
 
-    @Override
-    protected void onloadData() {
+    /**
+     *  初始化RecyclerView
+     */
+    private void initRecyclerView() {
+        binding.recyclerView.setAdapter(labelsAdapter);
+        binding.recyclerView.setHasFixedSize(true);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                RecyclerView.LayoutManager lm = recyclerView.getLayoutManager();
+                int lastVisibleItem = ((LinearLayoutManager) lm).findLastVisibleItemPosition();
+                int totalItemCount = lm.getItemCount();
+                //最后一项
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem == totalItemCount - 1) {
+                    labelsContanctsPresenter.nextgetTasteData();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+    }
+
+    protected void onloadInitData() {
         labelsAdapter.initTasteVo();
         labelsContanctsPresenter.initgetTasteData();
     }
@@ -127,11 +140,15 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
             return;
         }
         labelsAdapter.addTasteVo(tastes);
-        if(labelsAdapter.getCount()==0){
+        labelsAdapter.notifyDataSetChanged();
+        initNodataView();
+    }
+
+    private void initNodataView() {
+        if(labelsAdapter.getItemCount()==0){
             binding.noData.setVisibility(View.VISIBLE);
         }else {
             binding.noData.setVisibility(View.GONE);
-            labelsAdapter.notifyDataSetChanged();
         }
     }
 
