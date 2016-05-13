@@ -83,6 +83,15 @@
                       android:layout_marginTop="12dp"
                       android:background="@color/black"/>
 
+                  <TextView
+                      android:id="@+id/userNoLabel"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/black"
+                      android:visibility="gone"
+                      android:layout_below="@+id/userifoline2"
+                      android:text="你还没有兴趣标签"/>
+
                   <cn.edu.hpu.yuan.yuancore.ui.view.FlowLayout
                       android:id="@+id/userlabels"
                       android:layout_width="match_parent"
@@ -90,14 +99,6 @@
                       android:padding="10dp"
                       app:lineSpacing="10dp"
                       android:layout_below="@+id/userifoline2">
-
-                      <TextView
-                          android:id="@+id/userNoLabel"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textColor="@color/black"
-                          android:visibility="gone"
-                          android:text="你还没有兴趣标签"/>
 
                       <!--<TextView-->
                           <!--android:text="新闻推荐"-->

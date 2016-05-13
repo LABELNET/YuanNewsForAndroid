@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -69,6 +71,7 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
 
     @Override
     public void showAlldata(List<TasteVo> tasteVos) {
+        Collections.reverse(tasteVos);//倒序
         initLabels(tasteVos);
     }
 
@@ -91,9 +94,9 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
             binding.noData.setVisibility(View.VISIBLE);
         }else {
             binding.noData.setVisibility(View.GONE);
-            labelIfoAdapter.addTasteVo(tasteVos);
-            labelIfoAdapter.notifyDataSetChanged();
         }
+        labelIfoAdapter.addTasteVo(tasteVos);
+        labelIfoAdapter.notifyDataSetChanged();
     }
 
     //添加兴趣标签
