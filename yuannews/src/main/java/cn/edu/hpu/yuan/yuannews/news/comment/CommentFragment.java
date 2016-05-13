@@ -118,7 +118,7 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
                 int totalItemCount = lm.getItemCount();
                 //最后一项
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastVisibleItem == totalItemCount) {
+                        && lastVisibleItem == totalItemCount-2) {
                     commenContanctsPresenter.nextLoadCommentData(nid);
                 }
             }
@@ -133,6 +133,13 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
      * 添加评论
      */
     private void addComment() {
+
+        String content=binding.btnEditIfo.getText().toString().trim();
+        if(content.length()==0){
+            showSnack("请输入内容");
+            return;
+        }
+        commenContanctsPresenter.userCommenData(content,nid);
     }
 
     protected void onloadDataComment() {
@@ -183,6 +190,7 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
     @Override
     public void showSuccess() {
         showSnack("评论成功");
+        onloadDataComment();
     }
 
     private void showSnack(String msg){
