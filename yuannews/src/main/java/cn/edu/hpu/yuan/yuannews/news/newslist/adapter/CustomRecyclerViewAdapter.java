@@ -40,7 +40,15 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     private Context context;
     private NewsListItemClick newsListItemClick;
 
-    public CustomRecyclerViewAdapter(Context context,NewsListItemClick newsListItemClick){
+    public void setNewsListItemClick(NewsListItemClick newsListItemClick) {
+        this.newsListItemClick = newsListItemClick;
+    }
+
+    public CustomRecyclerViewAdapter(Context context) {
+        this.context = context;
+    }
+
+    public CustomRecyclerViewAdapter(Context context, NewsListItemClick newsListItemClick){
         this.context=context;
         inflater=LayoutInflater.from(context);
         this.newsListItemClick=newsListItemClick;
