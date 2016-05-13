@@ -71,6 +71,7 @@ public class LabelsAdapter extends BaseAdapter{
         final String tasteVo = tasteVos.get(position);
         binding.setLabel(tasteVo);
         binding.num.setText((position+1)+"");
+        binding.btnDelete.setText("关注");
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
