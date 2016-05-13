@@ -11,7 +11,6 @@ public interface CommenContancts {
 
     interface  CommenContanctsPresenter{
 
-
         void initLoadCommentData(int nid);
 
         void nextLoadCommentData(int nid);
