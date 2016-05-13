@@ -30,8 +30,8 @@ public class LabelsAdapter extends BaseAdapter{
         tasteVos.addAll(tastes);
     }
 
-    public void removeTasteVo(int position){
-        tasteVos.remove(position);
+    public void removeTasteVo(String label){
+        tasteVos.remove(label);
     }
 
 

@@ -44,7 +44,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     private SwipeRefreshLayout.OnRefreshListener swipeOnRefresh;
 
-    private int position;
+    private String label;
 
     @Nullable
     @Override
@@ -85,7 +85,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         binding.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                onloadDataTast();
+                onloadData();
             }
         });
 
@@ -95,10 +95,10 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
                 binding.swipeRefreshLayout.setRefreshing(true);
             }
         });
-        swipeOnRefresh.onRefresh();
     }
 
-    protected void onloadDataTast() {
+    @Override
+    protected void onloadData() {
         labelsAdapter.initTasteVo();
         labelsContanctsPresenter.initgetTasteData();
     }
@@ -142,7 +142,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     @Override
     public void addTasteSuccess() {
-        labelsAdapter.removeTasteVo(position);
+        labelsAdapter.removeTasteVo(label);
         labelsAdapter.notifyDataSetChanged();
         showSnack("关注成功");
     }
@@ -168,7 +168,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         if(BaseApplication.newsAPIShared.getSharedUserID()>0){
             //可以关注
             labelsContanctsPresenter.userAddTaste(tasteVo);
-            this.position=position;
+            this.label=tasteVo;
         }else{
             showSnackAction("你还未登陆");
         }
