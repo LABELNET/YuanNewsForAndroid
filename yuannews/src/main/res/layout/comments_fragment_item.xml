@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+         <import type="cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentJo"/>
+         <variable
+             name="commentJo"
+             type="CommentJo"/>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:minHeight="140dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:layout_height="52dp"
+            android:src="@mipmap/ic_news"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/tvHeadText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{commentJo.nick}"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/profile_image"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{commentJo.content}"
+            android:layout_below="@+id/profile_image"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/profile_image"/>
+
+    </RelativeLayout>
+</layout>
