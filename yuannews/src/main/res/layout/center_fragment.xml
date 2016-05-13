@@ -89,6 +89,8 @@
                       android:layout_height="wrap_content"
                       android:textColor="@color/black"
                       android:visibility="gone"
+                      android:layout_marginTop="10dp"
+                      android:layout_marginLeft="16dp"
                       android:layout_below="@+id/userifoline2"
                       android:text="你还没有兴趣标签"/>
 
