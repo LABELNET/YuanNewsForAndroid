@@ -1,16 +1,11 @@
 package cn.edu.hpu.yuan.yuannews.main.data.remote;
 
-import android.databinding.tool.util.L;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
-
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentJo;
-import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.LikedVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
@@ -198,6 +193,16 @@ public interface NewsAPIService {
     Call<DataBean<List<String>>> getNewsTaste(@Query("uid") Integer uid,@Query("num") Integer num,@Query("p") Integer p);
 
 
+    /**
+     * 分业查询推荐兴趣
+     * @param uid
+     * @param num
+     * @param type
+     * @param p
+     * @return
+     */
+    @POST("getNesTuiList")
+    Call<DataBean<ArrayList<NewsCustom>>> getTuijianNews(@Query("uid") Integer uid,@Query("num") Integer num,@Query("type") Integer type,@Query("p") Integer p);
 
 
 }
