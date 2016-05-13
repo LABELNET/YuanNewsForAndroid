@@ -2,6 +2,7 @@ package cn.edu.hpu.yuan.yuannews.news.labels;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,8 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
     private LabelsFragmentBinding binding;
 
     private SwipeRefreshLayout.OnRefreshListener swipeOnRefresh;
+
+    private int position;
 
     @Nullable
     @Override
@@ -137,6 +140,12 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         showSnack(msg);
     }
 
+    @Override
+    public void addTasteSuccess() {
+        labelsAdapter.removeTasteVo(position);
+        labelsAdapter.notifyDataSetChanged();
+        showSnack("关注成功");
+    }
 
     private void showSnack(String msg){
         Snackbar.make(binding.labelsFragmentPage,msg,Snackbar.LENGTH_SHORT).show();
@@ -150,7 +159,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
                         //登陆
                         startActivity(new Intent(getActivity(), LoginActivity.class));
                     }
-                }).show();
+                }).setActionTextColor(Color.YELLOW).show();
     }
 
     @Override
@@ -158,7 +167,8 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         //这个是点击关注后，移除的详情标签
         if(BaseApplication.newsAPIShared.getSharedUserID()>0){
             //可以关注
-            showSnack("点击关注了");
+            labelsContanctsPresenter.userAddTaste(tasteVo);
+            this.position=position;
         }else{
             showSnackAction("你还未登陆");
         }

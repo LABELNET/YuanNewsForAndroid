@@ -60,4 +60,28 @@ public class LabelsPresenter implements LabelsContancts.LabelsContanctsPresenter
          p+=1;
         getLabelsPageData(p);
     }
+
+    @Override
+    public void userAddTaste(String label) {
+        BaseApplication.newsAPIService.postAddLabel(uid,label).enqueue(new Callback<DataBean>() {
+            @Override
+            public void onResponse(Call<DataBean> call, Response<DataBean> response) {
+                if(response.isSuccessful()){
+
+                    if(response.body().getCode()==0){
+                        labelsContanctsView.addTasteSuccess();
+                    }else{
+                        labelsContanctsView.showErrorMsg(response.body().getMsg());
+                    }
+
+                }else{
+                    labelsContanctsView.showErrorMsg("网络不稳定");
+                }
+            }
+            @Override
+            public void onFailure(Call<DataBean> call, Throwable t) {
+                labelsContanctsView.showErrorMsg("网络不稳定");
+            }
+        });
+    }
 }

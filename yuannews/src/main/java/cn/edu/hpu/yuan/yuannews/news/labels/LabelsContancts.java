@@ -10,12 +10,15 @@ public interface LabelsContancts {
     interface LabelsContanctsPresenter{
         void initgetTasteData();
         void nextgetTasteData();
+
+        void userAddTaste(String label);
     }
 
     interface LabelsContanctsView{
         void showDialog();
         void showLabelsData(List<String> tastes);
         void showErrorMsg(String msg);
+        void addTasteSuccess();
     }
 
 }
