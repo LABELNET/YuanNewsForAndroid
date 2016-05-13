@@ -112,10 +112,17 @@ CustomRecyclerViewAdapter.NewsListItemClick{
         bind.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                bind.swipeRefreshLayout.setRefreshing(false);
+                refresh();
             }
         });
-        refresh();
+
+        bind.swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                bind.swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+        swipeOnRefresh.onRefresh();
     }
 
     private void refresh() {
@@ -180,13 +187,7 @@ CustomRecyclerViewAdapter.NewsListItemClick{
 
     @Override
     public void showDialog() {
-        bind.swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                bind.swipeRefreshLayout.setRefreshing(true);
-            }
-        });
-        swipeOnRefresh.onRefresh();
+        showSnackBar("加载中...");
     }
 
     @Override
@@ -203,8 +204,10 @@ CustomRecyclerViewAdapter.NewsListItemClick{
 
     @Override
     public void dismssDiolog() {
-        //隐藏进度条
-        bind.swipeRefreshLayout.setRefreshing(false);
+        if(bind.swipeRefreshLayout.isRefreshing()) {
+            //隐藏进度条
+            bind.swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
