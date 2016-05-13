@@ -190,6 +190,7 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
     @Override
     public void showSuccess() {
         showSnack("评论成功");
+        binding.btnEditIfo.setText("");
         onloadDataComment();
     }
 
