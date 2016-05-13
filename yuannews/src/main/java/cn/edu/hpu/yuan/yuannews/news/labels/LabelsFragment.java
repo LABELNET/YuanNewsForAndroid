@@ -54,17 +54,17 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
     protected void initView(View view, Bundle savedInstanceState) {
         initSwipeRefreshLayout();
         binding.labelLists.setOnScrollListener(new AbsListView.OnScrollListener() {
-            private int lastItemIndex=0;
+            private int lastItemIndex=0,pageItem=0;
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE
-                        && lastItemIndex == labelsAdapter.getCount() - 1) {
+                if (lastItemIndex==pageItem && SCROLL_STATE_IDLE==scrollState) {
                     labelsContanctsPresenter.nextgetTasteData();//加载更多
                   }
             }
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                lastItemIndex = firstVisibleItem + visibleItemCount - 1 ;
+                pageItem=firstVisibleItem+visibleItemCount;
+                lastItemIndex=totalItemCount;
             }
         });
 
@@ -115,16 +115,21 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     @Override
     public void showLabelsData(List<String> tastes) {
-        LogUtil.v(tastes.toString());
+
         if(binding.swipeRefreshLayout.isRefreshing()){
             binding.swipeRefreshLayout.setRefreshing(false);
         }
+        if(tastes.size()==0){
+            binding.noData.setVisibility(View.VISIBLE);
+            showSnack("没有更多数据了");
+            return;
+        }
         labelsAdapter.addTasteVo(tastes);
-        labelsAdapter.notifyDataSetChanged();
         if(labelsAdapter.getCount()==0){
             binding.noData.setVisibility(View.VISIBLE);
         }else {
             binding.noData.setVisibility(View.GONE);
+            labelsAdapter.notifyDataSetChanged();
         }
     }
 
