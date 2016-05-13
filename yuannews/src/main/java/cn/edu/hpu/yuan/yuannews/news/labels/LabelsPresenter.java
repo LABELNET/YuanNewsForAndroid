@@ -27,6 +27,7 @@ public class LabelsPresenter implements LabelsContancts.LabelsContanctsPresenter
 
     public void getLabelsPageData(int p) {
        labelsContanctsView.showDialog();
+        uid= BaseApplication.newsAPIShared.getSharedUserID();
        BaseApplication.newsAPIService.getNewsTaste(uid,20,p).enqueue(new Callback<DataBean<List<String>>>() {
            @Override
            public void onResponse(Call<DataBean<List<String>>> call, Response<DataBean<List<String>>> response) {
@@ -63,6 +64,7 @@ public class LabelsPresenter implements LabelsContancts.LabelsContanctsPresenter
 
     @Override
     public void userAddTaste(String label) {
+        uid= BaseApplication.newsAPIShared.getSharedUserID();
         BaseApplication.newsAPIService.postAddLabel(uid,label).enqueue(new Callback<DataBean>() {
             @Override
             public void onResponse(Call<DataBean> call, Response<DataBean> response) {
