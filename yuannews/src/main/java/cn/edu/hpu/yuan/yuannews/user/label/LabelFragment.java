@@ -72,6 +72,7 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
         tasteVo.setLabel(label);
         labelIfoAdapter.addTasteVo(tasteVo);
         labelIfoAdapter.notifyDataSetChanged();
+        binding.noData.setVisibility(View.GONE);
     }
 
     @Override
