@@ -47,4 +47,5 @@ public class LabelsActivity extends NormalBaseActivity{
     protected BaseFragment initFragment() {
         return labelsFragment;
     }
+
 }

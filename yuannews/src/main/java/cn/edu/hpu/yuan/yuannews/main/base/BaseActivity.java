@@ -26,6 +26,7 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
+import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
 import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -147,6 +148,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                                 break;
                             case R.id.navigation_item_about:
                                 showToast("navigation_item_about");
+                                break;
+                            case R.id.navigation_item_label:
+                                startActivity(new Intent(getChildContext(), LabelsActivity.class));
                                 break;
 
                         }

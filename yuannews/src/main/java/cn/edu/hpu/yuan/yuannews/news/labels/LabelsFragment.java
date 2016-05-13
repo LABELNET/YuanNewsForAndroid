@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LabelFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.databinding.LabelsFragmentBinding;
@@ -38,6 +41,8 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     private LabelsFragmentBinding binding;
 
+    private SwipeRefreshLayout.OnRefreshListener swipeOnRefresh;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,13 +52,10 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        labelsAdapter.initTasteVo();
         binding.labelLists.setAdapter(labelsAdapter);
-
+        initSwipeRefreshLayout();
         binding.labelLists.setOnScrollListener(new AbsListView.OnScrollListener() {
-
             private int lastItemIndex=0;
-
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE
@@ -61,19 +63,38 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
                     labelsContanctsPresenter.nextgetTasteData();//加载更多
                   }
             }
-
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 lastItemIndex = firstVisibleItem + visibleItemCount - 1 ;
             }
         });
+    }
 
+    private void initSwipeRefreshLayout() {
+        binding.swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary
+                ,R.color.colorPrimaryDark
+                ,R.color.colorAccent);
+        binding.swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);
+        binding.swipeRefreshLayout.setProgressViewEndTarget(true,500);//进度条位置
+        binding.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onloadData();
+            }
+        });
 
-
+        binding.swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                binding.swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+        swipeOnRefresh.onRefresh();
     }
 
     @Override
     protected void onloadData() {
+        labelsAdapter.initTasteVo();
         labelsContanctsPresenter.initgetTasteData();
     }
 
@@ -92,8 +113,17 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
 
     @Override
     public void showLabelsData(List<String> tastes) {
+        LogUtil.v(tastes.toString());
+        if(binding.swipeRefreshLayout.isRefreshing()){
+            binding.swipeRefreshLayout.setRefreshing(false);
+        }
         labelsAdapter.addTasteVo(tastes);
-        labelsAdapter.notifyDataSetChanged();
+        if(labelsAdapter.getCount()==0){
+            binding.noData.setVisibility(View.VISIBLE);
+        }else {
+            binding.noData.setVisibility(View.GONE);
+            labelsAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -107,6 +137,7 @@ public class LabelsFragment extends NorbalBackFragment implements LabelsContanct
         //这个是点击关注后，移除的详情标签
         if(BaseApplication.newsAPIShared.getSharedUserID()>0){
             //可以关注
+            showSnack("点击关注了");
         }else{
             showSnackAction("你还未登陆");
         }

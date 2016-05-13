@@ -27,7 +27,7 @@ public class LabelsPresenter implements LabelsContancts.LabelsContanctsPresenter
 
     public void getLabelsPageData(int p) {
        labelsContanctsView.showDialog();
-       BaseApplication.newsAPIService.getNewsTaste(uid,p,20).enqueue(new Callback<DataBean<List<String>>>() {
+       BaseApplication.newsAPIService.getNewsTaste(uid,20,p).enqueue(new Callback<DataBean<List<String>>>() {
            @Override
            public void onResponse(Call<DataBean<List<String>>> call, Response<DataBean<List<String>>> response) {
                if(response.isSuccessful()){
