@@ -15,5 +15,15 @@
                 <item name="android:windowTranslucentStatus">true</item>
                 <!-- 避免控件都会顶到状态栏上 -->
                 <item name="android:fitsSystemWindows">true</item>
+                <item name="android:itemTextAppearance">@style/ActionBarOverflow</item>
         </style>
+
+        <style name="ActionBarOverflow" parent="@android:style/Widget.ActionButton.Overflow">
+                <!-- 设置菜单字体的大小. -->
+                <item name="android:textSize">16dp</item>
+                <!-- 设置菜单字体的颜色. -->
+                <item name="android:textColor">@color/black</item>
+        </style>
+
+
 </resources>
