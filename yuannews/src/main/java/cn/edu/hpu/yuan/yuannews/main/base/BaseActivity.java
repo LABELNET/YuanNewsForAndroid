@@ -148,7 +148,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.navigation_item_example:
                                 //个人中心
-                                startActivity(new Intent(getChildContext(),CenterActivity.class));
+                                if(BaseApplication.newsAPIShared.getSharedUserID()>0) {
+                                    startActivity(new Intent(getChildContext(), CenterActivity.class));
+                                }else{
+                                    showMsg("未登陆?");
+                                }
                                 break;
                             case R.id.navigation_item_blog:
                                 //标签管理
