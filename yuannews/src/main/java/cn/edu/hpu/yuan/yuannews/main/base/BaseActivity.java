@@ -18,7 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +28,9 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
-import cn.edu.hpu.yuan.yuannews.main.util.LollipopUtils;
 import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
 import cn.edu.hpu.yuan.yuannews.news.other.AboutActivity;
+import cn.edu.hpu.yuan.yuannews.news.tuijian.TuijianActivity;
 import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
 import cn.edu.hpu.yuan.yuannews.user.label.LabelActivity;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
@@ -170,7 +169,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                                 break;
                             case R.id.navigation_item_news:
                                 if(BaseApplication.newsAPIShared.getSharedUserID()>0){
-                                    startActivity(new Intent(getChildContext(), LabelActivity.class));
+                                    startActivity(new Intent(getChildContext(), TuijianActivity.class));
                                 }else{
                                     showMsg("未登陆?");
                                 }
