@@ -5,9 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -31,6 +33,7 @@ import cn.edu.hpu.yuan.yuannews.main.util.LollipopUtils;
 import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
 import cn.edu.hpu.yuan.yuannews.news.other.AboutActivity;
 import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
+import cn.edu.hpu.yuan.yuannews.user.label.LabelActivity;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -148,13 +151,25 @@ public abstract class BaseActivity extends AppCompatActivity {
                                 startActivity(new Intent(getChildContext(),CenterActivity.class));
                                 break;
                             case R.id.navigation_item_blog:
-                                showToast("navigation_item_blog");
+                                //标签管理
+                                if(BaseApplication.newsAPIShared.getSharedUserID()>0){
+                                    startActivity(new Intent(getChildContext(), LabelActivity.class));
+                                }else{
+                                    showMsg("未登陆?");
+                                }
                                 break;
                             case R.id.navigation_item_about:
                                 startActivity(new Intent(getChildContext(), AboutActivity.class));
                                 break;
                             case R.id.navigation_item_label:
                                 startActivity(new Intent(getChildContext(), LabelsActivity.class));
+                                break;
+                            case R.id.navigation_item_news:
+                                if(BaseApplication.newsAPIShared.getSharedUserID()>0){
+                                    startActivity(new Intent(getChildContext(), LabelActivity.class));
+                                }else{
+                                    showMsg("未登陆?");
+                                }
                                 break;
 
                         }
@@ -282,6 +297,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void showMsg(String msg){
+        Snackbar.make(mDrawerLayout,msg,Snackbar.LENGTH_SHORT)
+                .setAction("点我登陆", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       startActivity(new Intent(getChildContext(),LoginActivity.class));
+                    }
+                })
+                .setActionTextColor(Color.YELLOW)
+                .show();
+    }
 
 
 
