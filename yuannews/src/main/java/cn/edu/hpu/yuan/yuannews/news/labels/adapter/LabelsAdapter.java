@@ -9,24 +9,23 @@ import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.LabelFragmentItemBinding;
-import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 
 /**
  * Created by yuan on 16-5-12.
  */
 public class LabelsAdapter extends BaseAdapter{
 
-    private final List<String>  tasteVos=new ArrayList<>();
 
+    private final List<String> tasteVos=new ArrayList<>();
 
     public void initTasteVo(){
         tasteVos.clear();
     }
 
     public void addTasteVo(List<String> tastes){
+        tasteVos.removeAll(tastes);//移除以存在的兴趣标签
         tasteVos.addAll(tastes);
     }
 
