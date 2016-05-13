@@ -161,16 +161,16 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
         if(binding.swipeRefreshLayout.isRefreshing()){
             binding.swipeRefreshLayout.setRefreshing(false);
         }
-
-        showNoData();
+        //给adapter添加数据,响应数据
 
         if(comments.size()==0){
             showSnack("没有更多评论了");
             return;
         }
-       //给adapter添加数据,响应数据
         commentRecyclerAdapter.addComemntJo(comments);
         commentRecyclerAdapter.notifyDataSetChanged();
+
+        showNoData();
     }
 
     private void showNoData(){
