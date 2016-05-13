@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
+import cn.edu.hpu.yuan.yuannews.main.util.LollipopUtils;
 
 /**
  * Created by yuan on 16-5-12.
@@ -36,10 +37,12 @@ public abstract class NormalBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.normal_base_main);
         setComponet();
-
         //初始化toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        LollipopUtils.setStatusbarColor(this, toolbar);
+
         //初始化fragment
         BaseFragment fragment = initFragment();
         fragment.setApplicationComponent(getApplicationComponent());

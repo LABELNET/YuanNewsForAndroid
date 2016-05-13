@@ -26,6 +26,7 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
+import cn.edu.hpu.yuan.yuannews.main.util.LollipopUtils;
 import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
 import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
@@ -84,6 +85,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         //初始化toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        LollipopUtils.setStatusbarColor(this, toolbar);
 
         //设置DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
