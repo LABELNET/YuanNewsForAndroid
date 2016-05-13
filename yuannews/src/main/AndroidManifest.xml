@@ -27,6 +27,8 @@
         <activity android:name=".user.label.LabelActivity"/>
         <activity android:name=".news.labels.LabelsActivity"/>
         <activity android:name=".news.comment.CommenActivity"/>
+        <activity android:name=".news.other.AboutActivity"/>
+
     </application>
 
 </manifest>
