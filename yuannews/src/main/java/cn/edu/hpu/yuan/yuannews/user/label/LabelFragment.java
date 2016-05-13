@@ -79,12 +79,14 @@ public class LabelFragment extends NorbalBackFragment implements LabelContancts.
     protected void initView(View view, Bundle savedInstanceState) {
         labelIfoAdapter.setOnDeleteItemClick(this);
         binding.labelLists.setAdapter(labelIfoAdapter);
-        List<TasteVo> tasteVos = (List<TasteVo>) getArguments().getSerializable("tasteVos");
-        if(tasteVos==null) {
+
+        if(getArguments()!=null){
+            List<TasteVo> tasteVos = (List<TasteVo>) getArguments().getSerializable("tasteVos");
             initLabels(tasteVos);
-        }else {
+        }else{
             labelContanctsPresenter.postAllLabel();
         }
+
         binding.btnAddLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

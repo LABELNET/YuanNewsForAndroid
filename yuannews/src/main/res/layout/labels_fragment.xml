@@ -11,6 +11,13 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
+
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <TextView
@@ -23,11 +30,7 @@
             android:gravity="center"
             />
 
-        <ListView
-            android:id="@+id/labelLists"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+
 
 
     </RelativeLayout>
