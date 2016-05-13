@@ -54,6 +54,7 @@ public class NewsDetailFragment extends NorbalBackFragment
     private NewsDetailFragmentBinding bind;
     private int newsStatus=0;
     private int nid;
+
     private int uid;
 
     @Nullable
@@ -84,11 +85,11 @@ public class NewsDetailFragment extends NorbalBackFragment
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         nid=getArguments().getInt(NEWSDETAIL_FRAGMENT_NID_KEY);
-        uid= BaseApplication.newsAPIShared.getSharedUserID();
-
         bind.newDetailZan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                uid= BaseApplication.newsAPIShared.getSharedUserID();
+
                 if(uid>0) {
                     if(newsStatus==2){
                         showMsg("超赞后,就不嫩取消了.");
@@ -165,6 +166,7 @@ public class NewsDetailFragment extends NorbalBackFragment
     @Override
     public void getZanStatus(int status) {
         newsStatus=status;
+        uid= BaseApplication.newsAPIShared.getSharedUserID();
         //当前用户的点赞状态获取
         switch (status){
             case 0:
