@@ -19,6 +19,7 @@ import cn.edu.hpu.yuan.yuannews.databinding.CommensFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentJo;
+import cn.edu.hpu.yuan.yuannews.news.comment.adapter.CommentRecyclerAdapter;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 
 /**
@@ -33,11 +34,14 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
     private CommensFragmentBinding binding;
     private int nid;
 
+    @Inject
+    protected CommentRecyclerAdapter commentRecyclerAdapter;
+
     @Override
     protected void initComponent() {
         DaggerCommentComponent
                 .builder()
-                .commentModule(new CommentModule(this))
+                .commentModule(new CommentModule(this,getContext()))
                 .build()
                 .injectCommentFragment(this);
     }
