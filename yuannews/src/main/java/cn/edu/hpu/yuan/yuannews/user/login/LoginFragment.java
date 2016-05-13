@@ -26,6 +26,7 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     protected LoginContract.LoginContractPresenter loginContractPresenter;
 
     private final int LOGIN_SUCCESS=2016;
+    private final String BASE_BORDERCAST_ACTION="base_bordercast_action";
 
     //初始化binding
     protected LoginFragmentBinding binding;
@@ -93,6 +94,9 @@ public class LoginFragment extends NorbalBackFragment implements LoginContract.L
     @Override
     public void success() {
         showMsg("登陆成功，正在跳转");
+        Intent intent=new Intent();
+        intent.setAction(BASE_BORDERCAST_ACTION);
+        activity.sendBroadcast(intent);
         //主界面
         getActivity().setResult(LOGIN_SUCCESS);
         getActivity().onBackPressed();

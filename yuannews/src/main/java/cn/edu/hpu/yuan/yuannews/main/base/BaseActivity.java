@@ -269,7 +269,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action=intent.getAction();
-
+            if(BASE_BORDERCAST_ACTION.equals(action)){
+                initHeadView(navigationHeaderView);
+            }
         }
     };
 
