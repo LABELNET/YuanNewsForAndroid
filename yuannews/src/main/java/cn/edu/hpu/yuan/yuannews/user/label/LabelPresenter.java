@@ -1,8 +1,11 @@
 package cn.edu.hpu.yuan.yuannews.user.label;
 
+import java.util.List;
+
 import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
+import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,5 +75,31 @@ public class LabelPresenter implements LabelContancts.LabelContanctsPresenter{
             }
         });
 
+    }
+
+    @Override
+    public void postAllLabel() {
+        Integer id = BaseApplication.newsAPIShared.getSharedUserID();
+        BaseApplication.newsAPIService.postTasteVos(id).enqueue(new Callback<DataBean<List<TasteVo>>>() {
+            @Override
+            public void onResponse(Call<DataBean<List<TasteVo>>> call, Response<DataBean<List<TasteVo>>> response) {
+
+                if(response.isSuccessful()){
+                    if(response.body().getCode()==0){
+                        labelContanctsView.showAlldata(response.body().getData());
+                    }else{
+                        labelContanctsView.showMsg(response.body().getMsg());
+                    }
+                }else {
+                    labelContanctsView.showMsg("网络不稳定");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<DataBean<List<TasteVo>>> call, Throwable t) {
+                labelContanctsView.showMsg("网络不稳定");
+            }
+        });
     }
 }

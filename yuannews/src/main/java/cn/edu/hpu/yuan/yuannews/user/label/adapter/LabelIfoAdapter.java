@@ -22,6 +22,7 @@ public class LabelIfoAdapter extends BaseAdapter{
     private final List<TasteVo>  tasteVos=new ArrayList<>();
 
     public void addTasteVo(List<TasteVo> tastes){
+        tasteVos.clear();
         tasteVos.addAll(tastes);
     }
 
