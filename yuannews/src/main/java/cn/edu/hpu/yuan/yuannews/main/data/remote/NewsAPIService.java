@@ -194,6 +194,7 @@ public interface NewsAPIService {
      * @param p
      * @return
      */
+    @POST("getNewsTaste")
     Call<DataBean<List<String>>> getNewsTaste(@Query("uid") Integer uid,@Query("num") Integer num,@Query("p") Integer p);
 
 

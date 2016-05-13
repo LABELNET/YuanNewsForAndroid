@@ -18,8 +18,11 @@ public class NewsDetailPresenter implements NewsDetailContancts.NewsDetailPresen
 
     private NewsDetailContancts.NewsDetailView newsDetailView;
 
+    private int uid;
+
     public NewsDetailPresenter(NewsDetailContancts.NewsDetailView newsDetailView) {
         this.newsDetailView = newsDetailView;
+        uid=BaseApplication.newsAPIShared.getSharedUserID();
     }
 
     @Override
@@ -55,7 +58,25 @@ public class NewsDetailPresenter implements NewsDetailContancts.NewsDetailPresen
 
     @Override
     public void updateNewsZan(int nid, int status) {
-        //TODO 读取uid,进行操作
+        BaseApplication.newsAPIService.postZan(uid,nid,status).enqueue(new Callback<DataBean>() {
+            @Override
+            public void onResponse(Call<DataBean> call, Response<DataBean> response) {
+                if(response.isSuccessful()){
+                    if(response.body().getCode()==0){
+                        newsDetailView.updateZanSuccess();
+                    }else {
+                        newsDetailView.updateZanError();
+                    }
+                }else {
+                    newsDetailView.updateZanError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataBean> call, Throwable t) {
+                newsDetailView.updateZanError();
+            }
+        });
 
     }
 
@@ -86,7 +107,25 @@ public class NewsDetailPresenter implements NewsDetailContancts.NewsDetailPresen
 
     @Override
     public void getNewsZanStatus(int nid) {
+        BaseApplication.newsAPIService.getNewsUserZanStatus(uid,nid).enqueue(new Callback<DataBean<Integer>>() {
+            @Override
+            public void onResponse(Call<DataBean<Integer>> call, Response<DataBean<Integer>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().getCode()==0){
+                        newsDetailView.getZanStatus(response.body().getData());
+                    }else{
+                        newsDetailView.loadError();
+                    }
+                }else{
+                    newsDetailView.loadError();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<DataBean<Integer>> call, Throwable t) {
+                newsDetailView.loadError();
+            }
+        });
     }
 
 }
