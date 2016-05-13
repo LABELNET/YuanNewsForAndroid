@@ -7,31 +7,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+        <TextView
+            android:id="@+id/noComment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="暂时没有评论"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
             android:orientation="vertical">
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp" />
         </android.support.v4.widget.SwipeRefreshLayout>
-
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_height="50dp"
             android:background="@color/white">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_alignParentTop="true"
-                android:background="@color/black"/>
 
             <LinearLayout
                 android:orientation="horizontal"

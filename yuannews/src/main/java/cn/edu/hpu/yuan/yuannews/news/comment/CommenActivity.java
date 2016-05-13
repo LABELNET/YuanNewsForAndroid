@@ -1,5 +1,6 @@
 package cn.edu.hpu.yuan.yuannews.news.comment;
 
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -45,6 +46,9 @@ public class CommenActivity extends NormalBaseActivity{
 
     @Override
     protected BaseFragment initFragment() {
+        Bundle bundle=new Bundle();
+        bundle.putInt("nid",getIntent().getIntExtra("nid",0));
+        commentFragment.setArguments(bundle);
         return commentFragment;
     }
 }

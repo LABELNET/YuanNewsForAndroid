@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:minHeight="140dp"
+        android:background="@color/white"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -22,7 +23,7 @@
             android:layout_width="50dp"
             android:layout_height="52dp"
             android:src="@mipmap/ic_news"
-            app:civ_border_color="@color/white"
+            app:civ_border_color="@color/colorPrimaryDark"
             app:civ_border_width="2dp" />
 
         <TextView
@@ -37,10 +38,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{commentJo.content}"
+            android:text="@{String.valueOf(commentJo.content).trim()}"
             android:layout_below="@+id/profile_image"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/profile_image"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 </layout>

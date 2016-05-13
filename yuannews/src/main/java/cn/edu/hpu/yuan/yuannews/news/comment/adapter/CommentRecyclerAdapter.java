@@ -25,10 +25,10 @@ import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.CommentJo;
 public class CommentRecyclerAdapter  extends RecyclerView.Adapter<CommentRecyclerAdapter.CommentViewAdapter>{
 
 
-    private final List<CommentJo> commentJos=new ArrayList<>();
+    private  List<CommentJo> commentJos=new ArrayList<>();
 
-    public void addComemntJo(ArrayList<CommentJo> commentJos){
-        commentJos.addAll(commentJos);
+    public void addComemntJo(ArrayList<CommentJo> commentss){
+        commentJos.addAll(commentss);
     }
 
     public void clearComemntJos(){
