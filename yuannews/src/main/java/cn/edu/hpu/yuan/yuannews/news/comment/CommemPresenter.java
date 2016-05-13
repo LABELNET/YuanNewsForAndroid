@@ -57,7 +57,7 @@ public class CommemPresenter implements CommenContancts.CommenContanctsPresenter
     @Override
     public void nextLoadCommentData(int nid) {
         //加载下一页
-        p+=1;
+        p=p+1;
         postComments(nid,p);
     }
 

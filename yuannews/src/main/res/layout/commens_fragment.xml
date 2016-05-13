@@ -34,6 +34,12 @@
             android:layout_height="50dp"
             android:background="@color/white">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorPrimaryDark"/>
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

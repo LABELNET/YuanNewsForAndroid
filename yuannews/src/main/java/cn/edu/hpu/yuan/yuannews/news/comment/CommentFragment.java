@@ -90,7 +90,7 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
         binding.swipeRefreshLayout.setOnRefreshListener(swipeOnRefresh=new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                onloadData();
+                onloadDataComment();
             }
         });
 
@@ -118,7 +118,7 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
                 int totalItemCount = lm.getItemCount();
                 //最后一项
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
-                        && lastVisibleItem == totalItemCount - 1) {
+                        && lastVisibleItem == totalItemCount) {
                     commenContanctsPresenter.nextLoadCommentData(nid);
                 }
             }
@@ -135,8 +135,7 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
     private void addComment() {
     }
 
-    @Override
-    protected void onloadData() {
+    protected void onloadDataComment() {
         //调用adapter的清空方法
         commentRecyclerAdapter.clearComemntJos();
         commenContanctsPresenter.initLoadCommentData(nid);
@@ -152,15 +151,19 @@ public class CommentFragment extends NorbalBackFragment implements CommenContanc
 
         LogUtil.v(comments.toString());
 
-       //给adapter添加数据,响应数据
-        commentRecyclerAdapter.addComemntJo(comments);
-        commentRecyclerAdapter.notifyDataSetChanged();
-
         if(binding.swipeRefreshLayout.isRefreshing()){
             binding.swipeRefreshLayout.setRefreshing(false);
         }
 
         showNoData();
+
+        if(comments.size()==0){
+            showSnack("没有更多评论了");
+            return;
+        }
+       //给adapter添加数据,响应数据
+        commentRecyclerAdapter.addComemntJo(comments);
+        commentRecyclerAdapter.notifyDataSetChanged();
     }
 
     private void showNoData(){
