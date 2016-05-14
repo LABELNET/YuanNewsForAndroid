@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -29,6 +31,7 @@ import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
+import cn.edu.hpu.yuan.yuannews.news.main.MainActivity;
 import cn.edu.hpu.yuan.yuannews.news.other.AboutActivity;
 import cn.edu.hpu.yuan.yuannews.news.tuijian.TuijianActivity;
 import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
@@ -272,6 +275,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             dialog.dismiss();
         }
     }
+    /**
+     * ---------------------------------------------------------
+     * 广播，初始化用户信息
+     */
 
     //广播，发给新闻列表页，改变排序类型
     private void sendReceiver(Integer type){
@@ -301,6 +308,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * ---------------------------------------------------------
+     *  用户登陆提醒
+     */
+
     private void showMsg(String msg){
         Snackbar.make(mDrawerLayout,msg,Snackbar.LENGTH_SHORT)
                 .setAction("点我登陆", new View.OnClickListener() {
@@ -313,6 +325,54 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * ---------------------------------------------------------
+     *  下面是按两次退出实现
+     */
+
+    private boolean isMainActivity(){
+        try {
+            MainActivity  mainActivity= (MainActivity) getChildContext();
+            if(mainActivity instanceof MainActivity){
+               return true;
+            }
+        }catch (Exception e){
+            return false;
+        }
+
+        return false;
+    }
 
 
+    private static boolean isExit = false;
+
+    private static Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
+
+    private void exit() {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(getApplicationContext(), "再按一次后退键退出程序",
+                    Toast.LENGTH_SHORT).show();
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+            this.finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isMainActivity()){
+            exit();
+        }else{
+            super.onBackPressed();
+        }
+
+    }
 }
