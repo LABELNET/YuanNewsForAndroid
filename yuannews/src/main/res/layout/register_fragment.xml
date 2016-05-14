@@ -36,7 +36,8 @@
                          android:id="@+id/editUsernick"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:inputType="textEmailAddress"
+                         android:inputType="text"
+                         android:textColor="@color/black"
                          android:hint="昵称" />
 
                  </android.support.design.widget.TextInputLayout>
@@ -51,7 +52,8 @@
                         android:id="@+id/editUserNum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
+                        android:inputType="number"
+                        android:textColor="@color/black"
                         android:hint="账户" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -66,7 +68,8 @@
                         android:id="@+id/editUserPass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
+                        android:textColor="@color/black"
+                        android:inputType="textPassword"
                         android:hint="密码" />
 
                 </android.support.design.widget.TextInputLayout>

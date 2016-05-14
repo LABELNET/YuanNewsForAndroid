@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -62,7 +63,7 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
      */
     private void initSwipeRefreshLayout() {
 
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) binding.swipeRefreshLayout.getLayoutParams();
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) binding.swipeRefreshLayout.getLayoutParams();
         layoutParams.topMargin=10;
         binding.swipeRefreshLayout.setLayoutParams(layoutParams);
 
@@ -164,7 +165,11 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
 
     @Override
     public void showNoData() {
+        if(binding.swipeRefreshLayout.isRefreshing()){
+            binding.swipeRefreshLayout.setRefreshing(false);
+        }
         showMsg("没有更多数据了");
+        initNoData();
     }
 
     @Override
