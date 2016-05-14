@@ -1,6 +1,5 @@
 package cn.edu.hpu.yuan.yuannews.news.tuijian;
 
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
