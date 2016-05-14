@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.databinding.NewsFragmentBinding;
 import cn.edu.hpu.yuan.yuannews.main.base.NorbalBackFragment;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
+import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
 import cn.edu.hpu.yuan.yuannews.news.newsdetail.NewsDetailActivity;
 import cn.edu.hpu.yuan.yuannews.news.newslist.adapter.CustomRecyclerViewAdapter;
 
@@ -59,6 +61,11 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
      * 初始化下拉刷新
      */
     private void initSwipeRefreshLayout() {
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) binding.swipeRefreshLayout.getLayoutParams();
+        layoutParams.topMargin=10;
+        binding.swipeRefreshLayout.setLayoutParams(layoutParams);
+
         binding.swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary
                 ,R.color.colorPrimaryDark
                 ,R.color.colorAccent);
@@ -129,8 +136,30 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
 
     @Override
     public void showNewsData(ArrayList<NewsCustom> newsCustoms) {
+
+        if(binding.swipeRefreshLayout.isRefreshing()){
+            binding.swipeRefreshLayout.setRefreshing(false);
+        }
+
         customRecyclerViewAdapter.initData(newsCustoms);
         customRecyclerViewAdapter.notifyDataSetChanged();
+
+        initNoData();
+    }
+
+    private void initNoData(){
+        if(customRecyclerViewAdapter.getItemCount()==0){
+            binding.noData.setVisibility(View.VISIBLE);
+            binding.btnLabel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), LabelsActivity.class));
+                    getActivity().finish();
+                }
+            });
+        }else{
+            binding.noData.setVisibility(View.GONE);
+        }
     }
 
     @Override

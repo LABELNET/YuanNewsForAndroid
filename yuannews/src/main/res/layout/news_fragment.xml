@@ -19,6 +19,27 @@
                     android:scrollbars="none" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <LinearLayout
+            android:id="@+id/noData"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还没有推荐新闻"/>
+
+            <Button
+                android:id="@+id/btnLabel"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="关注兴趣标签"/>
+
+        </LinearLayout>
+
     </RelativeLayout>
 </layout>
 
