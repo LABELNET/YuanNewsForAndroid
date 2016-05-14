@@ -55,6 +55,14 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
     protected void initView(View view, Bundle savedInstanceState) {
         initSwipeRefreshLayout();
         initRecyclerView();
+
+        binding.btnLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LabelsActivity.class));
+                getActivity().finish();
+            }
+        });
     }
 
 
@@ -132,44 +140,38 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
 
     @Override
     public void showErrorMsg(String msg) {
+        hideSwipRefreshLayout();
         showMsg(msg);
+        initNoData();
     }
 
     @Override
     public void showNewsData(ArrayList<NewsCustom> newsCustoms) {
-
-        if(binding.swipeRefreshLayout.isRefreshing()){
-            binding.swipeRefreshLayout.setRefreshing(false);
-        }
-
+        hideSwipRefreshLayout();
         customRecyclerViewAdapter.initData(newsCustoms);
         customRecyclerViewAdapter.notifyDataSetChanged();
-
         initNoData();
     }
 
     private void initNoData(){
         if(customRecyclerViewAdapter.getItemCount()==0){
-            binding.noData.setVisibility(View.VISIBLE);
-            binding.btnLabel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(getActivity(), LabelsActivity.class));
-                    getActivity().finish();
-                }
-            });
+            binding.noDataNews.setVisibility(View.VISIBLE);
         }else{
-            binding.noData.setVisibility(View.GONE);
+            binding.noDataNews.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void showNoData() {
+        hideSwipRefreshLayout();
+        showMsg("没有更多数据了");
+        initNoData();
+    }
+
+    private void hideSwipRefreshLayout() {
         if(binding.swipeRefreshLayout.isRefreshing()){
             binding.swipeRefreshLayout.setRefreshing(false);
         }
-        showMsg("没有更多数据了");
-        initNoData();
     }
 
     @Override
