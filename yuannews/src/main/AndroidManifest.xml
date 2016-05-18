@@ -7,7 +7,7 @@
     <application
         android:name=".main.app.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_news"
+        android:icon="@mipmap/ic_news_no"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
