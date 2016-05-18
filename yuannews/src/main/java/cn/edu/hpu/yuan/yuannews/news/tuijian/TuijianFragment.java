@@ -41,6 +41,7 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
     private NewsFragmentBinding binding;
 
     private int type=2;
+    private boolean isNoData=true;
 
     private SwipeRefreshLayout.OnRefreshListener swipeOnRefresh;
 
@@ -150,7 +151,9 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
         hideSwipRefreshLayout();
         customRecyclerViewAdapter.initData(newsCustoms);
         customRecyclerViewAdapter.notifyDataSetChanged();
-        initNoData();
+        if(!isNoData){
+            isNoData=true;
+        }
     }
 
     private void initNoData(){
@@ -164,7 +167,10 @@ public class TuijianFragment extends NorbalBackFragment implements TuijianContan
     @Override
     public void showNoData() {
         hideSwipRefreshLayout();
-        showMsg("没有更多数据了");
+        if(isNoData) {
+            showMsg("没有更多数据了");
+            isNoData=false;
+        }
         initNoData();
     }
 
