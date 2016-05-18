@@ -205,4 +205,5 @@ public interface NewsAPIService {
     Call<DataBean<ArrayList<NewsCustom>>> getTuijianNews(@Query("uid") Integer uid,@Query("num") Integer num,@Query("type") Integer type,@Query("p") Integer p);
 
 
+
 }
