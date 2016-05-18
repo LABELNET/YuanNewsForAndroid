@@ -11,6 +11,7 @@ import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.TasteVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.basevo.UserVo;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.CSCustom;
 import cn.edu.hpu.yuan.yuannews.main.data.model.news.NewsCustom;
+import cn.edu.hpu.yuan.yuannews.main.data.model.news.TuijianModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -205,5 +206,12 @@ public interface NewsAPIService {
     Call<DataBean<ArrayList<NewsCustom>>> getTuijianNews(@Query("uid") Integer uid,@Query("num") Integer num,@Query("type") Integer type,@Query("p") Integer p);
 
 
+    /**
+     * 推荐新闻的消息提醒，客户端通知显示
+     * @param uid
+     * @return
+     */
+    @POST("getTuijianNotification")
+    Call<DataBean<TuijianModel>> getTuijianNotification(@Query("uid") Integer uid);
 
 }
