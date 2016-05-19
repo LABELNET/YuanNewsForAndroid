@@ -57,6 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private final int RESULTCODE=2017;
 
     private final String BASE_BORDERCAST_ACTION="base_bordercast_action";
+    private final String BASE_NOTIFIACTION_ACTION="baase_notification_action";
 
     /**
      * 得到ApplicationComponent对象
@@ -296,7 +297,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         if(response.body().getCode()==0){
                             TuijianModel data = response.body().getData();
-                            BaseApplication.notificationUtil.showNotification(getChildContext(),data);
+                            if(BaseApplication.newsAPIShared.getSharedNotificationCount()<data.getCount()) {
+                                BaseApplication.notificationUtil.showNotification(getChildContext(), data);
+                                BaseApplication.newsAPIShared.putSharedNotificationCount(data.getCount());
+                            }
                         }
                     }
                 }
@@ -325,6 +329,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void registerBaseBroadReceiver(){
         IntentFilter filter=new IntentFilter();
         filter.addAction(BASE_BORDERCAST_ACTION);
+        filter.addAction(BASE_NOTIFIACTION_ACTION);
         registerReceiver(baseBroadReceiver,filter);
     }
 
@@ -338,6 +343,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             String action=intent.getAction();
             if(BASE_BORDERCAST_ACTION.equals(action)){
                 initHeadView(navigationHeaderView);
+            }else if(BASE_NOTIFIACTION_ACTION.equals(action)){
+                //通知
+                showNotification();
             }
         }
     };
