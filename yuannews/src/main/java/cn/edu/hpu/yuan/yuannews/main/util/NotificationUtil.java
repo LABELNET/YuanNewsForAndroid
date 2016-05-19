@@ -77,13 +77,16 @@ public class NotificationUtil {
 
         builder.setContentText(title);
         builder.setFullScreenIntent(pendingIntent,true);
+        builder.setDefaults(Notification.DEFAULT_ALL);
 
-
+        Notification build;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            manager.notify(NOTIFICATION_ID,builder.build());
+            build= builder.build();
         }else{
-            manager.notify(NOTIFICATION_ID,builder.getNotification());
+             build = builder.getNotification();
+            manager.notify(NOTIFICATION_ID,build);
         }
+        manager.notify(NOTIFICATION_ID,build);
     }
 
 

@@ -58,4 +58,8 @@ public class MainActivity extends BaseActivity{
         return MainActivity.this;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        showNotification();
+    }
 }
