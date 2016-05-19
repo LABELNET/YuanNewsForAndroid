@@ -25,17 +25,20 @@ public class NotificationUtil {
 
     private Notification.Builder builder;
     private static  NotificationUtil notificationUtil;
-    private static Context context;
+    private Context context;
     private final int NOTIFICATION_ID=1;
 
     public NotificationUtil(Context context) {
         builder=new Notification.Builder(context);
+        this.context=context;
     }
 
     public static NotificationUtil newInstance(Context c) {
-        NotificationUtil util = new NotificationUtil(c);
-        context=c;
-        return util;
+        if(notificationUtil==null) {
+            notificationUtil = new NotificationUtil(c);
+        }
+
+        return notificationUtil;
     }
 
     /**
@@ -53,6 +56,9 @@ public class NotificationUtil {
      * @param model
      */
     public void showNotification(TuijianModel model){
+
+        initNotification();
+
         NewsCustom newsCustom = model.getNewsCustom();
         String title=newsCustom.getTitle();
         title=title.length()>20?title.substring(0,20)+"...":title;
