@@ -25,12 +25,12 @@ public class NotificationUtil {
 
     private Notification.Builder builder;
     private static  NotificationUtil notificationUtil;
-    private Context context;
     private final int NOTIFICATION_ID=1;
+    private NotificationManager manager;
 
     public NotificationUtil(Context context) {
         builder=new Notification.Builder(context);
-        this.context=context;
+        manager= (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
     }
 
     public static NotificationUtil newInstance(Context c) {
@@ -44,18 +44,21 @@ public class NotificationUtil {
     /**
      * 初始化通知
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void initNotification(){
-        builder.setSmallIcon(R.mipmap.ic_news_no)
-               .setPriority(Notification.PRIORITY_DEFAULT)
-               .setCategory(Notification.CATEGORY_MESSAGE);
+        builder.setSmallIcon(R.mipmap.ic_news_no);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setPriority(Notification.PRIORITY_DEFAULT);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder.setCategory(Notification.CATEGORY_MESSAGE);
+            }
+        }
     }
 
     /**
      * 显示通知
      * @param model
      */
-    public void showNotification(TuijianModel model){
+    public void showNotification(Context context,TuijianModel model){
 
         initNotification();
 
@@ -75,7 +78,7 @@ public class NotificationUtil {
         builder.setContentText("你收到了"+model.getCount()+"条推荐新闻");
         builder.setFullScreenIntent(pendingIntent,true);
 
-        NotificationManager manager= (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             manager.notify(NOTIFICATION_ID,builder.build());
         }else{

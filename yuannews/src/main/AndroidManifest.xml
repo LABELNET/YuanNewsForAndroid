@@ -3,6 +3,8 @@
     package="cn.edu.hpu.yuan.yuannews">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
     <application
         android:name=".main.app.BaseApplication"
