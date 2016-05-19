@@ -75,7 +75,7 @@ public class NotificationUtil {
 
         PendingIntent pendingIntent=PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
 
-        builder.setContentText("你收到了"+model.getCount()+"条推荐新闻");
+        builder.setContentText(title);
         builder.setFullScreenIntent(pendingIntent,true);
 
 
