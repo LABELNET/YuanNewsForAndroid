@@ -9,6 +9,7 @@ import cn.edu.hpu.yuan.yuannews.main.data.Local.NewsAPIShared;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPI;
 import cn.edu.hpu.yuan.yuannews.main.data.NewsAPIModule;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
+import cn.edu.hpu.yuan.yuannews.main.util.NotificationUtil;
 import retrofit2.Retrofit;
 
 /**
@@ -33,6 +34,9 @@ public class BaseApplication extends Application{
 
     @Inject
     public static NewsAPIShared newsAPIShared;
+
+    @Inject
+    public static NotificationUtil notificationUtil;
 
     @Override
     public void onCreate() {
