@@ -300,6 +300,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                             if(BaseApplication.newsAPIShared.getSharedNotificationCount()<data.getCount()) {
                                 BaseApplication.notificationUtil.showNotification(getChildContext(), data);
                                 BaseApplication.newsAPIShared.putSharedNotificationCount(data.getCount());
+                            }else{
+                                BaseApplication.newsAPIShared.putSharedNotificationCount(data.getCount());
                             }
                         }
                     }

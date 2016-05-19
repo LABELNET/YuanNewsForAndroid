@@ -43,6 +43,8 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
     private final int REQUEST_CODE=2018;
     private final String SHRAED_MOREN_USER_IFNO="No Data";
     private final String BASE_BORDERCAST_ACTION="base_bordercast_action";
+    private final String BASE_NOTIFIACTION_ACTION="baase_notification_action";
+    private int tasteCode=0;
 
     @Inject
     protected  CenterContancts.CenterContanctsPresenter centerContanctsPresenter;
@@ -132,6 +134,11 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
 
     @Override
     public void showAllLabels(List<TasteVo> tasteVo) {
+        if(tasteCode!=tasteVo.size()){
+           activity.sendBroadcast(new Intent(BASE_NOTIFIACTION_ACTION));
+        }else{
+            tasteCode=tasteVo.size();
+        }
         binding.userlabels.removeAllViews();
         tasteVos.clear();
         if(tasteVo!=null){
