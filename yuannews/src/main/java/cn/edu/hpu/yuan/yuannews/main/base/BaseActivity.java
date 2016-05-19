@@ -29,6 +29,8 @@ import cn.edu.hpu.yuan.yuancore.util.LogUtil;
 import cn.edu.hpu.yuan.yuannews.R;
 import cn.edu.hpu.yuan.yuannews.main.app.ApplicationComponent;
 import cn.edu.hpu.yuan.yuannews.main.app.BaseApplication;
+import cn.edu.hpu.yuan.yuannews.main.data.model.DataBean;
+import cn.edu.hpu.yuan.yuannews.main.data.model.news.TuijianModel;
 import cn.edu.hpu.yuan.yuannews.main.data.remote.NewsAPIService;
 import cn.edu.hpu.yuan.yuannews.news.labels.LabelsActivity;
 import cn.edu.hpu.yuan.yuannews.news.main.MainActivity;
@@ -38,6 +40,9 @@ import cn.edu.hpu.yuan.yuannews.user.center.CenterActivity;
 import cn.edu.hpu.yuan.yuannews.user.label.LabelActivity;
 import cn.edu.hpu.yuan.yuannews.user.login.LoginActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by yuan on 16-5-9.
@@ -281,6 +286,27 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 通知，请求数据，显示通知
      */
 
+    public void showNotification(){
+        Integer userID = BaseApplication.newsAPIShared.getSharedUserID();
+        if(userID>0){
+
+            BaseApplication.newsAPIService.getTuijianNotification(userID).enqueue(new Callback<DataBean<TuijianModel>>() {
+                @Override
+                public void onResponse(Call<DataBean<TuijianModel>> call, Response<DataBean<TuijianModel>> response) {
+                    if(response.isSuccessful()){
+                        if(response.body().getCode()==0){
+                            TuijianModel data = response.body().getData();
+                            BaseApplication.notificationUtil.showNotification(getChildContext(),data);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DataBean<TuijianModel>> call, Throwable t) {
+                }
+            });
+        }
+    }
 
 
     /**

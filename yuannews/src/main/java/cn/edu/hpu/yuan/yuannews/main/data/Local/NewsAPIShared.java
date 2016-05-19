@@ -15,6 +15,7 @@ public class NewsAPIShared {
     private final String SHRAED_USER_IFO_NICK_KEY="shared_user_ifo_nick_key";
     private final String SHRAED_USER_ID_KEY="shared_user_id_key";
     private final String SHRAED_MOREN_USER_IFNO="No Data";
+    private final String SHARED_NOTIFICATION_COUNT="shared_notification_count";
 
     private SharedPreferences  sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -25,6 +26,10 @@ public class NewsAPIShared {
         editor=sharedPreferences.edit();
     }
 
+    /**
+     * =====================================
+     * 用户信息
+     */
     public void putSharedUserIfo(String headUrl,Integer uid,String nick){
         editor.putString(SHRAED_USER_IFO_HEAD_KEY,headUrl);
         editor.putInt(SHRAED_USER_ID_KEY,uid);
@@ -43,5 +48,20 @@ public class NewsAPIShared {
     public Integer getSharedUserID(){
        return  sharedPreferences.getInt(SHRAED_USER_ID_KEY,0);
     }
+
+
+    /**
+     * ========================================
+     * 通知的新闻总数
+     */
+    public Integer getSharedNotificationCount(){
+        return sharedPreferences.getInt(SHARED_NOTIFICATION_COUNT,0);
+    }
+
+    public void putSharedNotificationCount(Integer count){
+        editor.putInt(SHARED_NOTIFICATION_COUNT,count);
+        editor.commit();
+    }
+
 
 }
