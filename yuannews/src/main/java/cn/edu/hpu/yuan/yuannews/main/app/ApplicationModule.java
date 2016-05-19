@@ -16,6 +16,7 @@ import dagger.Provides;
  * 1.提供Application的Context
  * 2.提供CrashHandler类
  * 3.等等 数据API等
+ * 4.提供通知util 工具类
  */
 
 @Module
@@ -36,6 +37,8 @@ public class ApplicationModule {
     public CrashHandler provideCrashHandler(){
         return CrashHandler.getInstance();
     }
+
+
 
 
     //等等

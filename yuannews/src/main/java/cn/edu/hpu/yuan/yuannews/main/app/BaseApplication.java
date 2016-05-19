@@ -43,7 +43,6 @@ public class BaseApplication extends Application{
                 .build();
         applicationComponent.injectBaseApplication(this);
 
-
         //初始化crashHandler
         crashHandler.init(getApplicationContext());
     }
