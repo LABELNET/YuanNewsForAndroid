@@ -7,6 +7,7 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import cn.edu.hpu.yuan.yuancore.util.CrashHandler;
+import cn.edu.hpu.yuan.yuannews.main.util.NotificationUtil;
 import dagger.Module;
 import dagger.Provides;
 
@@ -38,6 +39,10 @@ public class ApplicationModule {
         return CrashHandler.getInstance();
     }
 
+    @Provides @Singleton
+    public NotificationUtil provideNotification(){
+        return NotificationUtil.newInstance(context);
+    }
 
 
 
