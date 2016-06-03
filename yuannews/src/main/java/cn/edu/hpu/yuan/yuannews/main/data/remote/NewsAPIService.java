@@ -80,7 +80,6 @@ public interface NewsAPIService {
     @POST("register")
     Call<DataBean> postUserRegister(@Query("unum") String num,@Query("pass") String pass,@Query("nick")String nick);
 
-
     /**
      * 获取用户详情信息
      * @param uid 用户id

@@ -67,12 +67,12 @@ public class CenterFragment extends NorbalBackFragment implements CenterContanct
     protected void initView(View view, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        binding.btnEditIfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(getActivity(), UserifoActivity.class),REQUEST_CODE);
-            }
-        });
+//        binding.btnEditIfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivityForResult(new Intent(getActivity(), UserifoActivity.class),REQUEST_CODE);
+//            }
+//        });
         binding.btnEditLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

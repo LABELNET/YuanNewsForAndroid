@@ -132,14 +132,14 @@
                 android:layout_alignParentTop="true"
                 android:background="@color/colorPrimaryDark"/>
 
-            <TextView
-                android:id="@+id/btnEditIfo"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="编辑资料"
-                android:gravity="center"
-                android:layout_marginLeft="16dp"
-                android:textColor="@color/colorPrimary"/>
+            <!--<TextView-->
+                <!--android:id="@+id/btnEditIfo"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="编辑资料"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:textColor="@color/colorPrimary"/>-->
 
             <TextView
                 android:id="@+id/btnEditLabel"
